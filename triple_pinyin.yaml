@@ -1,0 +1,2450 @@
+# encoding: utf-8
+
+# Rime custom settings for Triple_pinyin
+translator:
+  # preedit_format 輸入碼->上屏碼  第2步：詞典編碼->上屏碼：全拼/拼音/注音/國羅
+  preedit_format_2_pinyin_to_quanpin:   # 輸入碼->上屏碼  第2步：詞典編碼->上屏碼：漢語拼音全拼
+   __patch: &gyf                # 2.1  隔音符處理
+    __append:
+    - xform/'/"/                                            # 輸入的隔音符號'變換為"
+    - xform/ (\S+-)/ '$1/                                   # 李氏三拼簡拼前+隔音符
+    - xform/(\S+-) /$1' /                                   # 簡拼後+隔音符
+    - xform/ ([bpmdtnlgkhr]|[zcs]h?|[\w´]\x2F\w)\>/ '$1/    # 廿六三拼簡拼前+隔音符
+    - xform/\<([bpmdtnlgkhr]|[zcs]h?|[\w´]\x2F\w) /$1' /    # 簡拼後+隔音符
+    - xform/' '?/ '/
+   __patch:                     # 2.2  全碼處理：漢語拼音全拼（去掉聲調）
+    __append:
+    # - xform/([bpmfw])on(g?[0-5])/$1en$2/                    # 異拼
+    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
+    - xform/zii([0-5])/ji$1/                                # 尖音處理
+    - xform/z(i[a-z]+[0-5])/j$1/
+    - xform/zv([a-z]*[0-5])/ju$1/
+    - xform/cii([0-5])/qi$1/
+    - xform/c(i[a-z]+[0-5])/q$1/
+    - xform/cv([a-z]*[0-5])/qu$1/
+    - xform/sii([0-5])/xi$1/
+    - xform/s(i[a-z]+[0-5])/x$1/
+    - xform/sv([a-z]*[0-5])/xu$1/
+    - xform/([dtnlzcs])v([a-z]*[0-5])/$1ü$2/                # [dtnlzcs]v(-)轉換為ü
+    # - xform/([zcs])ü([0-5])/$1u$2/                          # 雲輸入轉寫
+    - xform/([dtnl])ü([0-5])/$1v$2/
+    - xform/([dtnl])ü(e[0-5])/$1u$2/
+    # - xform/([dtnlzcs])ü([a-z]+[0-5])/$1u$2/
+    - xform/[0-5]//                                         # 去掉聲調
+    
+   __patch:                     # 2.3  空格處理
+    __append:
+    - xform/(?<!-) '(?!\S*-)/ /                             # 保留空格，刪除零聲母音節前的隔音符
+    # - xform/ //                                             # 刪除空格
+    
+    - xlit|;"| '|                                           # 把;替換為空格，恢復輸入的隔音符號'
+
+  preedit_format_2_pinyin_to_ddpy:      # 輸入碼->上屏碼  第2步：詞典編碼->上屏碼：帶調拼音
+   __patch: *gyf                # 2.1  隔音符處理
+   __patch:                     # 2.2  全碼處理：帶調拼音
+    __append:
+    # - xform/([bpmfw])on(g?[0-5])/$1en$2/                    # 異拼
+    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
+    - xform/([aoeiuv])(ng?|r)([1-4])/$1$3$2
+    - xform/([aoe])([iuoe])([1-4])/$1$3$2
+    - xform/a1/ā
+    - xform/a2/á
+    - xform/a3/ǎ
+    - xform/a4/à
+    - xform/e1/ē
+    - xform/e2/é
+    - xform/e3/ě
+    - xform/e4/è
+    - xform/o1/ō
+    - xform/o2/ó
+    - xform/o3/ǒ
+    - xform/o4/ò
+    - xform/i1/ī
+    - xform/i2/í
+    - xform/i3/ǐ
+    - xform/i4/ì
+    - xform/u1/ū
+    - xform/u2/ú
+    - xform/u3/ǔ
+    - xform/u4/ù
+    - xform/v1/ǖ
+    - xform/v2/ǘ
+    - xform/v3/ǚ
+    - xform/v4/ǜ
+    - xform/eh1/ê̄
+    - xform/eh2/ế
+    - xform/eh3/ê̌
+    - xform/eh4/ề
+    - xform/eh[05]?/ê
+    - xform/([dtnlzcs])v/$1ü/
+    # - xform/- '/- /                                         # 簡拼後去掉隔音符
+    - xform/[05]//                                          # 未處理聲調轉換
+    
+   __patch:                     # 2.3  空格處理
+    __append:
+    - xform/(?<!-) '(?!\S*-)/ /                             # 保留空格，刪除零聲母音節前的隔音符
+    # - xform/ //                                             # 刪除空格
+    
+    - xlit|;"| '|                                           # 把;替換為空格，恢復輸入的隔音符號'
+
+  preedit_format_2_pinyin_to_zhuyin:    # 輸入碼->上屏碼  第2步：詞典編碼->上屏碼：注音符號
+   __patch: *gyf                # 2.1  隔音符處理
+   __patch:                     # 2.2  全碼處理：注音符號
+    __append:
+    - xform/\<yur-/yua-/                                    # 簡拼處理
+    - xform/(yu|ü)e-/$1eh-/
+    - xform/ü(a|eh)?-/v$1-/
+    - xform/\<([a-z]|[zcs]h)(\x2F)([a-z])(-)?/$1$3$4/
+    - xform/´\x2Fyw-/〇-/
+    - xform/´\x2Fx/〇x/
+    - xform/([jqx])u/$1v/                                   # 全碼處理
+    - xform/iu/iou/
+    - xform/ui/uei/
+    - xform/ong/ung/
+    - xform/yi?/i/
+    - xform/wu?/u/
+    - xform/iu/v/
+    - xform/([iuv])n/$1en/
+    - xform/zh/Z/
+    - xform/ch/C/
+    - xform/sh/S/
+    - xform/ai/A/
+    - xform/ei/I/
+    - xform/ao/O/
+    - xform/ou/U/
+    - xform/ang/K/
+    - xform/eng/G/
+    - xform/an/M/
+    - xform/en/N/
+    - xform/er/R/
+    - xform/eh/E/
+    - xform/([iuv])e(?!-)([0-5]|\>)/$1E$2/
+    - xform/([iu])ee/$1e/
+    - xform/([ZCSrzcs])i(i|[0-5]|\>)/$1$2/
+    - xlit/bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345/ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙/
+    - xform/([^ˉˊˇˋ˙']) (?!')/$1 '/                         # 無聲調後+隔音符
+    - xform/0//                                             # 未標調音節處理：刪除
+    - xform/(ˉ|ˊ|ˇ|ˋ|˙) '(?!\S*-)/$1 /                      # 聲調符號後去掉隔音符
+    
+   __patch:                     # 2.3  空格處理
+    __append:
+    # - xform/(?<!-) '(?!\S*-)/ /                             # 保留空格，刪除零聲母音節前的隔音符
+    - xform/ //                                             # 刪除空格
+    
+    - xlit|;"| '|                                           # 把;替換為空格，恢復輸入的隔音符號'
+
+  preedit_format_2_pinyin_to_guoluo:    # 輸入碼->上屏碼  第2步：詞典編碼->上屏碼：國語羅馬字
+   __patch: *gyf                # 2.1  隔音符處理
+   __patch:                     # 2.2  全碼處理：國語羅馬字
+    __append:
+    - xform/\<([^mnlr])(?!h)([a-z]+)\>/$1$2\x31/            # 廿六三拼無聲調簡拼處理
+    - xform/\<([zcs]h[a-z]+|[aoe])\>/$1\x31/
+    - xform/\<([mnlr][a-z]+)\>/$1\x32/
+    - xform/\<zh\>/j/                                       # 廿六三拼首碼簡拼處理
+    - xform/\<z\>/tz/
+    - xform/\<c\>/ts/
+    - xform/\<q(\x2F)/ch$1/
+    - xform/(\x2F)x\>/$1sh/
+    
+    - xform/eh([0-5])\>/E$1/                                # 對單韻母音節eh（ê/ㄝ），《國語羅馬字拼音法式》第4頁規定：ㄜ、ㄝ可同用e母；若在分別表明ㄜ與ㄝ兩音時，ㄝ可作ê
+    - xform/([iuyw])ee([0-5])\>/$1e$2/                      # iee/uee拼寫和ie/ue一致
+    
+    - xform/\<([^mnlr]\w*)0\>/$1\x31/                       # 未標調音節處理：非mnlr開頭的音節轉換為1聲
+    - xform/\<([mnlr]\w+)0\>/$1\x32/                        # 未標調音節處理：mnlr開頭的音節轉換為2聲
+    
+    - xform/\<([jqx])u([a-z]*[1-5])\>/$1v$2/
+    
+    - xform/\<(\w*[^r][1-4]) er5/$1L/                       # 疊詞規則
+    - xform/\<(\w+[1-5] \w+[1-5]) \1( |\>)/$1 VX$2/
+    - xform/\<(\w+[1-5]) (\w+[1-5]) \1( |\>)/$1 $2 V$3/
+    - xform/\<(\w+[1-5]) \1( |\>)/$1 X$2/
+    - xform/L/ er5/
+    
+    - xform/([uv])i([1-4]) er5/$1ei$2 er5/                  # 兒化音處理1
+    - xform/([iuv])n([1-4]) er5/$1en$2 er5/
+    - xform/(?<![iuvyw])([eE])([1-4]) er5/$1$2 l er5/       # 以e/ê結尾的音節打標記
+    - xform/ye([1-2]) er5/ye$1 l er5/
+    - xform/(\w*)ie([1-2]) er5/$1ie$2 l er5/
+    - xform/(yu|w)e([1-2]) er5/$1e$2 l er5/
+    - xform/(\w*)ve([1-2]) er5/$1ve$2 l er5/
+    - xform/([ae])i([1-4]) er5/$1$2 er5/                    # 音節末尾的i失落
+    - xform/([ae])n([1-4]) er5/$1$2 er5/                    # 音節末尾的n失落
+    - xform/([zcs]h?|r)i([1-4]) er5/$1e$2 er5/              # 空韻後需要加上el
+    - xform/yie?([1-4]) er5/ye$1 er5/                       # 韻母i後需要加上el
+    - xform/ii?([1-4]) er5/ie$1 er5/                        # 韻母i後需要加上el
+    - xform/(v|yu)([1-4]) er5/$1e$2 er5/                    # 韻母v後需要加上el
+    
+    - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 全碼處理，音節轉換
+    - xform/\<er(\w*[1-5])\>/el$1/
+    - xform/\<zh(\w*[1-5])\>/j$1/
+    - xform/\<z([aoeEiuvy]\w*[1-5])\>/tz$1/
+    - xform/\<c([aoeEiuvy]\w*[1-5])\>/ts$1/
+    - xform/\<q(\w*[1-5])\>/ch$1/
+    - xform/\<x(\w*[1-5])\>/sh$1/
+    - xform/iu([1-5])\>/iou$1/
+    - xform/([uv])i([1-5])\>/$1ei$2/
+    - xform/ao([1-5])\>/au$1/
+    - xform/([^y])un(g?[1-5])\>/$1uen$2/
+    - xform/v(\w*[1-5])\>/iu$1/
+    - xform/\<wu([1-5])\>/u$1/
+    - xform/y(\w*[1-5])\>/i$1/
+    - xform/w(\w*[1-5])\>/u$1/
+    - xform/ii(\w*[1-5])\>/i$1/
+    - xform/\<([mnlr]\w+)2\>/$1/
+    - xform/\<([mnlr])(\w+1)\>/$1h$2/
+    - xform/1\>//
+    - xform/i(\w+)2\>/y$1/
+    - xform/u(\w+)2\>/w$1/
+    - xform/([aoeE])([iu])?2\>/$1$2r/
+    - xform/([aoe])([nl]|ng)2\>/$1r$2/
+    - xform/i2\>/yi/
+    - xform/u2\>/wu/
+    - xform/\<ie(i)?3\>/yee$1/
+    - xform/\<uo3\>/woo/
+    - xform/\<i(\w*3)\>/yi$1/
+    - xform/\<u(\w*3)\>/wu$1/
+    - xform/ie3\>/iee/
+    - xform/i(ng?)3\>/ii$1/
+    - xform/i([aou]\w*)3\>/e$1/
+    - xform/([^w])u(o\w*)3\>/$1uo$2/
+    - xform/u([aoe]\w*)3\>/o$1/
+    - xform/ai3\>/ae/
+    - xform/au3\>/ao/
+    - xform/([aoeE])([iunl]|ng)?3\>/$1$1$2/
+    - xform/i3\>/ii/
+    - xform/u3\>/uu/
+    - xform/\<i4\>/yih/
+    - xform/\<iu4\>/yuh/
+    - xform/\<u4\>/wuh/
+    - xform/\<in4\>/yinn/
+    - xform/\<ing4\>/yinq/
+    - xform/\<i(\w+4)\>/y$1/
+    - xform/\<u(\w+4)\>/w$1/
+    - xform/([aoeE])4\>/$1h/
+    - xform/([ao])u4\>/$1w/
+    - xform/([ae])i4\>/$1y/
+    - xform/u4\>/uh/
+    - xform/i4\>/ih/
+    - xform/n4\>/nn/
+    - xform/l4\>/ll/
+    - xform/ng4\>/nq/
+    - xform/Y\>/y/
+    - xform/Y2\>/yr/
+    - xform/Y3\>/yy/
+    - xform/Y4\>/yh/
+    - xform/Y5\>/yv/
+    - xform/5\>/V/
+    - xform/\<(\w+)V\>/·$1/                                 # 輕聲
+    
+    - xlit/QWERTYUIOPASDFGHJKLZXCVBNM/qwêrtyuiopasdfghjklzxcvbnm/
+    
+    - xform/\<([^·]*)h l ·el/$1'll/                         # 兒化音處理2
+    - xform/\<([^·]*[^l]) l ·el/$1'l/
+    - xform/\<([^·]*)h ·el/$1ll/
+    - xform/\<([^·]*[^l]) ·el/$1l/
+    
+    - xform/·ba\>/b/                                        # 簡寫
+    - xform/·tzy\>/tz/
+    - xform/·men\>/mn/
+    - xform/·([mdj])e\>/$1/  # 若韻母=e，則省去韻母
+    - xform/·([nlg])e\>/·$1/
+    - xform/(^|;)·([nlg])\>/$1$2/
+    
+    - xform/([^q']) ([aoeêu])/$1 '$2/                       # 隔音符
+    - xform/([aeêiynl]) i/$1 'i/
+    - xform/([gh]) w/$1 'w/
+    - xform/([nlr]) h/$1 'h/
+    - xform/([bzmdj]) '?/$1' /
+    - xform/([bzmdj])' ([xv]\w?)([ ;']|\>)/$1 $2$3/
+    - xform/'( )?·/$1·/                                     # 隔音符、輕聲符連寫時省去隔音符
+    
+   __patch:                     # 2.3  空格處理
+    __append:
+    # - xform/(?<!-) '(?!\S*-)/ /                             # 保留空格，刪除零聲母音節前的隔音符
+    - xform/ //                                             # 刪除空格
+    
+    - xlit|;"| '|                                           # 把;替換為空格，恢復輸入的隔音符號'
+
+  # comment_format 詞典編碼->提示碼：全拼/拼音/注音/國羅
+  comment_format_copy1:         # 詞典編碼->提示碼：分兩段1
+    - xform/(?<! )\<([a-z]+[0-5])\>/$1 \U$1\E/
+    - xform/ \<([a-z]+[0-5])\>/ \U$1\E/
+    - xform/\<([A-Z]+)0\>/$1０/
+    - xform/\<([A-Z]+)1\>/$1１/
+    - xform/\<([A-Z]+)2\>/$1２/
+    - xform/\<([A-Z]+)3\>/$1３/
+    - xform/\<([A-Z]+)4\>/$1４/
+    - xform/\<([A-Z]+)5\>/$1５/
+    - xlit/QWERTYUIOPASDFGHJKLZXCVBNM/ＱＷＥＲＴＹＵＩＯＰＡＳＤＦＧＨＪＫＬＺＸＣＶＢＮＭ/
+    
+  comment_format_copy2:         # 詞典編碼->提示碼：分兩段2
+    - xform/\<([a-z]{3})\>/\U$1\E/
+    - xlit/ＱＷＥＲＴＹＵＩＯＰＡＳＤＦＧＨＪＫＬＺＸＣＶＢＮＭ０１２３４５/qwertyuiopasdfghjklzxcvbnm012345/
+    - xlit/QWERTYUIOPASDFGHJKLZXCVBNM/ＱＷＥＲＴＹＵＩＯＰＡＳＤＦＧＨＪＫＬＺＸＣＶＢＮＭ/
+    
+  comment_format_copy3:         # 詞典編碼->提示碼：分兩段3
+    - xlit/ＱＷＥＲＴＹＵＩＯＰＡＳＤＦＧＨＪＫＬＺＸＣＶＢＮＭ/qwertyuiopasdfghjklzxcvbnm/
+    
+  comment_format_pinyin_to_quanpin:     # 詞典編碼->提示碼 第二段：漢語拼音全拼
+   # 音節轉換
+    - erase/\<xx\>/
+    - xform/\<m([0-5])\>/mu$1/                              # 鼻音m（呣）轉化爲mu
+    - xform/\<r5\>/er5/                                     # r5（兒）轉化爲er5
+    - xform/\<(ung|ong)([0-5])\>/weng$2/                    # 拼音完整形式、異拼
+    - xform/\<([jqx])ung([0-5])\>/$1iong$2/
+    - xform/ung/ong/
+    - xform/vng/iong/
+    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
+    - xform/zii([0-5])/ji$1/                                # 尖音處理
+    - xform/z(i[a-z]+[0-5])/j$1/
+    - xform/zv([a-z]*[0-5])/ju$1/
+    - xform/cii([0-5])/qi$1/
+    - xform/c(i[a-z]+[0-5])/q$1/
+    - xform/cv([a-z]*[0-5])/qu$1/
+    - xform/sii([0-5])/xi$1/
+    - xform/s(i[a-z]+[0-5])/x$1/
+    - xform/sv([a-z]*[0-5])/xu$1/
+    - xform/([dtnlzcs])v([a-z]*[0-5])/$1ü$2/                # [dtnlzcs]v(-)轉換為ü
+    - xform/([dtnl])ü([0-5])/$1v$2/
+    - xform/([dtnl])ü(e[0-5])/$1u$2/
+    - xform/([jqxy])v/$1u/
+    - xform/([a-z|ü]+)[0-5]/$1/                             # 去掉聲調
+    
+   # 空格處理
+    - xform/ '/ /                                           # 保留空格，刪除零聲母音節前的隔音符
+    # - xform/ //                                             # 刪除空格
+
+  comment_format_pinyin_to_ddpy:        # 詞典編碼->提示碼 第二段：帶調拼音
+   # 音節轉換
+    - erase/\<xx\>/
+    - xform/\<m([0-5])\>/mu$1/                              # 鼻音m（呣）轉化爲mu
+    - xform/\<r5\>/er5/                                     # r5（兒）轉化爲er5
+    - xform/\<(ung|ong)([0-5])\>/weng$2/                    # 拼音完整形式、異拼
+    - xform/\<([jqx])ung([0-5])\>/$1iong$2/
+    - xform/ung/ong/
+    - xform/vng/iong/
+    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
+    - xform/([aoeiuv])(ng?|r)([1-4])/$1$3$2
+    - xform/([aoe])([iuoe])([1-4])/$1$3$2
+    - xform/a1/ā
+    - xform/a2/á
+    - xform/a3/ǎ
+    - xform/a4/à
+    - xform/e1/ē
+    - xform/e2/é
+    - xform/e3/ě
+    - xform/e4/è
+    - xform/o1/ō
+    - xform/o2/ó
+    - xform/o3/ǒ
+    - xform/o4/ò
+    - xform/i1/ī
+    - xform/i2/í
+    - xform/i3/ǐ
+    - xform/i4/ì
+    - xform/u1/ū
+    - xform/u2/ú
+    - xform/u3/ǔ
+    - xform/u4/ù
+    - xform/v1/ǖ
+    - xform/v2/ǘ
+    - xform/v3/ǚ
+    - xform/v4/ǜ
+    - xform/eh1/ê̄
+    - xform/eh2/ế
+    - xform/eh3/ê̌
+    - xform/eh4/ề
+    - xform/eh[05]/ê
+    - xform/([dtnlzcs])v/$1ü/
+    - xform/([jqxy])v/$1u/
+    - xform/([a-z|ü]+)[0-5]/$1/                             # 未處理聲調轉換
+    
+   # 空格處理
+    - xform/ '/ /                                           # 保留空格，刪除零聲母音節前的隔音符
+    # - xform/ //                                             # 刪除空格
+
+  comment_format_pinyin_to_zhuyin:      # 詞典編碼->提示碼 第二段：注音符號
+   # 音節轉換
+    - erase/\<xx\>/
+    - xform/\<m([0-5])\>/mu$1/                              # 鼻音m（呣）轉化爲mu
+    - xform/\<r5\>/er5/                                     # r5（兒）轉化爲er5
+    - xform/([jqx])u/$1v/                                   # 拼音完整形式、異拼
+    - xform/iu/iou/
+    - xform/ui/uei/
+    - xform/ong/ung/
+    - xform/yi?/i/
+    - xform/wu?/u/
+    - xform/iu/v/
+    - xform/([iuv])n/$1en/
+    - xform/zh/Z/
+    - xform/ch/C/
+    - xform/sh/S/
+    - xform/ai/A/
+    - xform/ei/I/
+    - xform/ao/O/
+    - xform/ou/U/
+    - xform/ang/K/
+    - xform/eng/G/
+    - xform/an/M/
+    - xform/en/N/
+    - xform/er/R/
+    - xform/eh/E/
+    - xform/([iuv])e(?!-)([0-5]|\>)/$1E$2/
+    - xform/([iu])ee/$1e/
+    - xform/([ZCSrzcs])i(i|[0-5]|\>)/$1$2/
+    - xlit/bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345/ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙/
+    - xform/([^ˉˊˇˋ˙]) /$1 '/                               # 無聲調後+隔音符
+    - xform/0//                                             # 未標調音節處理：刪除
+    
+   # 空格處理
+    # - xform/ '/ /                                           # 保留空格，刪除零聲母音節前的隔音符
+    - xform/ //                                             # 刪除空格
+
+  comment_format_pinyin_to_guoluo:      # 詞典編碼->提示碼 第二段：國語羅馬字
+   # 音節轉換
+    - xform/\<([^mnlr][a-z]*)0\>/$1\x31/                    # 未標調音節處理：非mnlr開頭的音節轉換為1聲
+    - xform/\<([mnlr][a-z]+)0\>/$1\x32/                     # 未標調音節處理：mnlr開頭的音節轉換為2聲
+    
+    - erase/\<xx\>/
+    - xform/\<m([1-5])\>/mu$1/                              # 鼻音m（呣）轉化爲mu
+    - xform/\<r5\>/er5/                                     # r5（兒）轉化爲er5
+    - xform/\<(ung|ong)([1-5])\>/weng$2/                    # 拼音完整形式、異拼
+    - xform/\<([jqx])ung([1-5])\>/$1iong$2/
+    - xform/ung/ong/
+    - xform/vng/iong/
+    - xform/eh([1-5])\>/E$1/                                # 對單韻母音節eh（ê/ㄝ），《國語羅馬字拼音法式》第4頁規定：ㄜ、ㄝ可同用e母；若在分別表明ㄜ與ㄝ兩音時，ㄝ可作ê
+    - xform/([iuyw])ee([1-5])\>/$1e$2/                      # iee/uee拼寫和ie/ue一致
+    
+    - xform/\<([jqx])u([a-z]*[1-5])\>/$1v$2/
+    
+    # - xform/\<(\w*[^r][1-4]) er5/$1L/                       # 疊詞規則
+    # - xform/\<(\w+[1-5] \w+[1-5]) \1( |\>)/$1 VX$2/
+    # - xform/\<(\w+[1-5]) (\w+[1-5]) \1( |\>)/$1 $2 V$3/
+    # - xform/\<(\w+[1-5]) \1( |\>)/$1 X$2/
+    # - xform/L/ er5/
+    
+    - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 全碼處理，音節轉換
+    - xform/\<er(\w*[1-5])\>/el$1/
+    - xform/\<zh(\w*[1-5])\>/j$1/
+    - xform/\<z([aoeEiuvy]\w*[1-5])\>/tz$1/
+    - xform/\<c([aoeEiuvy]\w*[1-5])\>/ts$1/
+    - xform/\<q(\w*[1-5])\>/ch$1/
+    - xform/\<x(\w*[1-5])\>/sh$1/
+    - xform/iu([1-5])\>/iou$1/
+    - xform/([uv])i([1-5])\>/$1ei$2/
+    - xform/ao([1-5])\>/au$1/
+    - xform/([^y])un(g?[1-5])\>/$1uen$2/
+    - xform/v(\w*[1-5])\>/iu$1/
+    - xform/\<wu([1-5])\>/u$1/
+    - xform/y(\w*[1-5])\>/i$1/
+    - xform/w(\w*[1-5])\>/u$1/
+    - xform/ii(\w*[1-5])\>/i$1/
+    - xform/\<([mnlr]\w+)2\>/$1/
+    - xform/\<([mnlr])(\w+1)\>/$1h$2/
+    - xform/1\>//
+    - xform/i(\w+)2\>/y$1/
+    - xform/u(\w+)2\>/w$1/
+    - xform/([aoeE])([iu])?2\>/$1$2r/
+    - xform/([aoe])([nl]|ng)2\>/$1r$2/
+    - xform/i2\>/yi/
+    - xform/u2\>/wu/
+    - xform/\<ie(i)?3\>/yee$1/
+    - xform/\<uo3\>/woo/
+    - xform/\<i(\w*3)\>/yi$1/
+    - xform/\<u(\w*3)\>/wu$1/
+    - xform/ie3\>/iee/
+    - xform/i(ng?)3\>/ii$1/
+    - xform/i([aou]\w*)3\>/e$1/
+    - xform/([^w])u(o\w*)3\>/$1uo$2/
+    - xform/u([aoe]\w*)3\>/o$1/
+    - xform/ai3\>/ae/
+    - xform/au3\>/ao/
+    - xform/([aoeE])([iunl]|ng)?3\>/$1$1$2/
+    - xform/i3\>/ii/
+    - xform/u3\>/uu/
+    - xform/\<i4\>/yih/
+    - xform/\<iu4\>/yuh/
+    - xform/\<u4\>/wuh/
+    - xform/\<in4\>/yinn/
+    - xform/\<ing4\>/yinq/
+    - xform/\<i(\w+4)\>/y$1/
+    - xform/\<u(\w+4)\>/w$1/
+    - xform/([aoeE])4\>/$1h/
+    - xform/([ao])u4\>/$1w/
+    - xform/([ae])i4\>/$1y/
+    - xform/u4\>/uh/
+    - xform/i4\>/ih/
+    - xform/n4\>/nn/
+    - xform/l4\>/ll/
+    - xform/ng4\>/nq/
+    - xform/Y\>/y/
+    - xform/Y2\>/yr/
+    - xform/Y3\>/yy/
+    - xform/Y4\>/yh/
+    - xform/Y5\>/yv/
+    - xform/5\>/V/
+    - xform/\<(\w+)V\>/·$1/                                 # 輕聲
+    
+    - xlit/QWERTYUIOPASDFGHJKLZXCVBNM/qwêrtyuiopasdfghjklzxcvbnm/
+    
+    - xform/([^q']) ([aoeêu])/$1 '$2/                       # 隔音符
+    - xform/([aeêiynl]) i/$1 'i/
+    - xform/([gh]) w/$1 'w/
+    - xform/([nlr]) h/$1 'h/
+    - xform/([bzmdj]) '?/$1' /
+    - xform/([bzmdj])' ([xv]\w?)([ ;']|\>)/$1 $2$3/
+    - xform/'( )?·/$1·/                                     # 隔音符、輕聲符連寫時省去隔音符
+    
+   # 空格處理
+    - xform/ '/ /                                           # 保留空格，刪除零聲母音節前的隔音符
+    # - xform/ //                                             # 刪除空格
+
+  # 強制始終顯示提示碼
+  __patch:
+    # preedit_format_2_pinyin_to_quanpin/+: [xform/$/\xE2\x80\x8B/]  # 上屏碼後添加佔位符（二選一）
+    # preedit_format_2_pinyin_to_ddpy/+:    [xform/$/\xE2\x80\x8B/]
+    # preedit_format_2_pinyin_to_zhuyin/+:  [xform/$/\xE2\x80\x8B/]
+    # preedit_format_2_pinyin_to_guoluo/+:  [xform/$/\xE2\x80\x8B/]
+    
+    comment_format_pinyin_to_quanpin/+:   [xform/$/\xE2\x80\x8B/]  # 提示碼後添加佔位符（二選一）
+    comment_format_pinyin_to_ddpy/+:      [xform/$/\xE2\x80\x8B/]
+    comment_format_pinyin_to_zhuyin/+:    [xform/$/\xE2\x80\x8B/]
+    comment_format_pinyin_to_guoluo/+:    [xform/$/\xE2\x80\x8B/]
+    
+
+# Theme settings for Triple_pinyin
+# ────錨點標籤────
+labels:
+  1: &lb_SLEEP 睡眠
+  2: &lb_SLEEP_ft 睡眠
+  3: &lb_VOICE_ASSIST 语音
+  4: &lb_VOICE_ASSIST_ft 語音
+  5: &lb_VOICE_ASSIST0 '🎤'
+  6: &lb_Shift_L Shift
+  7: &lb_Shift_L1 ⇪
+  8: &lb_Shift_L1c ☩
+  9: &lb_Caps_Lock Caps
+  10: &lb_Return Enter
+  11: &lb_Hide 隐藏
+  12: &lb_Hide_ft 隱藏
+  13: &lb_BackSpace ⌫
+  14: &lb_spacelskg ␣
+  15: &lb_Escape Esc
+  16: &lb_Escapecx 重输
+  17: &lb_Escapecx_ft 重輸
+  18: &lb_Home Home
+  19: &lb_Insert Ins
+  20: &lb_Delete Del
+  21: &lb_End End
+  22: &lb_Beginning ⏮
+  23: &lb_Ending ⏭
+  24: &lb_Page_Up PgUp
+  25: &lb_Page_Down PgDn
+  26: &lb_Left ←
+  27: &lb_Down ↓
+  28: &lb_Up ↑
+  29: &lb_Right →
+  30: &lb_LeftS ↞
+  31: &lb_RightS ↠
+  32: &lb_select_all ☑
+  33: &lb_Clear 全清
+  34: &lb_Clear_ft 全清
+  35: &lb_cut ✂
+  36: &lb_cut_all 全挪
+  37: &lb_cut_all_ft 全挪
+  38: &lb_copy ❐
+  39: &lb_copy_all 全誊
+  40: &lb_copy_all_ft 全謄
+  41: &lb_paste ▣
+  42: &lb_clip_board 剪切板
+  43: &lb_clip_board_ft 剪切板
+  44: &lb_paste_text 贴上文本
+  45: &lb_paste_text_ft 貼上文本
+  46: &lb_share_text 分享文本
+  47: &lb_share_text_ft 分享文本
+  48: &lb_undo ↶
+  49: &lb_redo ↷
+  50: &lb_delimiter 分词
+  51: &lb_delimiter_ft 分詞
+  52: &lb_lsjp_1x 首选
+  53: &lb_lsjp_1x_ft 首選
+  54: &lb_lsjp_2x 次选
+  55: &lb_lsjp_2x_ft 次選
+  56: &lb_lsjp_3x 三选
+  57: &lb_lsjp_3x_ft 三選
+  58: &lb_F4 方案菜单
+  59: &lb_F4_ft 方案菜單
+  60: &lb_BackToPreviousSyllable 删音节
+  61: &lb_BackToPreviousSyllable_ft 刪音節
+  62: &lb_BackToPreSyl '⇦'
+  63: &lb_BackToSentence 删句
+  64: &lb_BackToSentence_ft 刪句
+  65: &lb_CommitRawInput 输入码
+  66: &lb_CommitRawInput_ft 輸入碼
+  67: &lb_CommitScriptText 上屏码
+  68: &lb_CommitScriptText_ft 上屏碼
+  69: &lb_CommitComment 提示码
+  70: &lb_CommitComment_ft 提示碼
+  71: &lb_DeleteCandidate 删词
+  72: &lb_DeleteCandidate_ft 刪詞
+  73: &lb_DeleteCandidate_ls26 '删词iu'
+  74: &lb_DeleteCandidate_ls26_ft '刪詞ㄧㄡ'
+  75: &lb_IME_switch '🌐'
+  76: &lb_IME_last 上一输入法
+  77: &lb_IME_last_ft 上一輸入法
+  78: &lb_IME_next 下一输入法
+  79: &lb_IME_next_ft 下一輸入法
+  80: &lb_Keyboard_default 返回
+  81: &lb_Keyboard_default_ft 返回
+  82: &lb_Keyboard_switch 键盘
+  83: &lb_Keyboard_switch_ft 鍵盤
+  84: &lb_Keyboard_move ❖
+  85: &lb_Keyboard_next 前进
+  86: &lb_Keyboard_next_ft 前進
+  87: &lb_Keyboard_last 返回
+  88: &lb_Keyboard_last_ft 返回
+  89: &lb_Keyboard_symbols 符号
+  90: &lb_Keyboard_symbols_ft 符號
+  91: &lb_Keyboard_number 数字
+  92: &lb_Keyboard_number_ft 數字
+  93: &lb_Keyboard_letter 'abc'
+  94: &lb_Keyboard_emoji '😊'
+  95: &lb_Keyboard_symbolsyou '!?#'
+  96: &lb_Keyboard_numberyou '123'
+  97: &lb_Keyboard_lsedit '‹ɪ›'
+  98: &lb_Keyboard_lsfc 反查
+  99: &lb_Keyboard_lsfc_ft 反查
+  100: &lb_Schema_switch 切换
+  101: &lb_Schema_switch_ft 切換
+  102: &lb_Color_switch 配色
+  103: &lb_Color_switch_ft 配色
+  104: &lb_Help 说明
+  105: &lb_Help_ft 說明
+  106: &lb_Info 关于
+  107: &lb_Info_ft 關於
+  108: &lb_Menu 菜单
+  109: &lb_Menu_ft 菜單
+  110: &lb_Settings 设置
+  111: &lb_Settings_ft 設置
+  112: &lb_Theme_settings 主题
+  113: &lb_Theme_settings_ft 主題
+  114: &lb_Schema_settings 方案
+  115: &lb_Schema_settings_ft 方案
+  116: &lb_Candidate_switch [ 有候选, 无候选]
+  117: &lb_Candidate_switch_ft [ 有候選, 無候選]
+  118: &lb_Comment_switch [ 有注释, 无注释]
+  119: &lb_Comment_switch_ft [ 有注釋, 無注釋]
+  120: &lb_Hint_switch [ 有助记, 无助记]
+  121: &lb_Hint_switch_ft [ 有助記, 無助記]
+  122: &lb_Hint_switch_1 助记
+  123: &lb_Hint_switch_1_ft 助記
+  124: &lb__Keyboard_edit 编辑
+  125: &lb__Keyboard_edit_ft 編輯
+  126: &lb__Keyboard_phrase 短语
+  127: &lb__Keyboard_phrase_ft 短語
+  128: &lb__Keyboard_candidate 候选
+  129: &lb__Keyboard_candidate_ft 候選
+  130: &lb__add_phrase 添加
+  131: &lb__add_phrase_ft 添加
+  132: &lb__Keyboard_script 脚本
+  133: &lb__Keyboard_script_ft 腳本
+  134: &lb_Date 日期
+  135: &lb_Date_ft 日期
+  136: &lb_ChineseDate 农历
+  137: &lb_ChineseDate_ft 農曆
+  138: &lb_Time 时间
+  139: &lb_Time_ft 時間
+  140: &lb_TrimeApp 同文
+  141: &lb_TrimeApp_ft 同文
+  142: &lb_TrimeCmp 同文设置
+  143: &lb_TrimeCmp_ft 同文設置
+  144: &lb_Homepage 同文主页
+  145: &lb_Homepage_ft 同文主頁
+  146: &lb_CommitHomepage 同文网址
+  147: &lb_CommitHomepage_ft 同文網址
+  148: &lb_Wiki 维基
+  149: &lb_Wiki_ft 維基
+  150: &lb_Google 谷歌
+  151: &lb_Google_ft 谷歌
+  152: &lb_MoeDict 萌典
+  153: &lb_MoeDict_ft 萌典
+  154: &lb_Baidu 百度搜索
+  155: &lb_Baidu_ft 百度搜索
+  156: &lb_Zdic 汉典
+  157: &lb_Zdic_ft 漢典
+  158: &lb_WebSearch 搜索网页
+  159: &lb_WebSearch_ft 搜索網頁
+  160: &lb_Search 搜索
+  161: &lb_Search_ft 搜索
+  162: &lb_Share 分享
+  163: &lb_Share_ft 分享
+  164: &lb_Deploy 部署
+  165: &lb_Deploy_ft 部署
+  166: &lb_Sync 同步
+  167: &lb_Sync_ft 同步
+  168: &lb_help_ls 详解
+  169: &lb_help_ls_ft 詳解
+  170: &lb_help_lsbz 帮助
+  171: &lb_help_lsbz_ft 幫助
+  172: &lb_Mode_samll 单手
+  173: &lb_Mode_samll_ft 單手
+  174: &lb_Mode_samll_ls26 '单手a'
+  175: &lb_Mode_samll_ls26_ft '單手ㄚ'
+  176: &lb_delimiter1 首码
+  177: &lb_delimiter1_ft 首碼
+  178: &lb_delimiter3 全码
+  179: &lb_delimiter3_ft 全碼
+  
+# ────────────────
+style:
+  __include: trime:/style
+  key_long_text_size: 14 #長標籤字號
+  key_text_size: 22 #鍵字號
+  proximity_correction: true #按鍵糾錯
+  __patch: # v補充鍵盤
+    keyboards/+: [numberyou, symbolsyou, lsedit, lsqwerty, lsjp, lsfc_pinyinP, lsfc_strokeB]
+  __patch: # v李氏三拼鍵盤
+    keyboards/+: [lssp1, lssp2, lssp3, lssp1wsd, lssp2wsd, lssp3wsd]
+  __patch: # v廿六三拼鍵盤
+    keyboards/+: [ls26, ls26zy]
+
+fallback_colors:
+  __include: trime:/fallback_colors
+
+preset_color_schemes:
+  __include: trime:/preset_color_schemes
+ # v補充配色
+  aqua:
+    name: 碧水／Aqua
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xeeeeec
+    border_color: 0xe0e0e0
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xd4d4d4
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x0a3afa
+
+  azure:
+    name: 青天／Azure
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0xcae8ff
+    candidate_text_color: 0xeef8ff
+    back_color: 0x014e8b
+    border_color: 0x014e8b
+    hilited_text_color: 0xeef8ff
+    hilited_back_color: 0x014e8b
+    hilited_candidate_text_color: 0xfffe7f
+    hilited_candidate_back_color: 0x015ea9
+    comment_text_color: 0x6496c6
+
+  luna:
+    name: 明月／Luna
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xffffff
+    border_color: 0xcccccc
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xffff7f
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x000000
+
+  ink:
+    name: 墨池／Ink
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xffffff
+    border_color: 0x000000
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xdddddd
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x000000
+
+  lost_temple:
+    name: 孤寺／Lost Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0xf6f3e8
+    back_color: 0x444444
+    border_color: 0x444444
+    hilited_text_color: 0xcae682
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0xcae682
+
+  starcraft:
+    name: 星際我爭霸／StarCraft
+    author: Contralisk <contralisk@gmail.com>, original artwork by Blizzard Entertainment
+    text_color: 0x88aacc
+    candidate_text_color: 0x55bb30
+    back_color: 0x000000
+    border_color: 0xa01010
+    hilited_text_color: 0x96cbfe
+    hilited_back_color: 0x000000
+    hilited_candidate_text_color: 0xa8ff60
+    hilited_candidate_back_color: 0x000000
+
+  google:
+    name: 谷歌／Google
+    author: skoj <skoj@qq.com>
+    text_color: 0x666666
+    candidate_text_color: 0x000000
+    back_color: 0xFFFFFF
+    border_color: 0xE2E2E2
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0x3975CE
+
+  solarized_rock:
+    name: 曬經石／Solarized Rock
+    author: "Aben <tntaben@gmail.com>, based on Ethan Schoonover's Solarized color scheme"
+    back_color: 0x002b36
+    border_color: 0x002b36
+    text_color: 0x859900
+    hilited_text_color: 0x2aa198
+    candidate_text_color: 0x839496
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0xd33682
+
+  tintin:
+    name: "丁丁／ Tintin"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x0095d9
+    border_color: 0x0095d9
+    label_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_text_color: 0x91d8f7
+    hilited_back_color: 0x0095d9
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xf16421
+
+  dota_2:
+    name: "DOTA 2"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x100f12
+    border_color: 0x100f12
+    label_color: 0x8f755c
+    hilited_text_color: 0xdd4118
+    hilited_back_color: 0x100f12
+    candidate_text_color: 0x8f755c
+    comment_text_color: 0x8f755c
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xdd4118
+
+  brasil:
+    name: "笆悉／Brasil"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x119355
+    border_color: 0x119355
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x17367d
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xf7c716
+
+  doraemon:
+    name: "銅鑼衛門／Doraemon"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xe50012
+    back_color: 0xffffff
+    border_color: 0x009fe8
+    label_color: 0x009fe8
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0xe50012
+    candidate_text_color: 0x009fe8
+    comment_text_color: 0x009fe8
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x009fe8
+
+  espagna:
+    name: "埃斯巴尼亞／España"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0xc30d23
+    border_color: 0xc30d23
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0xf7b52c
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xf7b52c
+
+  gholabok:
+    name: "胡蘿菔／Gholabok"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0xe83929
+    border_color: 0xe83929
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x007b43
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xed6d3d
+
+  kuma_shuzboz:
+    name: "熊出沒／Kuma Shuzboz"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x000000
+    back_color: 0xf8b62d
+    border_color: 0xf8b62d
+    label_color: 0xffffff
+    hilited_text_color: 0xf8b62d
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x000000
+
+  kuon:
+    name: "琨／Kuon"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x3eb370
+    border_color: 0x3eb370
+    label_color: 0xffffff
+    hilited_text_color: 0x3eb370
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0x3eb370
+    hilited_comment_text_color: 0x3eb370
+    hilited_candidate_back_color: 0xffffff
+
+  macau:
+    name: "澳門／Macau"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffd900
+    back_color: 0x00a381
+    border_color: 0x00a381
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0xffd900
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffd900
+    hilited_comment_text_color: 0xffd900
+    hilited_candidate_back_color: 0xffffff
+
+  nba:
+    name: "NBA"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x006ab7
+    border_color: 0x006ab7
+    label_color: 0xffffff
+    hilited_text_color: 0xd71e54
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xd71e54
+
+  ps4:
+    name: "遊驛四／PS4"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x000000
+    border_color: 0x000000
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x595757
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x009fe8
+
+  skype:
+    name: "斯蓋普／Skype"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x00adef
+    border_color: 0x00adef
+    label_color: 0xffffff
+    hilited_text_color: 0x00adef
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0x00adef
+    hilited_comment_text_color: 0x00adef
+    hilited_candidate_back_color: 0xffffff
+
+  xbox_silver:
+    name: "銀色叉盒／Xbox Silver"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x8dc21f
+    back_color: 0xeeeeef
+    border_color: 0xeeeeef
+    label_color: 0xb5f05b
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0xb5f05b
+    candidate_text_color: 0x8dc21f
+    comment_text_color: 0x8dc21f
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x288c44
+
+  youtube:
+    name: "YouTube"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x000000
+    back_color: 0xdedede
+    border_color: 0xdedede
+    label_color: 0x000000
+    hilited_text_color: 0xc30d23
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0x000000
+    comment_text_color: 0x000000
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xc30d23
+
+  so_young:
+    name: "致青春／So Young"
+    author: "五磅兔 <zcunlin@foxmail.com>"
+    text_color: 0xd33682
+    back_color: 0xfdf6e3
+    border_color: 0xeee8d5
+    label_color: 0x93a1a1
+    candidate_text_color: 0x657b83
+    comment_text_color: 0x268bd2
+    hilited_text_color: 0x839496
+    hilited_back_color: 0xeee8d5
+    hilited_candidate_text_color: 0xeee8d5
+    hilited_comment_text_color: 0xeee8d5
+    hilited_candidate_back_color: 0x2aa198
+
+  smurfs:
+    name: "藍精靈／Smurfs"
+    author: "skoj <skoj@qq.com>"
+    text_color: 0xffffff
+    back_color: 0x1778bf
+    border_color: 0xe0edf5
+    label_color: 0x1778bf
+    hilited_text_color: 0x6dbcdb
+    hilited_back_color: 0x1778bf
+    candidate_text_color: 0xf6f6f6
+    comment_text_color: 0xf6f6f6
+    hilited_candidate_text_color: 0xf6f6f6
+    hilited_comment_text_color: 0xf6f6f6
+    hilited_candidate_back_color: 0x6dbcdb
+
+  wii:
+    name: "Wii"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x595757
+    back_color: 0xefefef
+    border_color: 0xefefef
+    label_color: 0xc8c9ca
+    hilited_text_color: 0x33ccff
+    hilited_back_color: 0xefefef
+    candidate_text_color: 0x595757
+    comment_text_color: 0xc8c9ca
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x33ccff
+
+  android:
+    name: "安卓／Android"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x1c7399
+    border_color: 0x1c7399
+    label_color: 0x3588c1
+    hilited_text_color: 0xa8c450
+    hilited_back_color: 0x1c7399
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xa8c450
+
+  cool_breeze:
+    name: "清風／Cool Breeze"
+    author: "skoj <skoj@qq.com>"
+    text_color: 0xFF0000
+    back_color: 0xFBFBFF
+    border_color: 0xAAAAFF
+    hilited_text_color: 0xCE0000
+    hilited_back_color: 0xFBFBFF
+    candidate_text_color: 0x009100
+    hilited_candidate_text_color: 0x3A006F
+    hilited_candidate_back_color: 0xACD6FF
+
+  google_plus:
+    name: "Google+"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xc8c9ca
+    back_color: 0xffffff
+    border_color: 0xdd4b39
+    label_color: 0xc8c9ca
+    hilited_text_color: 0xdd4b39
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0xdd4b39
+    comment_text_color: 0xc8c9ca
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0xdd4b39
+
+  modern_warfare:
+    name: "現代戰爭／Modern Warfare"
+    author: P1461
+    text_color: 0x70bc14
+    back_color: 0x0d1b0a
+    border_color: 0x83ad4b
+    hilited_text_color: 0xfcfdfb
+    hilited_back_color: 0x060e03
+    candidate_text_color: 0xdcfeab
+    comment_text_color: 0xfbfdfc
+    hilited_candidate_text_color: 0xdcfeab
+    hilited_candidate_back_color: 0x636f67
+
+  brisk:
+    name: "輕盈／Brisk"
+    author: "skoj <skoj@qq.com>"
+    text_color: 0xdc3822
+    back_color: 0xffffff
+    border_color: 0x333333
+    hilited_text_color: 0xdc3822
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0x575757
+    hilited_candidate_text_color: 0xdc3822
+    hilited_candidate_back_color: 0xffffff
+
+  starcraft_ii:
+    name: "星際爭霸Ⅱ／StarCraft Ⅱ"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0xffffff
+    back_color: 0x0a1929
+    border_color: 0x464b53
+    label_color: 0xffffff
+    hilited_text_color: 0xffffff
+    hilited_back_color: 0x0a1017
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xffffff
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xffffff
+    hilited_candidate_back_color: 0x1eadef
+
+  steam:
+    name: "Steam"
+    author: "Patricivs <ipatrickmac@me.com>"
+    text_color: 0x528ccd
+    back_color: 0x171614
+    border_color: 0x383635
+    label_color: 0xffffff
+    hilited_text_color: 0xd1cfc9
+    hilited_back_color: 0x171614
+    candidate_text_color: 0xffffff
+    comment_text_color: 0xa9a7a7
+    hilited_candidate_text_color: 0xffffff
+    hilited_comment_text_color: 0xa9a7a7
+    hilited_candidate_back_color: 0x314259
+
+  flypy:
+    # description: |
+    #   小鶴飛揚：白底藍字，紅色標明。
+    #   根據小鶴雙拼官網圖片製作
+    #   http://www.flypy.com/images/mr.png
+    name: "小鶴飛揚／flypy"
+    author: "Pal.lxk <Pal.lxk@gmail.com>"
+    text_color: 0x000000
+    back_color: 0xffffff
+    border_color: 0xc6c6c6
+    label_color: 0x0080ff
+    hilited_text_color: 0x0080ff
+    hilited_back_color: 0xffffff
+    candidate_text_color: 0x0080ff
+    comment_text_color: 0x0080ff
+    hilited_candidate_text_color: 0xb00000
+    hilited_comment_text_color: 0xb00000
+    hilited_candidate_back_color: 0xffffff
+  tantsing:
+    name: 丹青
+    author: Mijiag
+    back_color: 0xe3e3e3
+    border_color: 0x000000
+    text_color: 0x000000
+    hilited_text_color: 0xe3e3e3
+    hilited_back_color: 0x91071a
+    hilited_candidate_text_color: 0xe3e3e3
+    hilited_candidate_back_color: 0x730b6f
+    candidate_text_color: 0x000000
+    comment_text_color: 0x474747
+  yygc:
+    author: "小辛"
+    back_color: 0xffffff
+    border_color: 0xffffff
+    candidate_text_color: 0x7f7f7f
+    comment_text_color: 0x7f7f7f
+    hilited_back_color: 0xffffff
+    hilited_candidate_back_color: 0xffffff
+    hilited_candidate_text_color: 0x7f7f7f
+    hilited_comment_text_color: 0x7f7f7f
+    hilited_key_text_color: 0x7f7f7f
+    hilited_off_key_back_color: 0xffffff
+    hilited_off_key_text_color: 0x7f7f7f
+    hilited_on_key_back_color: 0xffffff
+    hilited_on_key_text_color: 0x7f7f7f
+    hilited_text_color: 0x7f7f7f
+    key_text_color: 0x7f7f7f
+    label_color: 0x7f7f7f
+    name: "一葉孤城"
+    off_key_text_color: 0x7f7f7f
+    text_color: 0x7f7f7f
+
+android_keys:
+  __include: trime:/android_keys
+
+preset_keys:
+  __include: trime:/preset_keys
+  __patch:
+   # 安卓
+    SLEEP/label: *lb_SLEEP
+    SLEEP/send: SLEEP
+    VOICE_ASSIST/label: *lb_VOICE_ASSIST
+   # 編輯
+    Shift_L/label: *lb_Shift_L
+    Caps_Lock/label: *lb_Caps_Lock
+    Return/label: *lb_Return
+    Hide/label: *lb_Hide
+    BackSpace/label: *lb_BackSpace
+    space/preview: " "
+    Escape/label: *lb_Escape
+    Home/label: *lb_Home
+    Insert/label: *lb_Insert
+    Delete/label: *lb_Delete
+    End/label: *lb_End
+    Page_Up/label: *lb_Page_Up
+    Page_Down/label: *lb_Page_Down
+    Left/label: *lb_Left
+    Down/label: *lb_Down
+    Up/label: *lb_Up
+    Right/label: *lb_Right
+    select_all/label: *lb_select_all
+    Clear/label: *lb_Clear
+    cut/label: *lb_cut
+    cut_all/label: *lb_cut_all
+    copy/label: *lb_copy
+    copy_all/label: *lb_copy_all
+    paste/label: *lb_paste
+    clip_board/label: *lb_clip_board
+    paste_text/label: *lb_paste_text
+    share_text/label: *lb_share_text
+    redo/label: *lb_redo
+    undo/label: *lb_undo
+    delimiter/label: *lb_delimiter
+   # rime組合鍵
+    F4/label: *lb_F4
+    BackToPreviousSyllable/label: *lb_BackToPreviousSyllable
+    BackToPreviousSyllable/repeatable: true
+    BackToSentence/label: *lb_BackToSentence
+    CommitRawInput/label: *lb_CommitRawInput
+    CommitScriptText/label: *lb_CommitScriptText
+    CommitComment/label: *lb_CommitComment
+    DeleteCandidate/label: *lb_DeleteCandidate
+   # rime狀態
+   # trime設定
+    IME_switch/label: *lb_IME_switch
+    IME_last/label: *lb_IME_last
+    IME_next/label: *lb_IME_next
+    Keyboard_default/label: *lb_Keyboard_default
+    Keyboard_switch/label: *lb_Keyboard_switch
+    Keyboard_move/label: *lb_Keyboard_move
+    Keyboard_symbols/label: *lb_Keyboard_symbols
+    Keyboard_number/label: *lb_Keyboard_number
+    Keyboard_letter/label: *lb_Keyboard_letter
+    Keyboard_alpha/label: *lb_Keyboard_letter
+    Keyboard_emoji/label: *lb_Keyboard_emoji
+    Schema_switch/label: *lb_Schema_switch
+    Color_switch/label: *lb_Color_switch
+    Help/label: *lb_Help
+    Info/label: *lb_Info
+    Menu/label: *lb_Menu
+    Settings/label: *lb_Settings
+    Color_settings/label: *lb_Color_switch
+    Theme_settings/label: *lb_Theme_settings
+    Schema_settings/label: *lb_Schema_settings
+    Candidate_switch/states: *lb_Candidate_switch
+    Comment_switch/states: *lb_Comment_switch
+    Hint_switch/states: *lb_Hint_switch
+   # trime命令
+    Date/label: *lb_Date
+    ChineseDate/label: *lb_ChineseDate
+    Time/label: *lb_Time
+    TrimeApp/label: *lb_TrimeApp
+    TrimeCmp/label: *lb_TrimeCmp
+    Homepage/label: *lb_Homepage
+    CommitHomepage/label: *lb_CommitHomepage
+    Wiki/label: *lb_Wiki
+    Google/label: *lb_Google
+    MoeDict/label: *lb_MoeDict
+    Baidu/label: *lb_Baidu
+    Zdic/label: *lb_Zdic
+    Zdic2/label: *lb_Zdic
+    WebSearch/label: *lb_WebSearch
+    Search/label: *lb_Search
+    Share/label: *lb_Share
+    Deploy/label: *lb_Deploy
+    Sync/label: *lb_Sync
+ # v補充keys
+  # 安卓
+  VOICE_ASSIST0: {label: *lb_VOICE_ASSIST0, send: VOICE_ASSIST}
+  VOICE_ASSIST1: {__include: preset_keys/VOICE_ASSIST0}
+  # 編輯
+  Shift_L1: {label: *lb_Shift_L1, send: Shift_L, shift_lock: ascii_long}
+  Shift_L1l: {label: *lb_Shift_L1, send: Shift_L, shift_lock: long}
+  Shift_L1c: {label: *lb_Shift_L1c, send: Shift_L, shift_lock: click}
+  Beginning: {label: *lb_Beginning, send: Control+Home}
+  Ending: {label: *lb_Ending, send: Control+End}
+  Page_UpR: {label: *lb_Page_Up, send: Page_Up, repeatable: true}
+  Page_DownR: {label: *lb_Page_Down, send: Page_Down, repeatable: true}
+  LeftR: {label: *lb_Left, send: Left, repeatable: true}
+  DownR: {label: *lb_Down, send: Down, repeatable: true}
+  UpR: {label: *lb_Up, send: Up, repeatable: true}
+  RightR: {label: *lb_Right, send: Right, repeatable: true}
+  LeftS: {label: *lb_LeftS, send: Control+Left, repeatable: true}
+  RightS: {label: *lb_RightS, send: Control+Right, repeatable: true}
+  delimiterls: {label: *lb_delimiter, repeatable: false, functional: false, text: ";"}
+  delimiterls_ft: {__include: preset_keys/delimiterls, label: *lb_delimiter_ft}
+  delimiter1ls: {label: *lb_delimiter1, repeatable: false, functional: false, send: Control+m}
+  delimiter3ls: {label: *lb_delimiter3, repeatable: false, functional: false, send: Control+l}
+  transtowsd: {label: '轉換無聲調', repeatable: false, functional: false, send: Control+q}
+  delimiter1ls_ft: {__include: preset_keys/delimiter1ls, label: *lb_delimiter1_ft}
+  delimiter3ls_ft: {__include: preset_keys/delimiter3ls, label: *lb_delimiter3_ft}
+  spacels: {repeatable: false, functional: false, preview: " ", send: space}
+  spacelskg: {label: *lb_spacelskg, repeatable: false, functional: false, preview: " ", send: space}
+  Escapecx: {label: *lb_Escapecx, send: Escape}
+  # rime組合鍵
+  # rime狀態
+  # trime設定
+  # trime命令
+ # v補充鍵盤
+  # trime設定
+  _Keyboard_edit: {label: *lb__Keyboard_edit, functional: false, send: Eisu_toggle, select: _edit_board}
+  _Keyboard_clip: {label: *lb_clip_board, functional: false, send: function, command: 剪切板.lua, option: "%1$s"}
+  _Keyboard_emoji: {label: *lb_Keyboard_emoji, functional: false, send: function, command: 表情键盘.lua}
+  _Keyboard_symbols: {label: *lb_Keyboard_symbolsyou, functional: false, send: function, command: 符号键盘.lua}
+  _Keyboard_phrase: {label: *lb__Keyboard_phrase, functional: false, send: function, command: 短语.lua, option: "%1$s"}
+  _Keyboard_candidate: {label: *lb__Keyboard_candidate, functional: false, send: Eisu_toggle, select: _candidate_board}
+  _add_phrase: {label: *lb__add_phrase, functional: true, send: function, command: add_phrase}
+  _Keyboard_script: {label: *lb__Keyboard_script, functional: false, send: Eisu_toggle, select: _script}
+  K_default: {label: *lb_Keyboard_default, send: Eisu_toggle, select: .default}
+  Keyboard_last: {label: *lb_Keyboard_last, send: Eisu_toggle, select: .last}
+  K_back: {label: *lb_Keyboard_default, functional: false, send: Eisu_toggle, select: .last_lock}
+  Keyboard_last_lock: {label: *lb_Keyboard_default, send: Eisu_toggle, select: .last_lock}
+  Keyboard_last_lockEsc: {label: *lb_Keyboard_default, text: '{Escape}{Keyboard_last_lock}'}
+  Keyboard_next: {label: *lb_Keyboard_next, send: Eisu_toggle, select: .next}
+  Keyboard_numberyou: {label: *lb_Keyboard_numberyou, send: Eisu_toggle, select: numberyou}
+  Keyboard_symbolsyou: {label: *lb_Keyboard_symbolsyou, send: Eisu_toggle, select: symbolsyou}
+  Keyboard_lsedit: {label: *lb_Keyboard_lsedit, send: Eisu_toggle, select: lsedit}
+  Keyboard_lsfc_pinyinP0: {send: Eisu_toggle, select: lsfc_pinyinP}
+  Keyboard_lsfc_pinyinP: {label: *lb_Keyboard_lsfc, text: '{Keyboard_lsfc_pinyinP0}`', functional: false}
+  Keyboard_lsfc_pinyinPfc: {label: '拼音', text: '{Keyboard_lsfc_pinyinP}', functional: false}
+  Keyboard_lsfc_pinyinPEsc: {label: *lb_Keyboard_lsfc, text: '{Escape}{Keyboard_lsfc_pinyinP}', functional: false}
+  Keyboard_lsfc_pinyinPEscfc: {label: '拼音', text: '{Keyboard_lsfc_pinyinPEsc}', functional: false}
+  Keyboard_lsfc_strokeB0: {send: Eisu_toggle, select: lsfc_strokeB}
+  Keyboard_lsfc_strokeB: {label: *lb_Keyboard_lsfc_ft, text: '{Keyboard_lsfc_strokeB0}~', functional: false}
+  Keyboard_lsfc_strokeBfc: {label: '笔画', text: '{Keyboard_lsfc_strokeB}', functional: false}
+  Keyboard_lsfc_strokeBEsc: {label: *lb_Keyboard_lsfc_ft, text: '{Escape}{Keyboard_lsfc_strokeB}', functional: false}
+  Keyboard_lsfc_strokeBEscfc: {label: '笔画', text: '{Keyboard_lsfc_strokeBEsc}', functional: false}
+  
+  # trime命令
+  help_ls: {label: *lb_help_ls, send: function, command: run, option: "http://lssp.ysepan.com/", functional: false} #李氏拼音系列方案介紹主頁
+  Keyboard_help_lssp1: {label: *lb_help_lsbz, functional: false, send: function, command: 帮助键盘1.lua} #李氏三拼幫助鍵盤
+  Keyboard_help_lssp2: {label: *lb_help_lsbz, functional: false, send: function, command: 帮助键盘2.lua} #李氏三拼aeo幫助鍵盤
+  Keyboard_help_lssp3: {label: *lb_help_lsbz_ft, functional: false, send: function, command: 帮助键盘3.lua} #李氏注音幫助鍵盤
+  Keyboard_help_ls26: {label: *lb_help_lsbz, functional: false, send: function, command: 帮助键盘4.lua} #廿六三拼幫助鍵盤
+  Keyboard_help_ls26zy: {label: *lb_help_lsbz_ft, functional: false, send: function, command: 帮助键盘4zy.lua} #廿六三拼注音幫助鍵盤
+  
+  # 按鍵設置
+  lsjp_1x: {label: *lb_lsjp_1x, text: 1, functional: false}
+  lsjp_2x: {label: *lb_lsjp_2x, text: 2, functional: false}
+  lsjp_3x: {label: *lb_lsjp_3x, text: 3, functional: false}
+  lsjp_1x_ft: {label: *lb_lsjp_1x_ft, text: 1, functional: false}
+  lsjp_2x_ft: {label: *lb_lsjp_2x_ft, text: 2, functional: false}
+  lsjp_3x_ft: {label: *lb_lsjp_3x_ft, text: 3, functional: false}
+  
+  fc_show: {label: *lb_Keyboard_lsfc, text: "`"}
+  fc_show_ft: {label: *lb_Keyboard_lsfc_ft, text: "~"}
+  
+  lsfc_pinyinshow_a: {label: 'a', text: '`a', functional: false}
+  lsfc_pinyinshow_b: {label: 'b', text: '`b', functional: false}
+  lsfc_pinyinshow_c: {label: 'c', text: '`c', functional: false}
+  lsfc_pinyinshow_d: {label: 'd', text: '`d', functional: false}
+  lsfc_pinyinshow_e: {label: 'e', text: '`e', functional: false}
+  lsfc_pinyinshow_f: {label: 'f', text: '`f', functional: false}
+  lsfc_pinyinshow_g: {label: 'g', text: '`g', functional: false}
+  lsfc_pinyinshow_h: {label: 'h', text: '`h', functional: false}
+  lsfc_pinyinshow_i: {label: 'i', text: '`i', functional: false}
+  lsfc_pinyinshow_j: {label: 'j', text: '`j', functional: false}
+  lsfc_pinyinshow_k: {label: 'k', text: '`k', functional: false}
+  lsfc_pinyinshow_l: {label: 'l', text: '`l', functional: false}
+  lsfc_pinyinshow_m: {label: 'm', text: '`m', functional: false}
+  lsfc_pinyinshow_n: {label: 'n', text: '`n', functional: false}
+  lsfc_pinyinshow_o: {label: 'o', text: '`o', functional: false}
+  lsfc_pinyinshow_p: {label: 'p', text: '`p', functional: false}
+  lsfc_pinyinshow_q: {label: 'q', text: '`q', functional: false}
+  lsfc_pinyinshow_r: {label: 'r', text: '`r', functional: false}
+  lsfc_pinyinshow_s: {label: 's', text: '`s', functional: false}
+  lsfc_pinyinshow_t: {label: 't', text: '`t', functional: false}
+  lsfc_pinyinshow_u: {label: 'u', text: '`u', functional: false}
+  lsfc_pinyinshow_v: {label: 'v', text: '`v', functional: false}
+  lsfc_pinyinshow_w: {label: 'w', text: '`w', functional: false}
+  lsfc_pinyinshow_x: {label: 'x', text: '`x', functional: false}
+  lsfc_pinyinshow_y: {label: 'y', text: '`y', functional: false}
+  lsfc_pinyinshow_z: {label: 'z', text: '`z', functional: false}
+  lsfc_strokeshow_Bh: {label: '一', text: '~h', functional: false}
+  lsfc_strokeshow_Bs: {label: '丨', text: '~s', functional: false}
+  lsfc_strokeshow_Bp: {label: '丿', text: '~p', functional: false}
+  lsfc_strokeshow_Bn: {label: '丶', text: '~n', functional: false}
+  lsfc_strokeshow_Bz: {label: 'フ', text: '~z', functional: false}
+  lsfc_strokeshow_hCo: {label: '一', text: h, functional: false}
+  lsfc_strokeshow_sCo: {label: '丨', text: s, functional: false}
+  lsfc_strokeshow_pCo: {label: '丿', text: p, functional: false}
+  lsfc_strokeshow_nCo: {label: '丶', text: n, functional: false}
+  lsfc_strokeshow_zCo: {label: 'フ', text: z, functional: false}
+  
+  1_lsjpshow: {preview: "q", text: 'q', label: "b", functional: false}
+  2_lsjpshow: {preview: "w", text: 'w', label: "p", functional: false}
+  3_lsjpshow: {preview: "e", text: 'e', label: "m", functional: false}
+  x_lsjpshow: {preview: "r", text: 'r', label: "r 𝗳", functional: false}
+  A_lsjpshow: {preview: "t", text: 't', label: "zh 𝘇", functional: false}
+  4_lsjpshow: {preview: "a", text: 'a', label: "d", functional: false}
+  5_lsjpshow: {preview: "s", text: 's', label: "t", functional: false}
+  6_lsjpshow: {preview: "d", text: 'd', label: "n", functional: false}
+  0_lsjpshow: {preview: "f", text: 'f', label: "l", functional: false}
+  B_lsjpshow: {preview: "g", text: 'g', label: "ch 𝗰", functional: false}
+  7_lsjpshow: {preview: "z", text: 'z', label: "g 𝗷", functional: false}
+  8_lsjpshow: {preview: "x", text: 'x', label: "k 𝗾", functional: false}
+  9_lsjpshow: {preview: "c", text: 'c', label: "h 𝘅", functional: false}
+  j_lsjpshow: {preview: "v", text: 'v', label: "´𝘆w", functional: false}
+  C_lsjpshow: {preview: "b", text: 'b', label: "sh 𝘀", functional: false}
+  1cazj_lsjpshow: {text: 1, preview: 1}
+  2cazj_lsjpshow: {text: 2, preview: 2}
+  3cazj_lsjpshow: {text: 3, preview: 3}
+  4cazj_lsjpshow: {text: 4, preview: 4}
+  5cazj_lsjpshow: {text: 5, preview: 5}
+  6cazj_lsjpshow: {text: 6, preview: 6}
+  7cazj_lsjpshow: {text: 7, preview: 7}
+  8cazj_lsjpshow: {text: 8, preview: 8}
+  9cazj_lsjpshow: {text: 9, preview: 9}
+  xcazj_lsjpshow: {text: '{cut}', preview: *lb_cut}
+  0cazj_lsjpshow: {text: '{copy}', preview: *lb_copy}
+  jcazj_lsjpshow: {text: '{paste}', preview: *lb_paste}
+  Acazj_lsjpshow: {text: ''}
+  Bcazj_lsjpshow: {text: '{Beginning}', preview: *lb_Beginning}
+  Ccazj_lsjpshow: {text: '{Ending}', preview: *lb_Ending}
+ # v李氏三拼鍵盤
+  # v李氏三拼1鍵盤
+  # trime設定
+  Keyboard_lssp1: {send: Eisu_toggle, select: lssp1}
+  Keyboard_lssp1wsd: {send: Eisu_toggle, select: lssp1wsd}
+  # 按鍵設置
+  1_lssp1show: {__include: preset_keys/1_lsjpshow}
+  2_lssp1show: {__include: preset_keys/2_lsjpshow}
+  3_lssp1show: {__include: preset_keys/3_lsjpshow}
+  x_lssp1show: {__include: preset_keys/x_lsjpshow}
+  A_lssp1show: {__include: preset_keys/A_lsjpshow}
+  4_lssp1show: {__include: preset_keys/4_lsjpshow}
+  5_lssp1show: {__include: preset_keys/5_lsjpshow}
+  6_lssp1show: {__include: preset_keys/6_lsjpshow}
+  0_lssp1show: {__include: preset_keys/0_lsjpshow}
+  B_lssp1show: {__include: preset_keys/B_lsjpshow}
+  7_lssp1show: {__include: preset_keys/7_lsjpshow}
+  8_lssp1show: {__include: preset_keys/8_lsjpshow}
+  9_lssp1show: {__include: preset_keys/9_lsjpshow}
+  j_lssp1show: {__include: preset_keys/j_lsjpshow}
+  C_lssp1show: {__include: preset_keys/C_lsjpshow}
+  A_lssp1wsdshow: {__include: preset_keys/A_lssp1show, text: 'y', preview: "y"}
+  B_lssp1wsdshow: {__include: preset_keys/B_lssp1show, text: 'h', preview: "h"}
+  C_lssp1wsdshow: {__include: preset_keys/C_lssp1show, text: 'n', preview: "n"}
+  1cazj_lssp1show: {label: 'Q ˉ ↑', text: '{Up}', preview: *lb_Up}
+  2cazj_lssp1show: {label: 'W ˊ ↓', text: '{Down}', preview: *lb_Down}
+  3cazj_lssp1show: {label: 'E ˇ «', text: '{Beginning}', preview: *lb_Beginning}
+  xcazj_lssp1show: {label: 'R ˋ »', text: '{Ending}', preview: *lb_Ending}
+  4cazj_lssp1show: {label: 'A ˉ ←', text: '{Left}', preview: *lb_Left}
+  5cazj_lssp1show: {label: 'S ˊ →', text: '{Right}', preview: *lb_Right}
+  6cazj_lssp1show: {label: 'D ˇ ‹', text: '{Home}', preview: *lb_Home}
+  0cazj_lssp1show: {label: 'F ˋ ›', text: '{End}', preview: *lb_End}
+  7cazj_lssp1show: {label: 'Z ˉ ☑', text: '{select_all}', preview: *lb_select_all}
+  8cazj_lssp1show: {label: 'X ˊ ✂', text: '{cut}', preview: *lb_cut}
+  9cazj_lssp1show: {label: 'C ˇ ❐', text: '{copy}', preview: *lb_copy}
+  jcazj_lssp1show: {label: 'V ˋ ▣', text: '{paste}', preview: *lb_paste}
+  Acazj_lssp1show: {label: 'T 轻声', preview: '无声调', text: '{Keyboard_lssp1wsd}'}
+  Acazj_lssp1wsdshow: {label: 'T无声调', preview: '轻声', text: '{Keyboard_lssp1}'}
+  Acazj_lssp1showpp: {label: '轻声', text: '{Keyboard_lssp1}'}
+  Acazj_lssp1wsdshowpp: {label: '无声调', text: '{Keyboard_lssp1wsd}'}
+  Bcazj_lssp1show: {label: 'G 轻声', text: '{CommitComment}', preview: *lb_CommitComment}
+  Ccazj_lssp1show: {label: 'B 轻声', text: '{CommitScriptText}', preview: *lb_CommitRawInput}
+  Bcazj_lssp1wsdshow: {__include: preset_keys/Bcazj_lssp1show, label: 'G无声调'}
+  Ccazj_lssp1wsdshow: {__include: preset_keys/Ccazj_lssp1show, label: 'B无声调'}
+  lssp1_ScriptText: {label: *lb_CommitScriptText, text: '{CommitRawInput}'}  # 句式編輯器中的Control+Return（用於輸入原始輸入碼RawInput）在普通編輯器中用於輸入上屏碼ScriptText，作用和Shift+Return是一樣的
+  lssp1_Comment: {label: *lb_CommitComment, text: '{CommitComment}'}  # Control+Shift+Return用於輸入提示碼Comment
+  lssp1_RawInput: {label: *lb_CommitRawInput, text: '{CommitScriptText}'}  # 變Shift+Return（用於輸入上屏碼ScriptText）為Return（用於輸入原始輸入碼RawInput）
+  lssp1_display: {label: '编码选择', functional: false, send: function, command: 李氏三拼编码选择.lua}
+  # v李氏三拼2鍵盤
+  # trime設定
+  Keyboard_lssp2: {send: Eisu_toggle, select: lssp2}
+  Keyboard_lssp2wsd: {send: Eisu_toggle, select: lssp2wsd}
+  # 按鍵設置
+  1_lssp2show: {__include: preset_keys/1_lsjpshow}
+  2_lssp2show: {__include: preset_keys/2_lsjpshow}
+  3_lssp2show: {__include: preset_keys/3_lsjpshow}
+  x_lssp2show: {__include: preset_keys/x_lsjpshow}
+  A_lssp2show: {__include: preset_keys/A_lsjpshow}
+  4_lssp2show: {__include: preset_keys/4_lsjpshow}
+  5_lssp2show: {__include: preset_keys/5_lsjpshow}
+  6_lssp2show: {__include: preset_keys/6_lsjpshow}
+  0_lssp2show: {__include: preset_keys/0_lsjpshow}
+  B_lssp2show: {__include: preset_keys/B_lsjpshow}
+  7_lssp2show: {__include: preset_keys/7_lsjpshow}
+  8_lssp2show: {__include: preset_keys/8_lsjpshow}
+  9_lssp2show: {__include: preset_keys/9_lsjpshow}
+  j_lssp2show: {__include: preset_keys/j_lsjpshow}
+  C_lssp2show: {__include: preset_keys/C_lsjpshow}
+  A_lssp2wsdshow: {__include: preset_keys/A_lssp2show, text: 'y', preview: "y"}
+  B_lssp2wsdshow: {__include: preset_keys/B_lssp2show, text: 'h', preview: "h"}
+  C_lssp2wsdshow: {__include: preset_keys/C_lssp2show, text: 'n', preview: "n"}
+  1cazj_lssp2show: {__include: preset_keys/1cazj_lssp1show}
+  2cazj_lssp2show: {__include: preset_keys/2cazj_lssp1show}
+  3cazj_lssp2show: {__include: preset_keys/3cazj_lssp1show}
+  4cazj_lssp2show: {__include: preset_keys/4cazj_lssp1show}
+  5cazj_lssp2show: {__include: preset_keys/5cazj_lssp1show}
+  6cazj_lssp2show: {__include: preset_keys/6cazj_lssp1show}
+  7cazj_lssp2show: {__include: preset_keys/7cazj_lssp1show}
+  8cazj_lssp2show: {__include: preset_keys/8cazj_lssp1show}
+  9cazj_lssp2show: {__include: preset_keys/9cazj_lssp1show}
+  xcazj_lssp2show: {__include: preset_keys/xcazj_lssp1show}
+  0cazj_lssp2show: {__include: preset_keys/0cazj_lssp1show}
+  jcazj_lssp2show: {__include: preset_keys/jcazj_lssp1show}
+  Acazj_lssp2show: {__include: preset_keys/Acazj_lssp1show, text: '{Keyboard_lssp2wsd}'}
+  Acazj_lssp2wsdshow: {__include: preset_keys/Acazj_lssp1wsdshow, text: '{Keyboard_lssp2}'}
+  Acazj_lssp2showpp: {__include: preset_keys/Acazj_lssp1showpp, text: '{Keyboard_lssp2}'}
+  Acazj_lssp2wsdshowpp: {__include: preset_keys/Acazj_lssp1wsdshowpp, text: '{Keyboard_lssp2wsd}'}
+  Bcazj_lssp2show: {__include: preset_keys/Bcazj_lssp1show}
+  Ccazj_lssp2show: {__include: preset_keys/Ccazj_lssp1show}
+  Bcazj_lssp2wsdshow: {__include: preset_keys/Bcazj_lssp1wsdshow}
+  Ccazj_lssp2wsdshow: {__include: preset_keys/Ccazj_lssp1wsdshow}
+  lssp2_ScriptText: {__include: preset_keys/lssp1_ScriptText}
+  lssp2_Comment: {__include: preset_keys/lssp1_Comment}
+  lssp2_RawInput: {__include: preset_keys/lssp1_RawInput}
+  lssp2_display: {label: '编码选择', functional: false, send: function, command: 李氏三拼aeo编码选择.lua}
+  # v李氏三拼3鍵盤
+  # trime設定
+  Keyboard_lssp3: {send: Eisu_toggle, select: lssp3}
+  Keyboard_lssp3wsd: {send: Eisu_toggle, select: lssp3wsd}
+  # 按鍵設置
+  1_lssp3show: {__include: preset_keys/1_lsjpshow, label: "ㄅ"}
+  2_lssp3show: {__include: preset_keys/2_lsjpshow, label: "ㄆ"}
+  3_lssp3show: {__include: preset_keys/3_lsjpshow, label: "ㄇ"}
+  x_lssp3show: {__include: preset_keys/x_lsjpshow, label: "ㄖㄈ"}
+  A_lssp3show: {__include: preset_keys/A_lsjpshow, label: "ㄓㄗ"}
+  4_lssp3show: {__include: preset_keys/4_lsjpshow, label: "ㄉ"}
+  5_lssp3show: {__include: preset_keys/5_lsjpshow, label: "ㄊ"}
+  6_lssp3show: {__include: preset_keys/6_lsjpshow, label: "ㄋ"}
+  0_lssp3show: {__include: preset_keys/0_lsjpshow, label: "ㄌ"}
+  B_lssp3show: {__include: preset_keys/B_lsjpshow, label: "ㄔㄘ"}
+  7_lssp3show: {__include: preset_keys/7_lsjpshow, label: "ㄍㄐ"}
+  8_lssp3show: {__include: preset_keys/8_lsjpshow, label: "ㄎㄑ"}
+  9_lssp3show: {__include: preset_keys/9_lsjpshow, label: "ㄏㄒ"}
+  j_lssp3show: {__include: preset_keys/j_lsjpshow, label: "〇"}
+  C_lssp3show: {__include: preset_keys/C_lsjpshow, label: "ㄕㄙ"}
+  A_lssp3wsdshow: {__include: preset_keys/A_lssp3show, text: 'y', preview: "y"}
+  B_lssp3wsdshow: {__include: preset_keys/B_lssp3show, text: 'h', preview: "h"}
+  C_lssp3wsdshow: {__include: preset_keys/C_lssp3show, text: 'n', preview: "n"}
+  1cazj_lssp3show: {__include: preset_keys/1cazj_lssp1show}
+  2cazj_lssp3show: {__include: preset_keys/2cazj_lssp1show}
+  3cazj_lssp3show: {__include: preset_keys/3cazj_lssp1show}
+  4cazj_lssp3show: {__include: preset_keys/4cazj_lssp1show}
+  5cazj_lssp3show: {__include: preset_keys/5cazj_lssp1show}
+  6cazj_lssp3show: {__include: preset_keys/6cazj_lssp1show}
+  7cazj_lssp3show: {__include: preset_keys/7cazj_lssp1show}
+  8cazj_lssp3show: {__include: preset_keys/8cazj_lssp1show}
+  9cazj_lssp3show: {__include: preset_keys/9cazj_lssp1show}
+  xcazj_lssp3show: {__include: preset_keys/xcazj_lssp1show}
+  0cazj_lssp3show: {__include: preset_keys/0cazj_lssp1show}
+  jcazj_lssp3show: {__include: preset_keys/jcazj_lssp1show}
+  Acazj_lssp3show: {__include: preset_keys/Acazj_lssp1show, label: 'T 輕聲', preview: '無聲調', text: '{Keyboard_lssp3wsd}'}
+  Acazj_lssp3wsdshow: {__include: preset_keys/Acazj_lssp1wsdshow, label: 'T無聲調', preview: '輕聲', text: '{Keyboard_lssp3}'}
+  Acazj_lssp3showpp: {__include: preset_keys/Acazj_lssp1showpp, label: '輕聲', text: '{Keyboard_lssp3}'}
+  Acazj_lssp3wsdshowpp: {__include: preset_keys/Acazj_lssp1wsdshowpp, label: '無聲調', text: '{Keyboard_lssp3wsd}'}
+  Bcazj_lssp3show: {__include: preset_keys/Bcazj_lssp1show, label: 'G 輕聲'}
+  Ccazj_lssp3show: {__include: preset_keys/Ccazj_lssp1show, label: 'B 輕聲'}
+  Bcazj_lssp3wsdshow: {__include: preset_keys/Bcazj_lssp1wsdshow, label: 'G無聲調'}
+  Ccazj_lssp3wsdshow: {__include: preset_keys/Ccazj_lssp1wsdshow, label: 'B無聲調'}
+  lssp3_ScriptText: {__include: preset_keys/lssp1_ScriptText, label: lb_CommitComment_ft}
+  lssp3_Comment: {__include: preset_keys/lssp1_Comment, label: lb_CommitComment_ft}
+  lssp3_RawInput: {__include: preset_keys/lssp1_RawInput, label: lb_CommitRawInput_ft}
+  lssp3_display: {label: '編碼選擇', functional: false, send: function, command: 李氏注音编码选择.lua}
+ # v廿六三拼鍵盤
+  # trime設定
+  Keyboard_ls26: {send: Eisu_toggle, select: ls26}
+  Keyboard_ls26zy: {send: Eisu_toggle, select: ls26zy}
+  # 按鍵設置
+  w_26show: {label: "ˇ", text: 'w', functional: false}
+  e_26show: {label: "ˊ", text: 'e', functional: false}
+  y_26show: {label: "˙", text: 'y', functional: false}
+  o_26show: {label: "ˉ", text: 'o', functional: false}
+  a_26show: {label: "ˋ", text: 'a', functional: false}
+
+preset_keyboards:
+  __include: trime:/preset_keyboards
+ # v補充鍵盤
+  numberyou:
+    name: 數字右手鍵盤
+    author: 阿森納裡
+    ascii_mode: 1
+    width: 20
+    height: 48
+    # lock: true
+    horizontal_gap: 3
+    vertical_gap: 3
+    keys:
+     # 第一行
+      - {click: '+', long_click: Delete, swipe_up: Delete}
+      - {click: '1', long_click: Beginning, swipe_up: Beginning, swipe_down: Home, hint: *lb_Home}
+      - {click: '2', long_click: select_all, swipe_up: select_all}
+      - {click: '3', long_click: Page_Up, swipe_up: Page_Up}
+      - {__include: preset_keyboards/lsqwerty/keys/@39}
+     # 第二行
+      - {click: '-', long_click: Insert, swipe_up: Insert}
+      - {click: '4', long_click: Ending, swipe_up: Ending, swipe_down: End, hint: *lb_End}
+      - {click: '5', long_click: Tab, swipe_up: Tab}
+      - {click: '6', long_click: Page_Down, swipe_up: Page_Down}
+      - {click: '#', long_click: cut, swipe_up: cut}
+     # 第三行
+      - {click: '*', long_click: undo, swipe_up: undo}
+      - {click: '7', long_click: LeftS, swipe_up: LeftS}
+      - {click: '8', long_click: Up, swipe_up: Up}
+      - {click: '9', long_click: RightS, swipe_up: RightS}
+      - {click: '%', long_click: copy, swipe_up: copy}
+     # 第四行
+      - {click: '/', long_click: redo, swipe_up: redo}
+      - {click: '=', long_click: Left, swipe_up: Left}
+      - {click: '0', long_click: Down, swipe_up: Down}
+      - {click: '.', label: '。', long_click: Right, swipe_up: Right}
+      - {click: ':', label: '：', long_click: paste, swipe_up: paste, popup: [_Keyboard_clip, _Keyboard_phrase]}
+     # 第五行
+      - {click: Keyboard_last_lock, long_click: Menu, swipe_right: Return, swipe_up: Hide, composing: Keyboard_last_lockEsc}
+      - {click: Keyboard_lsedit, long_click: Keyboard_symbolsyou, swipe_up: Keyboard_symbolsyou, swipe_right: select_all}
+      - {__include: preset_keyboards/lsqwerty/keys/@43, click: spacelskg, swipe_up: Keyboard_last_lock, width: 20}
+      - {__include: preset_keyboards/lsjp/keys/@34, long_click: ';', swipe_up: ';'}
+      - {__include: preset_keyboards/lsqwerty/keys/@46, width: 20}
+  symbolsyou:
+    name: 符號右手鍵盤
+    author: 阿森納裡
+    ascii_mode: 1
+    width: 10
+    height: 48
+    # lock: true
+    horizontal_gap: 2
+    vertical_gap: 3
+    keys:
+     # 第一行
+      - {click: '1'}
+      - {click: '2'}
+      - {click: '3'}
+      - {click: '4'}
+      - {click: '5'}
+      - {click: '6'}
+      - {click: '7'}
+      - {click: '8'}
+      - {click: '9'}
+      - {click: '0'}
+     # 第二行
+      - {click: '！', ascii: '!', long_click: Up, swipe_up: Up}
+      - {click: '@', long_click: Down, swipe_up: Down}
+      - {click: '#'}
+      - {click: '￥', ascii: '$'}
+      - {click: '%'}
+      - {click: '…', ascii: '^'}
+      - {click: '&'}
+      - {click: '*'}
+      - {click: '（', ascii: '(', long_click: '{', swipe_up: '{'}
+      - {click: '）', ascii: ')', long_click: '}', swipe_up: '}'}
+     # 第三行
+      - {click: '+', long_click: Left, swipe_up: Left}
+      - {click: '-', long_click: Right, swipe_up: Right}
+      - {click: '[', long_click: '【', swipe_up: '【'}
+      - {click: ']', long_click: '】', swipe_up: '】'}
+      - {click: '「', long_click: '『', swipe_up: '『'}
+      - {click: '」', long_click: '』', swipe_up: '』'}
+      - {click: '/', long_click: '√', swipe_up: '√'}
+      - {click: '、', ascii: '\', long_click: '|', swipe_up: '|'}
+      - {click: '：', ascii: ':'}
+      - {click: '；', ascii: ';'}
+     # 第四行
+      - {click: '·', ascii: '~', long_click: '`', swipe_up: '`'}
+      - {click: '—', ascii: '_', long_click: '±', swipe_up: '±'}
+      - {click: '=', long_click: cut, swipe_up: cut}
+      - {click: '《', ascii: '<', long_click: copy, swipe_up: copy}
+      - {click: '》', ascii: '>', long_click: paste, swipe_up: paste, popup: [_Keyboard_clip, _Keyboard_phrase]}
+      - {click: '“', ascii: '"', long_click: '‘', swipe_up: '‘'}
+      - {click: '”', ascii: "'", long_click: '’', swipe_up: '’'}
+      - {click: '，', ascii: ','}
+      - {click: '？', ascii: '?'}
+      - {__include: preset_keyboards/lsqwerty/keys/@39}
+     # 第五行
+      - {__include: preset_keyboards/numberyou/keys/@20, width: 15}
+      - {click: Keyboard_lsedit, long_click: Keyboard_numberyou, swipe_up: Keyboard_numberyou, swipe_right: select_all}
+      - {__include: preset_keyboards/lsqwerty/keys/@42}
+      - {__include: preset_keyboards/numberyou/keys/@22, width: 30}
+      - {__include: preset_keyboards/lsqwerty/keys/@44}
+      - {click: Keyboard_lsedit, long_click: Keyboard_numberyou, swipe_up: Keyboard_numberyou, swipe_left: select_all}
+      - {__include: preset_keyboards/lsqwerty/keys/@46, width: 15}
+  lsedit:
+    name: "數字+操作鍵"
+    author: 阿森納裡
+    ascii_mode: 1
+    width: 20
+    height: 48
+    # lock: true
+    horizontal_gap: 3
+    vertical_gap: 3
+    keys:
+     # 第一行
+      - {click: Delete, key_back_color: key_back_color}
+      - {click: Home, long_click: Beginning, swipe_up: Beginning}
+      - {click: select_all}
+      - {click: Page_UpR}
+      - {__include: preset_keyboards/lsqwerty/keys/@39}
+     # 第二行
+      - {click: Insert, key_back_color: key_back_color}
+      - {click: End, long_click: Ending, swipe_up: Ending}
+      - {click: Shift_L1c, long_click: Tab, swipe_up: Tab}
+      - {click: Page_DownR}
+      - {click: cut, key_back_color: key_back_color}
+     # 第三行
+      - {click: undo, key_back_color: key_back_color}
+      - {click: LeftS}
+      - {click: UpR}
+      - {click: RightS}
+      - {click: copy, key_back_color: key_back_color}
+     # 第四行
+      - {click: redo, key_back_color: key_back_color}
+      - {click: LeftR}
+      - {click: DownR}
+      - {click: RightR}
+      - {click: paste, long_click: paste, popup: [_Keyboard_clip, _Keyboard_phrase], key_back_color: key_back_color}
+     # 第五行
+      - {__include: preset_keyboards/numberyou/keys/@20}
+      - {click: Keyboard_symbolsyou, long_click: Keyboard_numberyou, swipe_up: Keyboard_numberyou, swipe_right: select_all}
+      - {__include: preset_keyboards/numberyou/keys/@22}
+      - {__include: preset_keyboards/lsjp/keys/@34, width: 20}
+      - {__include: preset_keyboards/lsqwerty/keys/@46, width: 20}
+  lsqwerty:
+    name: qwerty鍵盤
+    author: 阿森納裡
+    ascii_mode: 1
+    width: 10
+    height: 48
+    # label_transform: uppercase #uppercase|none 中文模式下的字母標籤自動大寫
+    horizontal_gap: 2.3
+    vertical_gap: 3.3
+    keys:
+     # 第一行
+      - {click: '1', long_click: '!', swipe_up: '!'}
+      - {click: '2', long_click: '@', swipe_up: '@'}
+      - {click: '3', long_click: '#', swipe_up: '#'}
+      - {click: '4', long_click: '$', swipe_up: '$'}
+      - {click: '5', long_click: '%', swipe_up: '%'}
+      - {click: '6', long_click: '^', swipe_up: '^'}
+      - {click: '7', long_click: '&', swipe_up: '&'}
+      - {click: '8', long_click: '*', swipe_up: '*'}
+      - {click: '9', long_click: '(', swipe_up: '(', has_menu: Up}
+      - {click: '0', long_click: ')', swipe_up: ')', has_menu: Down}
+     # 第二行
+      - {click: 'q', long_click: '_', swipe_up: '_'}
+      - {click: 'w', long_click: '-', swipe_up: '-'}
+      - {click: 'e', long_click: '+', swipe_up: '+'}
+      - {click: 'r', long_click: '=', swipe_up: '='}
+      - {click: 't', long_click: '|', swipe_up: '|'}
+      - {click: 'y', long_click: redo, swipe_up: redo}
+      - {click: 'u', long_click: '[', swipe_up: '['}
+      - {click: 'i', long_click: ']', swipe_up: ']'}
+      - {click: 'o', long_click: '{', swipe_up: '{'}
+      - {click: 'p', long_click: '}', swipe_up: '}'}
+     # 第三行
+      - {click: 'a', long_click: select_all, swipe_up: select_all, swipe_down: Mode_samll, hint: *lb_Mode_samll}
+      - {click: 's', long_click: Home, swipe_up: Home}
+      - {click: 'd', long_click: End, swipe_up: End}
+      - {click: 'f', long_click: LeftS, swipe_up: LeftS}
+      - {click: 'g', long_click: RightS, swipe_up: RightS}
+      - {click: 'h', long_click: Left, swipe_up: Left}
+      - {click: 'j', long_click: Right, swipe_up: Right}
+      - {click: 'k', long_click: Beginning, swipe_up: Beginning, swipe_left: CommitComment, swipe_right: CommitComment}
+      - {click: 'l', long_click: Ending, swipe_up: Ending}
+      - {click: ';', label: " ；", long_click: ":", swipe_up: ":"}
+     # 第四行
+      - {click: Shift_L1, swipe_down: Hint_switch, composing: BackSpace, hint: *lb_Hint_switch_1}
+      - {click: 'z', long_click: undo, swipe_up: undo}
+      - {click: 'x', long_click: cut, swipe_up: cut}
+      - {click: 'c', long_click: copy, swipe_up: copy}
+      - {click: 'v', long_click: paste, swipe_up: paste, popup: [_Keyboard_clip, _Keyboard_phrase]}
+      - {click: 'b', long_click: Up, swipe_up: Up}
+      - {click: 'n', long_click: Down, swipe_up: Down}
+      - {click: 'm', long_click: '~', swipe_up: '~', swipe_left: CommitScriptText, swipe_right: CommitScriptText}
+      - {click: "'", label: " ’", long_click: '"', swipe_up: '"'}
+      - {click: BackSpace, swipe_left: BackToPreviousSyllable, swipe_up: Escape, swipe_down: Delete, hint: *lb_Delete}
+     # 第五行
+      - {click: Mode_switch, long_click: Menu, swipe_right: Return, swipe_up: Hide, composing: Escapecx, width: 15}
+      - {click: Keyboard_symbolsyou, long_click: Keyboard_numberyou, swipe_up: Keyboard_numberyou, swipe_right: select_all, composing: lsjp_2x}
+      - {click: ',', long_click: '<', swipe_up: '<', swipe_right: select_all, label: " ，"}
+      - {click: spacels, long_click: VOICE_ASSIST0, swipe_up: Mode_switch, swipe_left: undo, swipe_right: redo, width: 30}  # 空格
+      - {click: '.', long_click: '>', swipe_up: '>', swipe_left: select_all, label: " 。"}
+      - {click: '/', long_click: '?', swipe_up: '?', swipe_left: select_all, label: " 、", composing: lsjp_3x}
+      - {click: Return, long_click: Color_settings, swipe_left: Return, swipe_up: Hide, width: 15}
+  lsjp:
+    author: 阿森納裡
+    name: 李氏三拼基礎鍵盤
+    ascii_keyboard: lsqwerty   #指定英文鍵盤
+    ascii_mode: 0   #默认进入中文状态
+    height: 48   #每行高度
+    width: 14   #按键默认宽度
+    # label_transform: uppercase #uppercase|none 中文模式下的字母標籤自動大寫
+    horizontal_gap: 4.8
+    vertical_gap: 5.7
+    round_corner: 10
+    keys:   #按键排列
+     # 第一行
+      - {__include: preset_keyboards/lsqwerty/keys/@0, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@1, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@2, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@3, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@4, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@5, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@6, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@7, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@8, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@9, width: 10}
+     # 第二行
+      - {click: ';', ascii: ';', long_click: ':', swipe_up: ':', swipe_down: DeleteCandidate, hint: *lb_DeleteCandidate, composing: delimiterls, width: 15}
+      - {click: 1_lsjpshow, ascii: 'Q', long_click: 1cazj_lsjpshow, swipe_down: 'H', key_text_size: 18}
+      - {click: 2_lsjpshow, ascii: 'W', long_click: 2cazj_lsjpshow, swipe_down: 'S', key_text_size: 18}
+      - {click: 3_lsjpshow, ascii: 'E', long_click: 3cazj_lsjpshow, swipe_down: 'P', key_text_size: 18}
+      - {click: x_lsjpshow, ascii: 'R', long_click: xcazj_lsjpshow, swipe_up: xcazj_lsjpshow, key_text_size: 18}
+      - {click: A_lsjpshow, ascii: 'T', long_click: Acazj_lsjpshow, swipe_up: Acazj_lsjpshow, swipe_left: transtowsd, swipe_right: transtowsd, key_text_size: 18}
+      - {__include: preset_keyboards/lsqwerty/keys/@39, width: 15}
+     # 第三行
+      - {click: "'", ascii: "'", long_click: '"', swipe_up: '"', swipe_down: Mode_samll, hint: *lb_Mode_samll, composing: delimiter1ls, width: 15}
+      - {click: 4_lsjpshow, ascii: 'A', long_click: 4cazj_lsjpshow, swipe_down: 'N', key_text_size: 18}
+      - {click: 5_lsjpshow, ascii: 'S', long_click: 5cazj_lsjpshow, swipe_down: 'Z', key_text_size: 18}
+      - {click: 6_lsjpshow, ascii: 'D', long_click: 6cazj_lsjpshow, key_text_size: 18}
+      - {click: 0_lsjpshow, ascii: 'F', long_click: 0cazj_lsjpshow, swipe_up: 0cazj_lsjpshow, key_text_size: 18}
+      - {click: B_lsjpshow, ascii: 'G', long_click: Bcazj_lsjpshow, swipe_up: Bcazj_lsjpshow, swipe_right: CommitComment, key_text_size: 18}
+      - {click: Left, long_click: LeftS, swipe_up: LeftS, width: 15}
+     # 第四行
+      - {click: '?', long_click: '!', swipe_up: '!', swipe_down: Hint_switch, label: ' ？', hint: *lb_Hint_switch_1, composing: delimiter3ls, width: 15}
+      - {click: 7_lsjpshow, ascii: 'Z', long_click: 7cazj_lsjpshow, key_text_size: 18}
+      - {click: 8_lsjpshow, ascii: 'X', long_click: 8cazj_lsjpshow, key_text_size: 18}
+      - {click: 9_lsjpshow, ascii: 'C', long_click: 9cazj_lsjpshow, key_text_size: 18}
+      - {click: j_lsjpshow, ascii: 'V', long_click: jcazj_lsjpshow, swipe_up: jcazj_lsjpshow, popup: [_Keyboard_clip, _Keyboard_phrase], key_text_size: 18}
+      - {click: C_lsjpshow, ascii: 'B', long_click: Ccazj_lsjpshow, swipe_up: Ccazj_lsjpshow, swipe_right: CommitScriptText, key_text_size: 18}
+      - {click: Right, long_click: RightS, swipe_up: RightS, width: 15}
+     # 第五行
+      - {click: Mode_switch, long_click: Menu, swipe_right: Return, swipe_up: Hide, composing: Escapecx, width: 15}
+      - {click: Keyboard_symbolsyou, long_click: Keyboard_numberyou, swipe_right: select_all, swipe_up: Keyboard_numberyou, composing: lsjp_2x}
+      - {__include: preset_keyboards/lsqwerty/keys/@43, width: 42}
+      - {click: ',', label: ' ，', long_click: '.', swipe_up: '.', swipe_left: select_all}
+      - {__include: preset_keyboards/lsqwerty/keys/@46, width: 15}
+  lsfc_pinyinP:
+    __include: preset_keyboards/lsqwerty
+    __patch:
+      name: '拼音反查鍵盤P'
+      ascii_mode: 0   #默认进入中文状态
+      label_transform: uppercase #uppercase|none 中文模式下的字母標籤自動大寫
+      keys/@10/click: lsfc_pinyinshow_q
+      keys/@11/click: lsfc_pinyinshow_w
+      keys/@12/click: lsfc_pinyinshow_e
+      keys/@13/click: lsfc_pinyinshow_r
+      keys/@14/click: lsfc_pinyinshow_t
+      keys/@15/click: lsfc_pinyinshow_y
+      keys/@16/click: lsfc_pinyinshow_u
+      keys/@17/click: lsfc_pinyinshow_i
+      keys/@18/click: lsfc_pinyinshow_o
+      keys/@19/click: lsfc_pinyinshow_p
+      keys/@20/click: lsfc_pinyinshow_a
+      keys/@21/click: lsfc_pinyinshow_s
+      keys/@22/click: lsfc_pinyinshow_d
+      keys/@23/click: lsfc_pinyinshow_f
+      keys/@24/click: lsfc_pinyinshow_g
+      keys/@25/click: lsfc_pinyinshow_h
+      keys/@26/click: lsfc_pinyinshow_j
+      keys/@27/click: lsfc_pinyinshow_k
+      keys/@28/click: lsfc_pinyinshow_l
+      keys/@31/click: lsfc_pinyinshow_z
+      keys/@32/click: lsfc_pinyinshow_x
+      keys/@33/click: lsfc_pinyinshow_c
+      keys/@34/click: lsfc_pinyinshow_v
+      keys/@35/click: lsfc_pinyinshow_b
+      keys/@36/click: lsfc_pinyinshow_n
+      keys/@37/click: lsfc_pinyinshow_m
+      keys/@10/composing: 'q'
+      keys/@11/composing: 'w'
+      keys/@12/composing: 'e'
+      keys/@13/composing: 'r'
+      keys/@14/composing: 't'
+      keys/@15/composing: 'y'
+      keys/@16/composing: 'u'
+      keys/@17/composing: 'i'
+      keys/@18/composing: 'o'
+      keys/@19/composing: 'p'
+      keys/@20/composing: 'a'
+      keys/@21/composing: 's'
+      keys/@22/composing: 'd'
+      keys/@23/composing: 'f'
+      keys/@24/composing: 'g'
+      keys/@25/composing: 'h'
+      keys/@26/composing: 'j'
+      keys/@27/composing: 'k'
+      keys/@28/composing: 'l'
+      keys/@31/composing: 'z'
+      keys/@32/composing: 'x'
+      keys/@33/composing: 'c'
+      keys/@34/composing: 'v'
+      keys/@35/composing: 'b'
+      keys/@36/composing: 'n'
+      keys/@37/composing: 'm'
+      keys/@10/ascii: 'q'
+      keys/@11/ascii: 'w'
+      keys/@12/ascii: 'e'
+      keys/@13/ascii: 'r'
+      keys/@14/ascii: 't'
+      keys/@15/ascii: 'y'
+      keys/@16/ascii: 'u'
+      keys/@17/ascii: 'i'
+      keys/@18/ascii: 'o'
+      keys/@19/ascii: 'p'
+      keys/@20/ascii: 'a'
+      keys/@21/ascii: 's'
+      keys/@22/ascii: 'd'
+      keys/@23/ascii: 'f'
+      keys/@24/ascii: 'g'
+      keys/@25/ascii: 'h'
+      keys/@26/ascii: 'j'
+      keys/@27/ascii: 'k'
+      keys/@28/ascii: 'l'
+      keys/@31/ascii: 'z'
+      keys/@32/ascii: 'x'
+      keys/@33/ascii: 'c'
+      keys/@34/ascii: 'v'
+      keys/@35/ascii: 'b'
+      keys/@36/ascii: 'n'
+      keys/@37/ascii: 'm'
+      keys/@29/click: Keyboard_last_lock
+      keys/@29/label:
+      keys/@29/composing: Escapecx
+      keys/@30/click: BackSpace
+      keys/@38/click: Keyboard_lsfc_strokeBfc
+      keys/@38/label:
+      keys/@38/composing: Keyboard_lsfc_strokeBEscfc
+      keys/@40/click: Keyboard_last_lock
+      keys/@40/composing: Keyboard_last_lockEsc
+      keys/@43/swipe_up:
+      keys/@41/composing:
+      keys/@45/composing:
+  lsfc_strokeB:
+    name: '筆畫反查鍵盤B'
+    author: 阿森納裡
+    ascii_mode: 0
+    width: 20
+    height: 80
+    horizontal_gap: 3.5
+    vertical_gap: 5
+    keys:
+     # 第一行
+      - {click: '?', label: ' ？', long_click: '!'}
+      - {click: lsfc_strokeshow_Bh, composing: lsfc_strokeshow_hCo, ascii: 'h'}
+      - {click: lsfc_strokeshow_Bs, composing: lsfc_strokeshow_sCo, ascii: 's'}
+      - {click: lsfc_strokeshow_Bp, composing: lsfc_strokeshow_pCo, ascii: 'p', swipe_up: CommitComment}
+      - {__include: preset_keyboards/lsqwerty/keys/@39}
+     # 第二行
+      - {click: ';', label: ' ；', long_click: ':', composing: "{space};"}
+      - {click: lsfc_strokeshow_Bn, composing: lsfc_strokeshow_nCo, ascii: 'n'}
+      - {click: lsfc_strokeshow_Bz, composing: lsfc_strokeshow_zCo, ascii: 'z'}
+      - {click: Keyboard_lsfc_pinyinPfc, composing: Keyboard_lsfc_pinyinPEscfc, swipe_up: CommitScriptText}
+      - {click: Keyboard_last_lock, long_click: '^', composing: Escapecx}
+     # 第三行
+      - {__include: preset_keyboards/numberyou/keys/@20, width: 20}
+      - {__include: preset_keyboards/lsqwerty/keys/@42, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@43, width: 40}
+      - {__include: preset_keyboards/lsqwerty/keys/@44, width: 10}
+      - {__include: preset_keyboards/lsqwerty/keys/@46, width: 20}
+ # v李氏三拼鍵盤
+  triple_pinyin_lssp:
+    __include: preset_keyboards/lssp1
+    lock: true
+  triple_pinyin_lsspaeo:
+    __include: preset_keyboards/lssp2
+    lock: true
+  triple_pinyin_bopomofo:
+    __include: preset_keyboards/lssp3
+    lock: true
+  lssp1:
+    __include: preset_keyboards/lsjp
+    __patch:
+      name: 李氏三拼1鍵盤
+      keys/@10/click: Keyboard_lsfc_pinyinP
+      keys/@17/click: Keyboard_help_lssp1
+      keys/@11/click: 1_lssp1show
+      keys/@12/click: 2_lssp1show
+      keys/@13/click: 3_lssp1show
+      keys/@14/click: x_lssp1show
+      keys/@15/click: A_lssp1show
+      keys/@18/click: 4_lssp1show
+      keys/@19/click: 5_lssp1show
+      keys/@20/click: 6_lssp1show
+      keys/@21/click: 0_lssp1show
+      keys/@22/click: B_lssp1show
+      keys/@25/click: 7_lssp1show
+      keys/@26/click: 8_lssp1show
+      keys/@27/click: 9_lssp1show
+      keys/@28/click: j_lssp1show
+      keys/@29/click: C_lssp1show
+      keys/@11/ascii: Q
+      keys/@12/ascii: W
+      keys/@13/ascii: E
+      keys/@14/ascii: R
+      keys/@15/ascii: T
+      keys/@18/ascii: A
+      keys/@19/ascii: S
+      keys/@20/ascii: D
+      keys/@21/ascii: F
+      keys/@22/ascii: G
+      keys/@25/ascii: Z
+      keys/@26/ascii: X
+      keys/@27/ascii: C
+      keys/@28/ascii: V
+      keys/@29/ascii: B
+      keys/@11/long_click: 1cazj_lssp1show
+      keys/@12/long_click: 2cazj_lssp1show
+      keys/@13/long_click: 3cazj_lssp1show
+      keys/@14/long_click: xcazj_lssp1show
+      keys/@15/long_click: Acazj_lssp1show
+      keys/@18/long_click: 4cazj_lssp1show
+      keys/@19/long_click: 5cazj_lssp1show
+      keys/@20/long_click: 6cazj_lssp1show
+      keys/@21/long_click: 0cazj_lssp1show
+      keys/@22/long_click: Bcazj_lssp1show
+      keys/@25/long_click: 7cazj_lssp1show
+      keys/@26/long_click: 8cazj_lssp1show
+      keys/@27/long_click: 9cazj_lssp1show
+      keys/@28/long_click: jcazj_lssp1show
+      keys/@29/long_click: Ccazj_lssp1show
+      keys/@11/swipe_up: 1cazj_lssp1show
+      keys/@12/swipe_up: 2cazj_lssp1show
+      keys/@13/swipe_up: 3cazj_lssp1show
+      keys/@14/swipe_up: xcazj_lssp1show
+      keys/@15/swipe_up: Acazj_lssp1show
+      keys/@18/swipe_up: 4cazj_lssp1show
+      keys/@19/swipe_up: 5cazj_lssp1show
+      keys/@20/swipe_up: 6cazj_lssp1show
+      keys/@21/swipe_up: 0cazj_lssp1show
+      keys/@22/swipe_up: Bcazj_lssp1show
+      keys/@25/swipe_up: 7cazj_lssp1show
+      keys/@26/swipe_up: 8cazj_lssp1show
+      keys/@27/swipe_up: 9cazj_lssp1show
+      keys/@28/swipe_up: jcazj_lssp1show
+      keys/@29/swipe_up: Ccazj_lssp1show
+      keys/@15/popup: [Acazj_lssp1showpp, Acazj_lssp1wsdshowpp]
+      keys/@11/hint: '　a,an,ang一'
+      keys/@12/hint: '　ai,ei,ao丨'
+      keys/@13/hint: '　o,ou,ong丿'
+      keys/@14/hint: 'e,en,eng'
+      keys/@15/hint: 'er,üan,_'
+      keys/@18/hint: '　ia,ian,iang丶'
+      keys/@19/hint: '　iai,i,iaoフ'
+      keys/@20/hint: 'io,iu,iong'
+      keys/@21/hint: 'ie,in,ing'
+      keys/@22/hint: '_,_,ü'
+      keys/@25/hint: 'ua,uan,uang'
+      keys/@26/hint: 'uai,ui,_'
+      keys/@27/hint: 'uo,_,u'
+      keys/@28/hint: '_,un,ueng'
+      keys/@29/hint: 'üe,ün,_'
+      # keys/@22/popup: [lssp1_Comment, lssp1_display]
+      # keys/@29/popup: [lssp1_RawInput, lssp1_display]
+  lssp2:
+    __include: preset_keyboards/lssp1
+    __patch:
+      name: 李氏三拼2鍵盤
+      keys/@17/click: Keyboard_help_lssp2
+      keys/@11/click: 1_lssp2show
+      keys/@12/click: 2_lssp2show
+      keys/@13/click: 3_lssp2show
+      keys/@14/click: x_lssp2show
+      keys/@15/click: A_lssp2show
+      keys/@18/click: 4_lssp2show
+      keys/@19/click: 5_lssp2show
+      keys/@20/click: 6_lssp2show
+      keys/@21/click: 0_lssp2show
+      keys/@22/click: B_lssp2show
+      keys/@25/click: 7_lssp2show
+      keys/@26/click: 8_lssp2show
+      keys/@27/click: 9_lssp2show
+      keys/@28/click: j_lssp2show
+      keys/@29/click: C_lssp2show
+      keys/@11/hint: {__include: preset_keyboards/lssp1/keys/@11/hint}
+      keys/@12/hint: '　e,en,eng丨'
+      keys/@13/hint: {__include: preset_keyboards/lssp1/keys/@13/hint}
+      keys/@14/hint: 'ai,ei,ao'
+      keys/@15/hint: {__include: preset_keyboards/lssp1/keys/@15/hint}
+      keys/@18/hint: {__include: preset_keyboards/lssp1/keys/@18/hint}
+      keys/@19/hint: '　ie,in,ingフ'
+      keys/@20/hint: {__include: preset_keyboards/lssp1/keys/@20/hint}
+      keys/@21/hint: 'iai,i,iao'
+      keys/@22/hint: {__include: preset_keyboards/lssp1/keys/@29/hint}
+      keys/@25/hint: {__include: preset_keyboards/lssp1/keys/@25/hint}
+      keys/@26/hint: {__include: preset_keyboards/lssp1/keys/@28/hint}
+      keys/@27/hint: 'uo,_,_'
+      keys/@28/hint: 'uai,ui,u'
+      keys/@29/hint: {__include: preset_keyboards/lssp1/keys/@22/hint}
+      keys/@11/long_click: 1cazj_lssp2show
+      keys/@12/long_click: 2cazj_lssp2show
+      keys/@13/long_click: 3cazj_lssp2show
+      keys/@14/long_click: xcazj_lssp2show
+      keys/@14/swipe_up: xcazj_lssp2show
+      keys/@15/long_click: Acazj_lssp2show
+      keys/@15/swipe_up: Acazj_lssp2show
+      keys/@15/popup: [Acazj_lssp2showpp, Acazj_lssp2wsdshowpp]
+      keys/@18/long_click: 4cazj_lssp2show
+      keys/@19/long_click: 5cazj_lssp2show
+      keys/@20/long_click: 6cazj_lssp2show
+      keys/@21/long_click: 0cazj_lssp2show
+      keys/@21/swipe_up: 0cazj_lssp2show
+      keys/@22/long_click: Bcazj_lssp2show
+      keys/@22/swipe_up: Bcazj_lssp2show
+      keys/@25/long_click: 7cazj_lssp2show
+      keys/@26/long_click: 8cazj_lssp2show
+      keys/@27/long_click: 9cazj_lssp2show
+      keys/@28/long_click: jcazj_lssp2show
+      keys/@28/swipe_up: jcazj_lssp2show
+      keys/@29/long_click: Ccazj_lssp2show
+      keys/@29/swipe_up: Ccazj_lssp2show
+      # keys/@22/popup: [lssp2_Comment, lssp2_display]
+      # keys/@29/popup: [lssp2_RawInput, lssp2_display]
+  lssp3:
+    __include: preset_keyboards/lssp1
+    __patch:
+      name: 李氏三拼3鍵盤
+      keys/@10/click: Keyboard_lsfc_strokeB
+      keys/@17/click: Keyboard_help_lssp3
+      keys/@11/click: 1_lssp3show
+      keys/@12/click: 2_lssp3show
+      keys/@13/click: 3_lssp3show
+      keys/@14/click: x_lssp3show
+      keys/@15/click: A_lssp3show
+      keys/@18/click: 4_lssp3show
+      keys/@19/click: 5_lssp3show
+      keys/@20/click: 6_lssp3show
+      keys/@21/click: 0_lssp3show
+      keys/@22/click: B_lssp3show
+      keys/@25/click: 7_lssp3show
+      keys/@26/click: 8_lssp3show
+      keys/@27/click: 9_lssp3show
+      keys/@28/click: j_lssp3show
+      keys/@29/click: C_lssp3show
+      keys/@10/hint: *lb_DeleteCandidate_ft
+      keys/@11/hint: '　ㄚㄞㄢ一'
+      keys/@12/hint: '　ㄛㄟㄣ丨'
+      keys/@13/hint: '　ㄜㄠㄤ丿'
+      keys/@14/hint: 'ㄝㄡㄥ'
+      keys/@15/hint: 'ㄩ-ㄦ_ㄢ'
+      keys/@17/hint: *lb_Mode_samll_ft
+      keys/@18/hint: '　ㄧ-ㄚㄞㄢ丶'
+      keys/@19/hint: '　ㄧ-ㄛㄧㄣフ'
+      keys/@20/hint: 'ㄧ-_ㄠㄤ'
+      keys/@21/hint: 'ㄧ-ㄝㄡㄥ'
+      keys/@22/hint: 'ㄩ-__ㄣ'
+      keys/@25/hint: 'ㄨ-ㄚㄞㄢ'
+      keys/@26/hint: 'ㄨ-ㄛㄟㄣ'
+      keys/@27/hint: 'ㄨ-__ㄤ'
+      keys/@28/hint: 'ㄨ-_ㄨㄥ'
+      keys/@29/hint: 'ㄩ-ㄝㄩㄥ'
+      keys/@28/key_text_size: 18
+      keys/@11/long_click: 1cazj_lssp3show
+      keys/@12/long_click: 2cazj_lssp3show
+      keys/@13/long_click: 3cazj_lssp3show
+      keys/@14/long_click: xcazj_lssp3show
+      keys/@14/swipe_up: xcazj_lssp3show
+      keys/@15/long_click: Acazj_lssp3show
+      keys/@15/swipe_up: Acazj_lssp3show
+      keys/@15/popup: [Acazj_lssp3showpp, Acazj_lssp3wsdshowpp]
+      keys/@18/long_click: 4cazj_lssp3show
+      keys/@19/long_click: 5cazj_lssp3show
+      keys/@20/long_click: 6cazj_lssp3show
+      keys/@21/long_click: 0cazj_lssp3show
+      keys/@21/swipe_up: 0cazj_lssp3show
+      keys/@22/long_click: Bcazj_lssp3show
+      keys/@22/swipe_up: Bcazj_lssp3show
+      keys/@25/long_click: 7cazj_lssp3show
+      keys/@26/long_click: 8cazj_lssp3show
+      keys/@27/long_click: 9cazj_lssp3show
+      keys/@28/long_click: jcazj_lssp3show
+      keys/@28/swipe_up: jcazj_lssp3show
+      keys/@29/long_click: Ccazj_lssp3show
+      keys/@29/swipe_up: Ccazj_lssp3show
+      keys/@10/composing: delimiterls_ft
+      keys/@17/composing: delimiter1ls_ft
+      keys/@24/composing: delimiter3ls_ft
+      keys/@32/composing: lsjp_2x_ft
+      keys/@24/hint: *lb_Hint_switch_1_ft
+      # keys/@22/popup: [lssp3_Comment, lssp3_display]
+      # keys/@29/popup: [lssp3_RawInput, lssp3_display]
+  lssp1wsd:
+    __include: preset_keyboards/lssp1
+    __patch:
+      name: 李氏三拼1無聲調鍵盤
+      keys/@15/click: A_lssp1wsdshow
+      keys/@15/long_click: Acazj_lssp1wsdshow
+      keys/@15/swipe_up: Acazj_lssp1wsdshow
+      keys/@22/click: B_lssp1wsdshow
+      keys/@22/long_click: Bcazj_lssp1wsdshow
+      keys/@22/swipe_up: Bcazj_lssp1wsdshow
+      keys/@29/click: C_lssp1wsdshow
+      keys/@29/long_click: Ccazj_lssp1wsdshow
+      keys/@29/swipe_up: Ccazj_lssp1wsdshow
+  lssp2wsd:
+    __include: preset_keyboards/lssp2
+    __patch:
+      name: 李氏三拼2無聲調鍵盤
+      keys/@15/click: A_lssp2wsdshow
+      keys/@15/long_click: Acazj_lssp2wsdshow
+      keys/@15/swipe_up: Acazj_lssp2wsdshow
+      keys/@22/click: B_lssp2wsdshow
+      keys/@22/long_click: Bcazj_lssp2wsdshow
+      keys/@22/swipe_up: Bcazj_lssp2wsdshow
+      keys/@29/click: C_lssp2wsdshow
+      keys/@29/long_click: Ccazj_lssp2wsdshow
+      keys/@29/swipe_up: Ccazj_lssp2wsdshow
+  lssp3wsd:
+    __include: preset_keyboards/lssp3
+    __patch:
+      name: 李氏三拼3無聲調鍵盤
+      keys/@15/click: A_lssp3wsdshow
+      keys/@15/long_click: Acazj_lssp3wsdshow
+      keys/@15/swipe_up: Acazj_lssp3wsdshow
+      keys/@22/click: B_lssp3wsdshow
+      keys/@22/long_click: Bcazj_lssp3wsdshow
+      keys/@22/swipe_up: Bcazj_lssp3wsdshow
+      keys/@29/click: C_lssp3wsdshow
+      keys/@29/long_click: Ccazj_lssp3wsdshow
+      keys/@29/swipe_up: Ccazj_lssp3wsdshow
+ # v廿六三拼鍵盤
+  triple_pinyin_lishi26:
+    __include: preset_keyboards/ls26
+    lock: true
+  ls26:
+    __include: preset_keyboards/lsqwerty
+    __patch:
+      name: 廿六三拼鍵盤
+      ascii_mode: 0
+     # 第一行
+     # 第二行
+      keys/@10/swipe_down: DeleteCandidate
+      keys/@10/label: "qw"
+      keys/@10/key_text_size: 22
+      keys/@10/hint: *lb_DeleteCandidate_ls26
+      keys/@11/click: "ˇ"
+      keys/@11/composing: w_26show
+      keys/@11/ascii: 'w'
+      keys/@11/hint: "ia ua"
+      keys/@12/click: "ˊ"
+      keys/@12/composing: e_26show
+      keys/@12/ascii: 'e'
+      keys/@12/hint: "e er"
+      keys/@13/hint: "uan"
+      keys/@14/hint: "ue üe"
+      keys/@15/click: "˙"
+      keys/@15/composing: y_26show
+      keys/@15/ascii: 'y'
+      keys/@15/hint: "ing uai"
+      keys/@16/label: "sh"
+      keys/@16/key_text_size: 22
+      keys/@16/hint: "u"
+      keys/@17/label: "ch"
+      keys/@17/key_text_size: 22
+      keys/@17/hint: "i"
+      keys/@18/click: "ˉ"
+      keys/@18/composing: o_26show
+      keys/@18/ascii: 'o'
+      keys/@18/hint: "uo o"
+      keys/@19/swipe_down: "P"
+      keys/@19/hint: "un 丿"
+     # 第三行
+      keys/@20/click: "ˋ"
+      keys/@20/composing: a_26show
+      keys/@20/ascii: 'a'
+      keys/@20/hint: *lb_Mode_samll_ls26
+      keys/@21/swipe_down: "S"
+      keys/@21/hint: "(i)ong丨"
+      keys/@22/hint: "i(u)ang"
+      keys/@23/label: "FY"
+      keys/@23/key_text_size: 18
+      keys/@23/hint: "en"
+      keys/@24/hint: "eng"
+      keys/@25/swipe_down: "H"
+      keys/@25/hint: "ang 一"
+      keys/@26/label: "JY"
+      keys/@26/key_text_size: 18
+      keys/@26/hint: "an"
+      keys/@27/hint: "ao"
+      keys/@28/hint: "ai"
+      keys/@29/click: Keyboard_lsfc_pinyinP
+      keys/@29/ascii: ";"
+      keys/@29/composing: delimiterls
+      keys/@29/swipe_down: Keyboard_ls26zy
+      keys/@29/hint: "注音"
+     # 第四行
+      keys/@31/swipe_down: "Z"
+      keys/@31/hint: "ei フ"
+      keys/@32/label: "零x"
+      keys/@32/key_text_size: 18
+      keys/@32/hint: "ie"
+      keys/@33/hint: "iao"
+      keys/@34/label: "zh"
+      keys/@34/key_text_size: 22
+      keys/@34/hint: "ui ü"
+      keys/@35/hint: "ou"
+      keys/@36/swipe_down: "N"
+      keys/@36/hint: "in 丶"
+      keys/@37/hint: "ian"
+      keys/@38/click: Keyboard_help_ls26
+      keys/@38/ascii: "'"
+      keys/@38/composing: "'"
+     # 第五行
+      keys/@45/composing: delimiter1ls
+  ls26zy:
+    __include: preset_keyboards/ls26
+    __patch:
+      name: 廿六三拼注音鍵盤
+      horizontal_gap: 1.8
+      vertical_gap: 2.3
+     # 第一行
+     # 第二行
+      keys/@10/label: 'ㄑ/ㄨ'
+      keys/@13/label: ㄖ
+      keys/@14/label: ㄊ
+      keys/@16/label: ㄕ
+      keys/@17/label: ㄔ
+      keys/@19/label: ㄆ
+      keys/@10/hint: *lb_DeleteCandidate_ls26_ft
+      keys/@11/hint: 'ㄧ(ㄨ)ㄚ'
+      keys/@12/hint: 'ㄜ/ㄝ/ㄦ'
+      keys/@13/hint: 'ㄨ(ㄩ)ㄢ'
+      keys/@14/hint: ㄩㄝ
+      keys/@15/hint: 'ㄧㄥ/ㄨㄞ'
+      keys/@16/hint: ㄨ
+      keys/@17/hint: 'ㄧ/ㄭ'
+      keys/@18/hint: 'ㄨㄛ/ㄛ'
+      keys/@19/hint: 'ㄨ(ㄩ)ㄣ丿'
+      keys/@10/key_text_size: 14
+      keys/@11/key_text_size: 18
+      keys/@12/key_text_size: 18
+      keys/@13/key_text_size: 18
+      keys/@14/key_text_size: 18
+      keys/@15/key_text_size: 18
+      keys/@16/key_text_size: 18
+      keys/@17/key_text_size: 18
+      keys/@18/key_text_size: 18
+      keys/@19/key_text_size: 18
+      keys/@10/symbol_text_size: 8
+      keys/@11/symbol_text_size: 8
+      keys/@12/symbol_text_size: 8
+      keys/@13/symbol_text_size: 8
+      keys/@14/symbol_text_size: 8
+      keys/@15/symbol_text_size: 8
+      keys/@16/symbol_text_size: 8
+      keys/@17/symbol_text_size: 8
+      keys/@18/symbol_text_size: 8
+      keys/@19/symbol_text_size: 8
+     # 第三行
+      keys/@21/label: ㄙ
+      keys/@22/label: ㄉ
+      keys/@23/label: 'ㄈ/ㄩ'
+      keys/@24/label: ㄍ
+      keys/@25/label: ㄏ
+      keys/@26/label: 'ㄐ/ㄧ'
+      keys/@27/label: ㄎ
+      keys/@28/label: ㄌ
+      keys/@20/hint: *lb_Mode_samll_ls26_ft
+      keys/@21/hint: 'ㄨ(ㄩ)ㄥ丨'
+      keys/@22/hint: 'ㄧ(ㄨ)ㄤ'
+      keys/@23/hint: ㄣ
+      keys/@24/hint: ㄥ
+      keys/@25/hint: 'ㄤ 一'
+      keys/@26/hint: ㄢ
+      keys/@27/hint: ㄠ
+      keys/@28/hint: ㄞ
+      keys/@29/click: Keyboard_lsfc_strokeB
+      keys/@20/key_text_size: 18
+      keys/@21/key_text_size: 18
+      keys/@22/key_text_size: 18
+      keys/@23/key_text_size: 14
+      keys/@24/key_text_size: 18
+      keys/@25/key_text_size: 18
+      keys/@26/key_text_size: 14
+      keys/@27/key_text_size: 18
+      keys/@28/key_text_size: 18
+      keys/@20/symbol_text_size: 8
+      keys/@21/symbol_text_size: 8
+      keys/@22/symbol_text_size: 8
+      keys/@23/symbol_text_size: 8
+      keys/@24/symbol_text_size: 8
+      keys/@25/symbol_text_size: 8
+      keys/@26/symbol_text_size: 8
+      keys/@27/symbol_text_size: 8
+      keys/@28/symbol_text_size: 8
+      keys/@29/swipe_down: Keyboard_ls26
+      keys/@29/hint: "拼音"
+     # 第四行
+      keys/@31/label: ㄗ
+      keys/@32/label: '零/ㄒ'
+      keys/@33/label: ㄘ
+      keys/@34/label: ㄓ
+      keys/@35/label: ㄅ
+      keys/@36/label: ㄋ
+      keys/@37/label: ㄇ
+      keys/@30/hint: *lb_Hint_switch_1_ft
+      keys/@31/hint: 'ㄟ フ'
+      keys/@32/hint: ㄧㄝ
+      keys/@33/hint: ㄧㄠ
+      keys/@34/hint: 'ㄨㄟ/ㄩ'
+      keys/@35/hint: ㄡ
+      keys/@36/hint: 'ㄧㄣ 丶'
+      keys/@37/hint: ㄧㄢ
+      keys/@38/click: Keyboard_help_ls26zy
+      keys/@31/key_text_size: 18
+      keys/@32/key_text_size: 14
+      keys/@33/key_text_size: 18
+      keys/@34/key_text_size: 18
+      keys/@35/key_text_size: 18
+      keys/@36/key_text_size: 18
+      keys/@37/key_text_size: 18
+      keys/@31/symbol_text_size: 8
+      keys/@32/symbol_text_size: 8
+      keys/@33/symbol_text_size: 8
+      keys/@34/symbol_text_size: 8
+      keys/@35/symbol_text_size: 8
+      keys/@36/symbol_text_size: 8
+      keys/@37/symbol_text_size: 8
+     # 第五行
+      keys/@45/composing: delimiter1ls_ft
