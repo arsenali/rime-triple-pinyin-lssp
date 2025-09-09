@@ -1,0 +1,20 @@
+patch:
+  triple_pinyin_hant:
+    grammar:  # 注意要把同名的模型文件（zh-hant-t-essay-bgw.gram）放在用戶文件夾下，否則會加載失敗並報錯
+      language: zh-hant-t-essay-bgw     # 八股文語言模型
+      # language: wanxiang-lts-zh-hans    # 萬象語言模型
+    quanpin/contextual_suggestions: true
+    quanpin/max_homophones: 7
+    quanpin/max_homographs: 7
+    ddpy/contextual_suggestions: true
+    ddpy/max_homophones: 7
+    ddpy/max_homographs: 7
+    zhuyin/contextual_suggestions: true
+    zhuyin/max_homophones: 7
+    zhuyin/max_homographs: 7
+    guoluo/contextual_suggestions: true
+    guoluo/max_homophones: 7
+    guoluo/max_homographs: 7
+    translator/contextual_suggestions: true
+    translator/max_homophones: 7
+    translator/max_homographs: 7
