@@ -1,0 +1,73 @@
+# Rime dictionary
+# encoding: utf-8
+#
+# Terra Pinyin Extended Dictionary  - 地球拼音擴充詞庫
+#
+#   阿森納裡 <qq:15678407>
+#
+#
+#
+---
+name: terra_pinyin.extended
+version: "2025.08.31"
+sort: by_weight
+use_preset_vocabulary: true
+# max_phrase_length: 7
+# min_phrase_weight: 100
+import_tables:
+ # 基本詞庫
+  - terra_pinyin                # 地球拼音詞庫
+  
+  - terra_pinyin.zianyin        # 尖音
+  - terra_pinyin.addition       # 補充、勘誤
+  - terra_pinyin.liuxing        # 流行語
+  - terra_pinyin.personal       # 個人詞彙
+  - terra_pinyin.contacts       # 聯繫人
+  
+  - terra_pinyin.ddpy           # 帶調拼音
+
+# ////////////////////////////////////////////////////////////////
+# 注意：系統會把詞庫中的無編碼字詞自動加上最可能的帶調拼音，但對已標註的無調拼音則不做處理（因為不知道是輕聲還是省略聲調）。地球拼音標准詞庫中用數字1-5表示1-4聲和輕聲，所有字詞均帶調，沒有無調拼音，但有的詞庫（包括萬象詞庫）中用無調拼音表示輕聲，同時也存在未標調的拼音，無法區分，為統一起見，我把詞庫中的無調拼音全部轉換為了輕聲，請盡量不要加載無調拼音詞庫
+# 注意：請確保詞庫文件存在，否則會加載失敗並報錯
+# ////////////////////////////////////////////////////////////////
+
+# 注意：地球拼音詞庫全部以正體字存儲，通過默認過濾器simplifier進行簡繁轉換，但萬象詞庫以簡體字存儲，如需統一進行簡繁轉換，需要先把簡體字轉換為繁體字，在方案的配置文件中啟用最後一段patch內容即可
+ # 萬象詞庫
+  # - dicts/chars           #字表，包含了所有带拼音的汉字
+  # - dicts/base            #基础词库，2-3字词汇
+  # - dicts/correlation     #关联词库，4字词汇，多为不同词频的2字语句连接起来起到合理组句的能力
+  # - dicts/suggestion      #联想词库，5字以上词汇，多用于输入前半段第二候选可以出来整段
+  # - dicts/corrections     #错音错字，支持错音和错字输入的兼容，同时供超级注释lua使用会在输入错误音节打出的时候给予提示
+  # - dicts/compatible      #兼容词库，是基础词库的扩充，收录了多场景多种读音的词组
+  # - dicts/poetry          #诗词
+  # - dicts/place           #地名
+
+ # 2021.04.19補充地球拼音詞庫（帶調拼音詞庫）
+  # - terra_pinyin.sougou  # 96.2萬 搜狗输入法
+  # - terra_pinyin.sogou  # 51.6萬 搜狗输入法
+  # - terra_pinyin.zh_wiki  # 102萬 中文维基百科爬虫
+  # - terra_pinyin.hanyu  # 36.6萬 汉语大词典
+  # - terra_pinyin.kanji  # 31個日本漢字，對luna_pinyin.extra_hanzi進行標調
+  
+ # 2019.05.27整理朙月拼音詞庫（無編碼詞庫）
+  # - luna_pinyin.extendeds  # 13萬 (刪除未標調拼音)
+  # - luna_pinyin.hanyu  # 22萬
+  # - luna_pinyin.poetry  # 2.8萬
+  
+  # - luna_pinyin.anime  # 3萬
+  # - luna_pinyin.chat  # 0.7萬
+  # - luna_pinyin.computer  # 1萬
+  # - luna_pinyin.game  # 0.7萬
+  # - luna_pinyin.history  # 10萬
+  # - luna_pinyin.moba  # 0.6萬 游戏词库、历史词库、日常生活用词词库
+  # - luna_pinyin.movie  # 1.3萬
+  # - luna_pinyin.music  # 2萬
+  # - luna_pinyin.name  # 1萬
+  # - luna_pinyin.net  # 6萬
+  # - luna_pinyin.place  # 0.3萬
+  # - luna_pinyin.sgplus2  # 19萬
+  # - luna_pinyin.shopping  # 5.5萬
+  # - luna_pinyin.user  # 1.6萬 可能是imy0823個人整體的詞庫
+  # - luna_pinyin.website  # 0.5萬
+  
+...

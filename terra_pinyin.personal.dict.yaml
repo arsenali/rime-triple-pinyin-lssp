@@ -1,0 +1,501 @@
+# Rime dictionary
+# encoding: utf-8
+#
+# 個人詞彙
+
+---
+name: terra_pinyin.personal
+version: "2022.04.02"
+sort: by_weight
+use_preset_vocabulary: true
+...
+# 可在這裡加入一些個人詞彙，段首前用“# ”關閉
+# 正常詞彙可不加拼音，多音字、非標準普通話需要標註拼音，音節之間以空格隔開
+# 最好以臺灣正體錄入，以確保簡繁轉換正常
+
+# 開始
+
+# 語流音變
+# “一七八不”發音規則
+# 不	bu2	1%
+# 不	bu4	99%
+不	bu1
+不	bu5	0
+
+# 輕聲
+妒忌	du4 ji5
+試試	shi4 shi4
+試試	shi4 shi5
+嗎	ma1
+嗎	ma2
+嗎	mo5
+嘛	ma2
+嘛	ma4
+商量	shang1 liang2
+着	zhao5
+
+事情	shi4 cing5
+事情	shi4 qing5
+事物	shi4 wu5
+事務	shi4 wu5
+政治	zheng4 zhi5
+限制	xian4 zhi5
+技術	ji4 shu5
+試驗	shi4 yan5
+甚至	shen4 zhi5
+
+唄	bai4	50%
+唄	bei5	50%
+唄	bai5	0
+上	shang5	0
+下	xia5	0
+地位	di4 wei5
+重視	zhong4 shi5
+階級	jie1 ji5
+意義	yi4 yi5
+意識	yi4 shi5
+識別	shi2 bie2
+共識	gong4 shi2
+前面	qian2 mian4
+前面	qian2 mian5
+前面	cian2 mian4
+前面	cian2 mian5
+後面	hou4 mian4
+後面	hou4 mian5
+關係	guan1 xi4
+關係	guan1 xi5
+這樣	zhe4 yang5
+那樣	na4 yang5
+效率	xiao4 lv5
+規律	gui1 lv5
+考慮	kao3 lv5
+動物	dong4 wu5
+動物園	dong4 wu5 yuan2
+建築	jian4 zhu5
+狗狗	gou3 gou5
+碩士	shuo4 shi5
+
+用用	yong4 yong5
+賤人	jian4 ren5
+賤人	zian4 ren5
+太監	tai4 jian5
+項目	xiang4 mu5
+問問	wen4 wen5
+
+謝謝	xie4 xie5
+謝謝	sie4 sie5
+興趣	xing4 qu4
+興趣	xing4 qu5
+性趣	xing4 qu4
+性趣	xing4 qu5
+性趣	sing4 qu4
+性趣	sing4 qu5
+矯情	jiao3 qing2
+矯情	jiao2 qing5
+矯情	jiao3 cing2
+矯情	jiao2 cing5
+質量	zhi4 liang5
+鄰居	lin2 ju5
+幹部	gan4 bu5
+乾糧	gan1 liang5
+熟悉	shu2 xi5
+熟悉	shu2 sii5
+麥克	mai4 ke5
+舒克	shu1 ke5
+旮旯	ga1 la5
+
+容易	rong2 yi5
+
+# 親家	qing4 jia5
+親家	cing4 jia5
+親家	qin4 jia5	0
+親家	cin4 jia5
+# 親戚	qin1 qi1
+# 親戚	qin1 qi5
+親戚	cin1 cii1	0
+親戚	cin1 cii5
+親戚	qin1 cii1	0
+親戚	qin1 cii5	0
+親戚	cin1 qi1	0
+親戚	cin1 qi5	0
+
+女婿	nv3 sv4
+女婿	nv3 sv5
+
+# 親	qin1	95%  # 地球拼音原詞庫
+# 親	qing4	5%  # 地球拼音原詞庫
+# 父親	fu4 qin1  # 地球拼音原詞庫
+父親	fu4 qin5	1
+父親	fu4 cin5	0
+# 母親	mu3 qin1  # 地球拼音原詞庫
+母親	mu3 qin5	1
+母親	mu3 cin5	0
+鄉親	xiang1 qin5	1
+鄉親	xiang1 cin5	0
+# 姐姐	jie3 jie5  # 地球拼音原詞庫
+姐姐	zie3 zie5
+姐姐	jie3 zie5	0
+姐姐	zie3 jie5	0
+
+
+
+# 噯	ai3	50%  # 地球拼音原詞庫
+# 噯	ai4	50%  # 地球拼音原詞庫
+噯	ai5
+噯	ai1	0
+
+# eh(誒欸)
+誒	ei1
+誒	ei2
+誒	ei3	0
+誒	ei4	0
+誒	eh1	0
+誒	eh2	0
+誒	eh3	0
+誒	eh4	0
+誒	eh5
+誒	xi1	0
+
+欸	ei1	0
+欸	ei2	0
+欸	ei3	0
+欸	ei4
+欸	ei5
+欸	eh1	0
+欸	ai1	0
+欸	ai3	0
+
+
+東西	dong1 xi1
+東西	dong1 xi5
+東西	dong1 sii1
+東西	dong1 sii5
+
+先生	sian1 sheng1
+先生	sian1 sheng5
+
+吉他	ji2 ta5
+吉它	ji2 ta5
+貝斯	bei4 si5
+貝司	bei4 si5
+
+# 哇	wa1  # 地球拼音原詞庫
+哇	wa5
+
+紀律	ji4 lv5
+錯誤	cuo4 wu5
+
+# 息	xi1  # 地球拼音原詞庫
+息	xi2
+息	xi5	0
+息	sii1
+息	sii2
+息	sii5	0
+消息	xiao1 xi1
+# 消息	xiao1 xi2
+# 消息	xiao1 xi5
+消息	siao1 sii1
+消息	siao1 sii2
+消息	siao1 sii5
+# 稍息	shao1 xi2
+# 稍息	shao4 xi1
+稍息	shao1 sii2
+稍息	shao4 sii1
+# 休息	xiu1 xi2
+# 休息	xiu1 xi5
+休息	xiu1 sii2
+休息	xiu1 sii5
+# 出息	chu1 xi1
+# 出息	chu1 xi2
+# 出息	chu1 xi5
+出息	chu1 sii1
+出息	chu1 sii2
+出息	chu1 sii5
+# 奸細	jian1 xi5
+奸細	jian1 sii5
+# 歇息	xie1 xi5
+歇息	xie1 sii5
+
+
+過	guo5	0
+去	qu5	0
+切	qie5	0
+是	shi5	0
+噢	o5
+面	mian5	0
+來	lai5	0
+度	du5	0
+數	shu5	0
+
+呀	ya1	0
+呀	xia1	0
+
+地	di5	4
+滴	di5	3
+的	di5	2
+得	di5	1
+
+積	ji5	0
+積	zii5	0
+
+爺	ye5	0
+馬甲兒	ma3 jia2 r5
+
+
+
+
+承載	cheng2 zai3	0
+
+
+# 北京話
+那	nei4	0
+那	nei5	0
+吶	na4	50%
+吶	na5	50%
+吶	nai4	0
+吶	nai5	0
+吶	ne4	0
+吶	nei4	0
+吶	nei5	0
+# 嘞	lei5
+了	lei5	0
+嘞	lei4	0
+得嘞	de2 lei5
+您吶	nin2 nei5
+# 嘚	de1
+嘚	dei1	0
+嘚	dei3	0
+嘚	de2	0
+嘚	de4	0
+得	dai3	0
+嘚瑟	de4 se5
+得瑟	de4 se5
+
+
+# 方言、口語
+力	li1	0
+肖	xiao1
+
+# 較	jiao3	0
+# 比較	bi3 jiao3
+# 較爲	jiao3 wei2
+
+# 血	xue3	0
+# 血色浪漫	xue3 se4 lang4 man4
+
+嘎	ga1
+嘎	ga2	1
+嘎	ga3	0
+張嘎	zhang1 ga3
+嘎子	ga3 zi5
+
+會	hui2	0
+一會	yi4 hui2	0
+
+榻榻米	ta4 ta4 mi3
+榻榻米	ta1 ta1 mi3	0
+
+式	chi4
+
+綜	zong4
+綜合	zong4 he2
+綜合	zong1 he2	0
+
+僰人	bo2 ren2
+懸棺	xuan2 guan1
+僰人懸棺	bo2 ren2 xuan2 guan1
+
+慫	song2	0
+
+模糊	mo3 hu1
+模糊	mo3 hu2
+模糊	mo3 hu5
+
+# 咳	hai1	5%
+# 咳	ke2	95%
+咳	hai4	0
+# 咳	hai5	0
+
+# 嗨	hai1
+# 嗨	hai4	0
+嗨	hai5	0
+
+# 溜	liu1
+溜	liu4
+# 溜溜	liu4 liu5
+遛遛	liu4 liu5
+求求	qiu2 qiu5
+
+# 哼	heng1
+哼	heng5
+
+# 南無	na1 mo4
+# 南無	na2 mo2
+南無	na1 mo2
+# 南無佛	na2 mo2 fo2
+# 南無耶	na2 mo2 ye2
+# 南	nan2
+南	na1	0
+南	na2	0
+# 無	wu2
+無	mo2	0
+# 牟	mou2	95%
+# 牟	mu4	5%
+南牟	na1 mo2	0
+南牟	na2 mo2	0
+
+# 腌臢	a1 za5
+# 腌臢	ang1 za5
+# 腌臢	ang1 zang1
+腌臢	a1 za1
+
+# 曐	xing1
+# 皨	xing1
+# 曐	sing1
+# 皨	sing1
+# 〇	ling2
+〇	xing1	0
+〇	sing1	0
+
+# 尖音
+逡巡	qun1 xun2
+逡廵	qun1 xun2
+逡巡	cvn1 svn2
+逡廵	cvn1 svn2
+京津冀	jing1 jin1 ji4
+京津冀	jing1 zin1 ji4
+# 邏輯	luo2 ji2
+# 邏輯	luo2 ji5
+邏輯	luo2 zii2
+邏輯	luo2 zii5
+
+程序猿	cheng2 xu4 yuan1
+好好	hao3 hao1
+
+# 妮	ni1
+妮	ni2
+
+# 呀	ya5
+呀	ya1	0
+呀	xia1	0
+
+# 質量	zhi2 liang4
+# 質量	zhi4 liang4
+質量	zhi3 liang4	0
+
+# 噱	jue2  # 地球拼音原詞庫
+噱	xue1	1
+噱	xue2	2
+# 噱頭	xue1 tou2
+# 噱頭	xue2 tou2
+噱頭	xue4 tou2
+
+# 倔	jue2  # 地球拼音原詞庫
+倔	jue4
+# 倔強	jue2 jiang4
+倔強	jue4 jiang4	0
+
+# 混	hun2	30%
+# 混	hun4	70%
+混	hun3	0
+混	gun3	0
+# 混混	gun3 gun3
+# 混混	hun4 hun4
+混混	hun4 hun5
+混	kun1	0
+# 混夷	kun1 yi2
+
+# 誼	yi4
+誼	yi2
+
+# 恩	en1
+恩	en5	0
+
+# 亞	ya3
+# 亞	ya4
+亞	ya1	0
+
+# 法	fa3
+法	fa1	0
+法	fa2	0
+法國	fa4 guo2	0
+
+# 便便	bian1 bian1
+便便	bian4 bian4	0
+便便	bian4 bian5
+
+# 氛	fen1
+氛	fen4	0
+
+# 撒	sa1	50%
+# 撒	sa3	50%
+撒	sa4	0
+
+劊	gui4
+劊	kuai4
+
+檜	kuai4
+# 檜	gui4
+檜	hui4
+
+意見	yi4 jian5
+建議	jian4 yi5
+
+玫瑰	mei2 gui1
+玫瑰	mei2 gui4	0
+# 玫瑰	mei2 gui5
+月季	yue4 ji4
+月季	yue4 ji5
+
+# 孩紙	hai2 zhi3
+孩紙	hai2 zhi5
+
+# 逮	dai3	50%
+# 逮	dai4	50%
+逮	dei1	0
+
+# 落	la4	5%
+# 落	luo4	95%
+落	lao4	0
+
+# 拉	la1
+拉	la2	1
+拉	la4	0
+
+憋屈	bie1 qu5
+忙乎	mang2 hu5
+
+# 悄	qiao3
+悄	qiao1
+
+# 坷	ke3
+坷	ke1	1
+坷垃	ke1 la5
+金坷垃	jin1 ke1 la1
+
+# 個人發音
+哎呦喂	ei1 you1 wei1
+
+麻煩	ma2 fan2
+
+# 她	ta1  # 地球拼音原詞庫
+她	te1
+她	tai1	0
+# 它	ta1  # 地球拼音原詞庫
+它	te2
+# 妳	ni3
+妳	ni1	0
+妳	nai3	0
+
+# 終	zhong2	0
+# 期終	qi2 zhong2	0
+# 終期	zhong2 qi2	0
+# 期終	qi1 zhong2	0
+# 終期	zhong2 qi1	0
+
+權力	quan2 li4
+權利	quan2 li5	0
+
+再	zai2
+在	zai5	0
+
