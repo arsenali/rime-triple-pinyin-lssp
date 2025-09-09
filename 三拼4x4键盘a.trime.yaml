@@ -1,0 +1,245 @@
+# Theme settings for Triple_pinyin
+# encoding: utf-8
+
+style:
+  __include: 三拼3x5键盘.trime:/style
+
+fallback_colors:
+  __include: 三拼3x5键盘.trime:/fallback_colors
+
+preset_color_schemes:
+  __include: 三拼3x5键盘.trime:/preset_color_schemes
+
+android_keys:
+  __include: 三拼3x5键盘.trime:/android_keys
+
+preset_keys:
+  __include: 三拼3x5键盘.trime:/preset_keys
+
+preset_keyboards:
+  __include: 三拼3x5键盘.trime:/preset_keyboards
+  triple_pinyin_lssp:
+    __include: preset_keyboards/lssp1
+    lock: true
+  triple_pinyin_lsspaeo:
+    __include: preset_keyboards/lssp2
+    lock: true
+  triple_pinyin_bopomofo:
+    __include: preset_keyboards/lssp3
+    lock: true
+  lssp1:
+    __include: 三拼3x5键盘.trime:/preset_keyboards/lssp1
+    width: 17.5
+    __patch:  # keys 替換
+     # 原數字行刪除
+      keys/@0:
+      keys/@1:
+      keys/@2:
+      keys/@3:
+      keys/@4:
+      keys/@5:
+      keys/@6:
+      keys/@7:
+      keys/@8:
+      keys/@9:
+     # 原鍵位刪除
+      keys/@15:
+      keys/@22:
+      keys/@29:
+      keys/@32:
+      keys/@34:
+     # 原第五列，現第四行
+      keys/@after 30: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1/keys/@32}
+      keys/@after 31: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1/keys/@15}
+      keys/@after 32: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1/keys/@22}
+      keys/@after 33: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1/keys/@29}
+      keys/@after 34:
+      keys/@after 35:
+      keys/@after 36: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1/keys/@34}
+    __patch:  # keys 追加合併
+     # 原第五列，現第四行
+      keys/@31/+: {width: 15}
+      keys/@33/+: {width: 35}
+      keys/@37/+: {width: 15}
+     # 空格行
+      keys/@40/+: {width: 70}
+  lssp2:
+    __include: 三拼3x5键盘.trime:/preset_keyboards/lssp2
+    width: 17.5
+    __patch:  # keys 替換
+     # 原數字行刪除
+      keys/@0:
+      keys/@1:
+      keys/@2:
+      keys/@3:
+      keys/@4:
+      keys/@5:
+      keys/@6:
+      keys/@7:
+      keys/@8:
+      keys/@9:
+     # 原鍵位刪除
+      keys/@15:
+      keys/@22:
+      keys/@29:
+      keys/@32:
+      keys/@34:
+     # 原第五列，現第四行
+      keys/@after 30: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2/keys/@32}
+      keys/@after 31: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2/keys/@15}
+      keys/@after 32: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2/keys/@22}
+      keys/@after 33: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2/keys/@29}
+      keys/@after 34:
+      keys/@after 35:
+      keys/@after 36: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2/keys/@34}
+    __patch:  # keys 追加合併
+     # 原第五列，現第四行
+      keys/@31/+: {width: 15}
+      keys/@34/+: {width: 35}
+      keys/@37/+: {width: 15}
+     # 空格行
+      keys/@40/+: {width: 70}
+  lssp3:
+    __include: 三拼3x5键盘.trime:/preset_keyboards/lssp3
+    width: 17.5
+    __patch:  # keys 替換
+     # 原數字行刪除
+      keys/@0:
+      keys/@1:
+      keys/@2:
+      keys/@3:
+      keys/@4:
+      keys/@5:
+      keys/@6:
+      keys/@7:
+      keys/@8:
+      keys/@9:
+     # 原鍵位刪除
+      keys/@15:
+      keys/@22:
+      keys/@29:
+      keys/@32:
+      keys/@34:
+     # 原第五列，現第四行
+      keys/@after 30: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3/keys/@32}
+      keys/@after 31: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3/keys/@15}
+      keys/@after 32: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3/keys/@22}
+      keys/@after 33: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3/keys/@29}
+      keys/@after 34:
+      keys/@after 35:
+      keys/@after 36: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3/keys/@34}
+    __patch:  # keys 追加合併
+     # 原第五列，現第四行
+      keys/@31/+: {width: 15}
+      keys/@33/+: {width: 35}
+      keys/@37/+: {width: 15}
+     # 空格行
+      keys/@40/+: {width: 70}
+  lssp1wsd:
+    __include: 三拼3x5键盘.trime:/preset_keyboards/lssp1wsd
+    width: 17.5
+    __patch:  # keys 替換
+     # 原數字行刪除
+      keys/@0:
+      keys/@1:
+      keys/@2:
+      keys/@3:
+      keys/@4:
+      keys/@5:
+      keys/@6:
+      keys/@7:
+      keys/@8:
+      keys/@9:
+     # 原鍵位刪除
+      keys/@15:
+      keys/@22:
+      keys/@29:
+      keys/@32:
+      keys/@34:
+     # 原第五列，現第四行
+      keys/@after 30: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1wsd/keys/@32}
+      keys/@after 31: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1wsd/keys/@15}
+      keys/@after 32: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1wsd/keys/@22}
+      keys/@after 33: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1wsd/keys/@29}
+      keys/@after 34:
+      keys/@after 35:
+      keys/@after 36: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp1wsd/keys/@34}
+    __patch:  # keys 追加合併
+     # 原第五列，現第四行
+      keys/@31/+: {width: 15}
+      keys/@33/+: {width: 35}
+      keys/@37/+: {width: 15}
+     # 空格行
+      keys/@40/+: {width: 70}
+  lssp2wsd:
+    __include: 三拼3x5键盘.trime:/preset_keyboards/lssp2wsd
+    width: 17.5
+    __patch:  # keys 替換
+     # 原數字行刪除
+      keys/@0:
+      keys/@1:
+      keys/@2:
+      keys/@3:
+      keys/@4:
+      keys/@5:
+      keys/@6:
+      keys/@7:
+      keys/@8:
+      keys/@9:
+     # 原鍵位刪除
+      keys/@15:
+      keys/@22:
+      keys/@29:
+      keys/@32:
+      keys/@34:
+     # 原第五列，現第四行
+      keys/@after 30: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2wsd/keys/@32}
+      keys/@after 31: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2wsd/keys/@15}
+      keys/@after 32: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2wsd/keys/@22}
+      keys/@after 33: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2wsd/keys/@29}
+      keys/@after 34:
+      keys/@after 35:
+      keys/@after 36: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp2wsd/keys/@34}
+    __patch:  # keys 追加合併
+     # 原第五列，現第四行
+      keys/@31/+: {width: 15}
+      keys/@34/+: {width: 35}
+      keys/@37/+: {width: 15}
+     # 空格行
+      keys/@40/+: {width: 70}
+  lssp3wsd:
+    __include: 三拼3x5键盘.trime:/preset_keyboards/lssp3wsd
+    width: 17.5
+    __patch:  # keys 替換
+     # 原數字行刪除
+      keys/@0:
+      keys/@1:
+      keys/@2:
+      keys/@3:
+      keys/@4:
+      keys/@5:
+      keys/@6:
+      keys/@7:
+      keys/@8:
+      keys/@9:
+     # 原鍵位刪除
+      keys/@15:
+      keys/@22:
+      keys/@29:
+      keys/@32:
+      keys/@34:
+     # 原第五列，現第四行
+      keys/@after 30: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3wsd/keys/@32}
+      keys/@after 31: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3wsd/keys/@15}
+      keys/@after 32: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3wsd/keys/@22}
+      keys/@after 33: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3wsd/keys/@29}
+      keys/@after 34:
+      keys/@after 35:
+      keys/@after 36: {__include: 三拼3x5键盘.trime:/preset_keyboards/lssp3wsd/keys/@34}
+    __patch:  # keys 追加合併
+     # 原第五列，現第四行
+      keys/@31/+: {width: 15}
+      keys/@33/+: {width: 35}
+      keys/@37/+: {width: 15}
+     # 空格行
+      keys/@40/+: {width: 70}

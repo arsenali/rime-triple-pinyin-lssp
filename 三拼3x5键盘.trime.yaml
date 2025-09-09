@@ -1,0 +1,20 @@
+# Theme settings for Triple_pinyin
+# encoding: utf-8
+
+style:
+  __include: triple_pinyin:/style
+
+fallback_colors:
+  __include: triple_pinyin:/fallback_colors
+
+preset_color_schemes:
+  __include: triple_pinyin:/preset_color_schemes
+
+android_keys:
+  __include: triple_pinyin:/android_keys
+
+preset_keys:
+  __include: triple_pinyin:/preset_keys
+
+preset_keyboards:
+  __include: triple_pinyin:/preset_keyboards
