@@ -25,7 +25,23 @@
 
 ### 键位图
 
-![3x5键盘布局](https://github.com/user-attachments/assets/8851417a-2aaf-4af4-a77a-d3faa268a03c)
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/8851417a-2aaf-4af4-a77a-d3faa268a03c" 
+       alt="3x5键盘布局" 
+       width="80%"
+       style="border: 1px solid #eee; 
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+              margin: 20px 0;">
+ <i> <p style="color: #666; font-style: italic; margin-top: 12px;">
+    图1: 3x5键盘布局（比例: 80%）
+  </p></i>
+</div>
+
+<img src=https://github.com/user-attachments/assets/8851417a-2aaf-4af4-a77a-d3faa268a03c alt="3x5键盘布局" style="width: 50%; height: auto; align: center;">
+
+![3x5键盘布局](https://github.com/user-attachments/assets/8851417a-2aaf-4af4-a77a-d3faa268a03c)   
 *△3x5键盘布局*
 
 ![4x4键盘布局](https://github.com/user-attachments/assets/f0a97141-0cdc-4b90-99a4-1ef14d917595)
