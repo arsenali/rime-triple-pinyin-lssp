@@ -214,7 +214,7 @@ QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
 <br>
 
 ### &#8627; Stargazers
-[![Stargazers repo roster for @arsenali/rime-triple-pinyin](https://reporoster.com/stars/arsenali/rime-triple-pinyin)](https://github.com/arsenali/rime-triple-pinyin/stargazers)
+[![Stargazers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/stars/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin/stargazers)
 
 ### &#8627; Forkers
-[![Forkers repo roster for @arsenali/rime-triple-pinyin](https://reporoster.com/forks/arsenali/rime-triple-pinyin)](https://github.com/arsenali/rime-triple-pinyin/network/members)
+[![Forkers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/forks/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin/network/members)
