@@ -12,6 +12,7 @@
 
 皮肤（主题）文件依赖于 [同文安卓輸入法平臺](https://github.com/osfans/trime) ℞ trime，方案已内置。
 
+授权条款：见 [LICENSE](LICENSE)
 
 ## 简介
 
