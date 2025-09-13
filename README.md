@@ -208,7 +208,7 @@ _截图使用的是“光明·黑暗 乱”主题，“艳彩”配色_
 
 点击“反查”可使用拼音或笔画进行编码反查。
 
-默认只载入地球拼音词库，加载“八股文”语言模型，如需使用万象等词库需自行下载并在词库列表文件terra_pinyin.extended.dict.yaml中启用。
+默认只载入地球拼音词库，加载“八股文”语言模型，如需使用万象等词库需自行下载并在词库列表文件terra_pinyin.extended.dict.yaml中启用，使用其他语言模型请修改grammar.custom.yaml文件。
 
 下载地址：http://www.lssp.ysepan.com/
 
