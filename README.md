@@ -19,6 +19,8 @@
 
 [苹果版](https://github.com/arsenali/rime-triple-pinyin-lssp/wiki/苹果版)
 
+<br>
+
 ## 键位图
 
 <div align="normal">
@@ -220,7 +222,7 @@ QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
 ## 收藏和克隆
 
 ### &#8627; Stargazers
-[![Stargazers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/stars/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin/stargazers)
+[![Stargazers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/stars/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin-lssp/stargazers)
 
 ### &#8627; Forkers
-[![Forkers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/forks/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin/network/members)
+[![Forkers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/forks/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin-lssp/network/members)
