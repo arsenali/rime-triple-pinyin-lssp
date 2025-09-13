@@ -13,7 +13,9 @@
 
 ## 安装
 
-详见
+本方案依赖于 ℞ [地球拼音](https://github.com/rime/rime-terra-pinyin)、[朙月拼音](https://github.com/rime/rime-luna-pinyin)、[五筆畫](https://github.com/rime/rime-stroke) 方案，安装本方案前请先安装上述方案。
+
+上述方案均已包含在补丁包中，可下载补丁包[[下载地址](https://github.com/arsenali/rime-triple-pinyin-lssp?tab=readme-ov-file#说明和下载)]直接导入，详见：
 
 [安卓版和windows版](https://github.com/arsenali/rime-triple-pinyin-lssp/wiki/安卓版和windows版)
 
@@ -205,6 +207,8 @@ _截图使用的是“光明·黑暗 乱”主题，“艳彩”配色_
 
 
 ---
+
+## 说明和下载
 
 主题文件中自带简单教程，可点击“帮助”查看。
 
