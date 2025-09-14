@@ -525,6 +525,11 @@ translator:          # 主翻譯器，不轉換輸入碼
   prism: triple_pinyin_lssp
   spelling_hints: 5 # ～字以內候選標註完整提示碼
   always_show_comments: true           # 始終顯示提示碼
+  preedit_format:                      # 輸入碼->上屏碼
+   # 隔音符處理
+    - xform/'/"/                                            # 輸入的隔音符號'變換為"
+    # - xform/ /'/                                            # 刪除自動生成的隔音符空格，替換為'
+    - xlit|;"| '|                                           # 把;替換為空格，恢復輸入的隔音符號'
   comment_format: *translator_comment  # 詞典編碼->提示碼
 
 luna_pinyin_lookup:  # 拼音反查
