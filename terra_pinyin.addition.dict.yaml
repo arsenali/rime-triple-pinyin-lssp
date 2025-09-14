@@ -5,7 +5,7 @@
 
 ---
 name: terra_pinyin.addition
-version: "2025.09.02"
+version: "2025.09.14"
 sort: by_weight
 use_preset_vocabulary: true
 ...
@@ -402,14 +402,14 @@ use_preset_vocabulary: true
 囖	lo5
 
 # 橫豎撇捺折
-橫豎撇捺折	heng2 shu4 pie3 na4 zhe2     #  中日韓筆畫
-橫豎撇點折	heng2 shu4 pie3 dian3 zhe2     # 康熙部首
+橫豎撇捺折	heng2 shu4 pie3 na4 zhe2	0     #  中日韓筆畫
+橫豎撇點折	heng2 shu4 pie3 dian3 zhe2	0     #  康熙部首
 
-一丨丿丶乙	heng2 shu4 pie3 na4 zhe2     #  中日韓筆畫
-㇐㇑㇒㇏㇠	heng2 shu4 pie3 na4 zhe2     #  中日韓筆畫
-⼀⼁⼃⼂⼄	heng2 shu4 pie3 dian3 zhe2         # 康熙部首
+一丨丿丶乙	heng2 shu4 pie3 na4 zhe2	0     #  中日韓筆畫
+㇐㇑㇒㇏㇠	heng2 shu4 pie3 na4 zhe2	0     #  中日韓筆畫
+⼀⼁⼃⼂⼄	heng2 shu4 pie3 dian3 zhe2	0         #  康熙部首
 
-一丨丿丶フ	heng2 shu4 pie3 na4 zhe2     #  中日韓筆畫，目前使用
+一丨丿丶フ	heng2 shu4 pie3 na4 zhe2	0     #  中日韓筆畫，目前使用
 
 # 中日韓筆畫
 一	heng2	0     #  目前使用
