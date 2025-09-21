@@ -1,0 +1,167 @@
+# Theme settings for Triple_pinyin
+# encoding: utf-8
+
+style:
+  __include: 三拼3x5a键盘.trime:/style
+
+fallback_colors:
+  __include: 三拼3x5a键盘.trime:/fallback_colors
+
+preset_color_schemes:
+  __include: 三拼3x5a键盘.trime:/preset_color_schemes
+
+android_keys:
+  __include: 三拼3x5a键盘.trime:/android_keys
+
+preset_keys:
+  __include: 三拼3x5a键盘.trime:/preset_keys
+
+preset_keyboards:
+  __include: 三拼3x5a键盘.trime:/preset_keyboards
+  triple_pinyin_lssp:
+    __include: preset_keyboards/lssp1
+    lock: true
+  triple_pinyin_lsspaeo:
+    __include: preset_keyboards/lssp2
+    lock: true
+  triple_pinyin_bopomofo:
+    __include: preset_keyboards/lssp3
+    lock: true
+  lssp1:
+    __include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1
+    __patch:  # keys 替換
+     # 原第五列，現第一列
+      keys/@11: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@15}
+      keys/@18: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@22}
+      keys/@25: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@29}
+     # 原第一列，現第二列
+      keys/@12: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@11}
+      keys/@19: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@18}
+      keys/@26: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@25}
+     # 原第二列，現第三列
+      keys/@13: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@12}
+      keys/@20: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@19}
+      keys/@27: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@26}
+     # 原第三列，現第四列
+      keys/@14: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@13}
+      keys/@21: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@20}
+      keys/@28: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@27}
+     # 原第四列，現第五列
+      keys/@15: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@14}
+      keys/@22: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@21}
+      keys/@29: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1/keys/@28}
+  lssp2:
+    __include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2
+    __patch:  # keys 替換
+     # 原第五列，現第一列
+      keys/@11: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@15}
+      keys/@18: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@22}
+      keys/@25: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@29}
+     # 原第一列，現第二列
+      keys/@12: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@11}
+      keys/@19: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@18}
+      keys/@26: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@25}
+     # 原第二列，現第三列
+      keys/@13: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@12}
+      keys/@20: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@19}
+      keys/@27: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@26}
+     # 原第三列，現第四列
+      keys/@14: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@13}
+      keys/@21: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@20}
+      keys/@28: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@27}
+     # 原第四列，現第五列
+      keys/@15: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@14}
+      keys/@22: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@21}
+      keys/@29: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2/keys/@28}
+  lssp3:
+    __include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3
+    __patch:  # keys 替換
+     # 原第五列，現第一列
+      keys/@11: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@15}
+      keys/@18: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@22}
+      keys/@25: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@29}
+     # 原第一列，現第二列
+      keys/@12: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@11}
+      keys/@19: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@18}
+      keys/@26: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@25}
+     # 原第二列，現第三列
+      keys/@13: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@12}
+      keys/@20: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@19}
+      keys/@27: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@26}
+     # 原第三列，現第四列
+      keys/@14: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@13}
+      keys/@21: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@20}
+      keys/@28: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@27}
+     # 原第四列，現第五列
+      keys/@15: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@14}
+      keys/@22: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@21}
+      keys/@29: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3/keys/@28}
+  lssp1wsd:
+    __include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd
+    __patch:  # keys 替換
+     # 原第五列，現第一列
+      keys/@11: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@15}
+      keys/@18: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@22}
+      keys/@25: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@29}
+     # 原第一列，現第二列
+      keys/@12: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@11}
+      keys/@19: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@18}
+      keys/@26: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@25}
+     # 原第二列，現第三列
+      keys/@13: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@12}
+      keys/@20: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@19}
+      keys/@27: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@26}
+     # 原第三列，現第四列
+      keys/@14: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@13}
+      keys/@21: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@20}
+      keys/@28: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@27}
+     # 原第四列，現第五列
+      keys/@15: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@14}
+      keys/@22: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@21}
+      keys/@29: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp1wsd/keys/@28}
+  lssp2wsd:
+    __include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd
+    __patch:  # keys 替換
+     # 原第五列，現第一列
+      keys/@11: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@15}
+      keys/@18: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@22}
+      keys/@25: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@29}
+     # 原第一列，現第二列
+      keys/@12: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@11}
+      keys/@19: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@18}
+      keys/@26: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@25}
+     # 原第二列，現第三列
+      keys/@13: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@12}
+      keys/@20: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@19}
+      keys/@27: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@26}
+     # 原第三列，現第四列
+      keys/@14: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@13}
+      keys/@21: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@20}
+      keys/@28: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@27}
+     # 原第四列，現第五列
+      keys/@15: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@14}
+      keys/@22: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@21}
+      keys/@29: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp2wsd/keys/@28}
+  lssp3wsd:
+    __include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd
+    __patch:  # keys 替換
+     # 原第五列，現第一列
+      keys/@11: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@15}
+      keys/@18: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@22}
+      keys/@25: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@29}
+     # 原第一列，現第二列
+      keys/@12: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@11}
+      keys/@19: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@18}
+      keys/@26: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@25}
+     # 原第二列，現第三列
+      keys/@13: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@12}
+      keys/@20: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@19}
+      keys/@27: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@26}
+     # 原第三列，現第四列
+      keys/@14: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@13}
+      keys/@21: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@20}
+      keys/@28: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@27}
+     # 原第四列，現第五列
+      keys/@15: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@14}
+      keys/@22: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@21}
+      keys/@29: {__include: 三拼3x5a键盘.trime:/preset_keyboards/lssp3wsd/keys/@28}

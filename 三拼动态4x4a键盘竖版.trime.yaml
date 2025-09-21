@@ -2,22 +2,22 @@
 # encoding: utf-8
 
 style:
-  __include: 三拼动态3x5键盘.trime:/style
+  __include: 三拼动态3x5a键盘.trime:/style
 
 fallback_colors:
-  __include: 三拼动态3x5键盘.trime:/fallback_colors
+  __include: 三拼动态3x5a键盘.trime:/fallback_colors
 
 preset_color_schemes:
-  __include: 三拼动态3x5键盘.trime:/preset_color_schemes
+  __include: 三拼动态3x5a键盘.trime:/preset_color_schemes
 
 android_keys:
-  __include: 三拼动态3x5键盘.trime:/android_keys
+  __include: 三拼动态3x5a键盘.trime:/android_keys
 
 preset_keys:
-  __include: 三拼动态3x5键盘.trime:/preset_keys
+  __include: 三拼动态3x5a键盘.trime:/preset_keys
 
 preset_keyboards:
-  __include: 三拼4x4键盘a竖版.trime:/preset_keyboards
+  __include: 三拼4x4a键盘竖版.trime:/preset_keyboards
  # v李氏三拼鍵盤
   triple_pinyin_lssp:
     __include: preset_keyboards/lssp1dt
@@ -30,7 +30,7 @@ preset_keyboards:
     lock: true
  # v李氏三拼1動態鍵盤
   lssp1dt:
-    __include: 三拼4x4键盘a竖版.trime:/preset_keyboards/lssp1wsd
+    __include: 三拼4x4a键盘竖版.trime:/preset_keyboards/lssp1wsd
     __patch:
       "name": 李氏三拼1動態聲母鍵盤
       keys/@11/click: 1_lssp1dtshow
@@ -2183,7 +2183,7 @@ preset_keyboards:
       keys/@16/composing: BackSpacelssp1dtyr
  # v李氏三拼2動態鍵盤
   lssp2dt:
-    __include: 三拼4x4键盘a竖版.trime:/preset_keyboards/lssp2wsd
+    __include: 三拼4x4a键盘竖版.trime:/preset_keyboards/lssp2wsd
     __patch:
       "name": 李氏三拼2動態聲母鍵盤
       keys/@11/click: 1_lssp2dtshow
@@ -4336,7 +4336,7 @@ preset_keyboards:
       keys/@16/composing: BackSpacelssp2dtyr
  # v李氏三拼3動態鍵盤
   lssp3dt:
-    __include: 三拼4x4键盘a竖版.trime:/preset_keyboards/lssp3wsd
+    __include: 三拼4x4a键盘竖版.trime:/preset_keyboards/lssp3wsd
     __patch:
       "name": 李氏三拼3動態聲母鍵盤
       keys/@11/click: 1_lssp3dtshow
