@@ -177,8 +177,8 @@ translator:
     - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 全碼處理，音節轉換
     - xform/\<er(\w*[1-5])\>/el$1/
     - xform/\<zh(\w*[1-5])\>/j$1/
-    - xform/\<z([aoeEiuvy]\w*[1-5])\>/tz$1/
-    - xform/\<c([aoeEiuvy]\w*[1-5])\>/ts$1/
+    - xform/\<z([aoeEiuvY]\w*[1-5])\>/tz$1/
+    - xform/\<c([aoeEiuvY]\w*[1-5])\>/ts$1/
     - xform/\<q(\w*[1-5])\>/ch$1/
     - xform/\<x(\w*[1-5])\>/sh$1/
     - xform/iu([1-5])\>/iou$1/
@@ -232,7 +232,7 @@ translator:
     - xform/Y2\>/yr/
     - xform/Y3\>/yy/
     - xform/Y4\>/yh/
-    - xform/Y5\>/yv/
+    - xform/Y5\>/yV/
     - xform/5\>/V/
     - xform/\<(\w+)V\>/·$1/                                 # 輕聲
     
@@ -426,8 +426,8 @@ translator:
     - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 全碼處理，音節轉換
     - xform/\<er(\w*[1-5])\>/el$1/
     - xform/\<zh(\w*[1-5])\>/j$1/
-    - xform/\<z([aoeEiuvy]\w*[1-5])\>/tz$1/
-    - xform/\<c([aoeEiuvy]\w*[1-5])\>/ts$1/
+    - xform/\<z([aoeEiuvY]\w*[1-5])\>/tz$1/
+    - xform/\<c([aoeEiuvY]\w*[1-5])\>/ts$1/
     - xform/\<q(\w*[1-5])\>/ch$1/
     - xform/\<x(\w*[1-5])\>/sh$1/
     - xform/iu([1-5])\>/iou$1/
@@ -481,7 +481,7 @@ translator:
     - xform/Y2\>/yr/
     - xform/Y3\>/yy/
     - xform/Y4\>/yh/
-    - xform/Y5\>/yv/
+    - xform/Y5\>/yV/
     - xform/5\>/V/
     - xform/\<(\w+)V\>/·$1/                                 # 輕聲
     
