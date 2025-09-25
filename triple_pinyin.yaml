@@ -1850,7 +1850,7 @@ preset_keyboards:
       - {click: 6_lsjpshow, ascii: 'D', long_click: 6cazj_lsjpshow, key_text_size: 18}
       - {click: 0_lsjpshow, ascii: 'F', long_click: 0cazj_lsjpshow, swipe_up: 0cazj_lsjpshow, key_text_size: 18}
       - {click: B_lsjpshow, ascii: 'G', long_click: Bcazj_lsjpshow, swipe_up: Bcazj_lsjpshow, swipe_right: CommitComment, key_text_size: 18}
-      - {click: Left, long_click: LeftS, swipe_up: LeftS, width: 15}
+      - {click: Left, long_click: LeftS, swipe_up: LeftS, swipe_down: '；', hint: ' ；', width: 15}
      # 第四行
       - {click: '?', long_click: '!', swipe_up: '!', swipe_down: Hint_switch, label: ' ？', hint: *lb_Hint_switch_1, composing: delimiter3ls, width: 15}
       - {click: 7_lsjpshow, ascii: 'Z', long_click: 7cazj_lsjpshow, key_text_size: 18}
@@ -1858,7 +1858,7 @@ preset_keyboards:
       - {click: 9_lsjpshow, ascii: 'C', long_click: 9cazj_lsjpshow, key_text_size: 18}
       - {click: j_lsjpshow, ascii: 'V', long_click: jcazj_lsjpshow, swipe_up: jcazj_lsjpshow, popup: [_Keyboard_clip, _Keyboard_phrase], key_text_size: 18}
       - {click: C_lsjpshow, ascii: 'B', long_click: Ccazj_lsjpshow, swipe_up: Ccazj_lsjpshow, swipe_right: CommitScriptText, key_text_size: 18}
-      - {click: Right, long_click: RightS, swipe_up: RightS, width: 15}
+      - {click: Right, long_click: RightS, swipe_up: RightS, swipe_down: '、', hint: ' 、', width: 15}
      # 第五行
       - {click: Mode_switch, long_click: Menu, swipe_right: Return, swipe_up: Hide, composing: Escapecx, width: 15}
       - {click: Keyboard_symbolsyou, long_click: Keyboard_numberyou, swipe_right: select_all, swipe_up: Keyboard_numberyou, composing: lsjp_2x}
