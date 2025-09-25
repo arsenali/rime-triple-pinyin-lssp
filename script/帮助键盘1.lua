@@ -197,9 +197,16 @@ local Intro = {
   ]]},
   {"更多介绍", [[
 ==== 更多介绍 ====
+
  [b站视频]
+
+
  [知乎专栏]
+
+
  [网盘下载]
+
+
  qq群：150478288
 
   ]]},
@@ -481,7 +488,13 @@ layout = loadlayout(layout, ids)
 
 -- 刷新显示内容
 local function fresh(content)
-  content = content or ""  -- 处理nil和false
+  content = content or ""
+  local isMoreIntro = content:find("更多介绍") ~= nil or content:find("更多介紹") ~= nil
+  if isMoreIntro then
+    ids.contentText.setLineSpacing(0, 0.5)  -- 参数：额外间距，行间距倍数
+  else
+    ids.contentText.setLineSpacing(0, 1.0)  -- 恢复默认行间距
+  end
   ids.contentText.setText(processStyledText(tostring(content)))
 end
 
