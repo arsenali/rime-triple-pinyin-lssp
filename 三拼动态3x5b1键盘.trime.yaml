@@ -173,6 +173,7 @@ preset_keyboards:
       keys/@28/key_text_size: 13
       keys/@29/key_text_size: 13
       keys/@25/key_text_size: 13
+      keys/@31/click: Keyboard_last_lock2
   lssp1dtjb:
     __include: preset_keyboards/lssp1dtj
     __patch:
@@ -612,6 +613,7 @@ preset_keyboards:
       keys/@28/key_text_size: 15
       keys/@29/key_text_size: 15
       keys/@25/key_text_size: 15
+      keys/@31/click: Keyboard_last_lock2
   lssp1dty1:
     __include: preset_keyboards/lssp1dty
     __patch:
@@ -2346,6 +2348,7 @@ preset_keyboards:
       keys/@28/key_text_size: 13
       keys/@29/key_text_size: 13
       keys/@25/key_text_size: 13
+      keys/@31/click: Keyboard_last_lock2
   lssp2dtjb:
     __include: preset_keyboards/lssp2dtj
     __patch:
@@ -2785,6 +2788,7 @@ preset_keyboards:
       keys/@28/key_text_size: 15
       keys/@29/key_text_size: 15
       keys/@25/key_text_size: 15
+      keys/@31/click: Keyboard_last_lock2
   lssp2dty1:
     __include: preset_keyboards/lssp2dty
     __patch:
@@ -4519,6 +4523,7 @@ preset_keyboards:
       keys/@28/key_text_size: 13
       keys/@29/key_text_size: 13
       keys/@25/key_text_size: 13
+      keys/@31/click: Keyboard_last_lock2
   lssp3dtjb:
     __include: preset_keyboards/lssp3dtj
     __patch:
@@ -4933,6 +4938,7 @@ preset_keyboards:
       keys/@28/key_text_size: 15
       keys/@29/key_text_size: 15
       keys/@25/key_text_size: 15
+      keys/@31/click: Keyboard_last_lock2
   lssp3dty1:
     __include: preset_keyboards/lssp3dty
     __patch:
