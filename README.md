@@ -240,8 +240,6 @@ QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
 
 ### &#8627; Stargazers
 [![Stargazers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/stars/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin-lssp/stargazers)
-## 致谢
-特别感谢 [@Sm1les](https://github.com/Sm1les)、[@LSGOMYP](https://github.com/LSGOMYP) 对本项目的帮助与支持。
-[![Stargazers repo roster for @datawhalechina/easy-rl](https://reporoster.com/stars/datawhalechina/easy-rl)](https://github.com/datawhalechina/easy-rl/stargazers)
+
 ### &#8627; Forkers
 [![Forkers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/forks/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin-lssp/network/members)
