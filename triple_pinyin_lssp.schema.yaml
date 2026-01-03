@@ -104,7 +104,7 @@ speller:             # 拼寫處理器：詞典編碼->輸入碼
   # auto_clear: auto # manual|auto|max_length 空碼按下一鍵確認清屏|空碼自動清屏|達到最長碼時後碼頂上清屏
   algebra:                             # 詞典編碼->輸入碼
    # 萬象詞庫處理
-    - xform/^([a-zāōēīūǖáóéíúǘǎǒěǐǔǚàòèìùǜ]+);[;,a-z]+$/$1/        # 刪除輔助碼
+    - xform/^([a-zāōēīūǖáóéíúǘǎǒěǐǔǚàòèìùǜüńňǹ]+);[;,a-z]+$/$1/        # 刪除輔助碼
     - xform/ā(\w*)/a$1\x31/
     - xform/ō(\w*)/o$1\x31/
     - xform/ē(\w*)/e$1\x31/
@@ -129,6 +129,11 @@ speller:             # 拼寫處理器：詞典編碼->輸入碼
     - xform/ì(\w*)/i$1\x34/
     - xform/ù(\w*)/u$1\x34/
     - xform/ǜ(\w*)/v$1\x34/
+    - xform/ü/v/
+    - xform/\w*ńg?$/en\x32/
+    - xform/\w*ňg?$/en\x33/
+    - xform/\w*ǹg?$/en\x34/
+    - erase/\w*[^a-z0-9 ]\w*/       # 刪除含有其他非法字符的音節
     - xform/^([a-z]+)$/$1\x35/      # 未標調音節統一轉換為輕聲
    # 1  音節修正合併
     - erase/^xx$/
@@ -450,7 +455,7 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
   comment_format: &translator_comment  # 詞典編碼->提示碼
    __patch:                                # 萬象詞庫處理
     __append:
-    - xform/\<([a-zāōēīūǖáóéíúǘǎǒěǐǔǚàòèìùǜ]+);[;,a-z]+\>/$1/        # 刪除輔助碼
+    - xform/\<([a-zāōēīūǖáóéíúǘǎǒěǐǔǚàòèìùǜüńňǹ]+);[;,a-z]+\>/$1/        # 刪除輔助碼
     - xform/ā(\w*)/a$1\x31/
     - xform/ō(\w*)/o$1\x31/
     - xform/ē(\w*)/e$1\x31/
@@ -475,6 +480,11 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
     - xform/ì(\w*)/i$1\x34/
     - xform/ù(\w*)/u$1\x34/
     - xform/ǜ(\w*)/v$1\x34/
+    - xform/ü/v/
+    - xform/\w*ńg?\>/en\x32/
+    - xform/\w*ňg?\>/en\x33/
+    - xform/\w*ǹg?\>/en\x34/
+    - erase/\w*[^a-z0-9 ]\w*/         # 刪除含有其他非法字符的音節
     - xform/\<([a-z]+)\>/$1\x30/      # 未標調音節聲調標記為0，目前全拼寫法和輕聲相同，帶調拼音寫法和輕聲相同，注音符號寫法和輕聲不同，未標調音節不標調，但與後一個音節之間用'隔開，國語羅馬字把非mnlr開頭的未標調音節轉換為1聲，mnlr開頭的未標調音節轉換為2聲
    # __patch:                                # 詞典編碼->提示碼：分兩段1
     # __append: {__include: triple_pinyin:/translator/comment_format_copy1}
@@ -546,7 +556,7 @@ luna_pinyin_lookup:  # 拼音反查
     - xform/([jqxy])v/$1u/
   comment_format: &reverse_lookup_comment  # 本方案詞典編碼->提示碼：本方案輸入碼
    # 萬象詞庫處理
-    - xform/\<([a-zāōēīūǖáóéíúǘǎǒěǐǔǚàòèìùǜ]+);[;,a-z]+\>/$1/        # 刪除輔助碼
+    - xform/\<([a-zāōēīūǖáóéíúǘǎǒěǐǔǚàòèìùǜüńňǹ]+);[;,a-z]+\>/$1/        # 刪除輔助碼
     - xform/ā(\w*)/a$1\x31/
     - xform/ō(\w*)/o$1\x31/
     - xform/ē(\w*)/e$1\x31/
@@ -571,6 +581,11 @@ luna_pinyin_lookup:  # 拼音反查
     - xform/ì(\w*)/i$1\x34/
     - xform/ù(\w*)/u$1\x34/
     - xform/ǜ(\w*)/v$1\x34/
+    - xform/ü/v/
+    - xform/\w*ńg?\>/en\x32/
+    - xform/\w*ňg?\>/en\x33/
+    - xform/\w*ǹg?\>/en\x34/
+    - erase/\w*[^a-z0-9 ]\w*/         # 刪除含有其他非法字符的音節
     - xform/\<([a-z]+)\>/$1\x35/      # 未標調音節統一轉換為輕聲
    # 1  音節修正合併
     - erase/\<xx\>/
@@ -750,4 +765,4 @@ __patch:             # 簡體詞庫轉換為繁體
   sc_tc: {option_name: op_n, opencc_config: s2t.json}  # s2t 通用繁體/s2hk 香港繁體/s2tw 台灣繁體
 
 __patch:             # 使用語言模型
-  - grammar:/triple_pinyin_hant?
+  - grammar:/wanxiang-lts-zh-hans?
