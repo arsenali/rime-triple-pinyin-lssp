@@ -130,10 +130,6 @@ speller:             # 拼寫處理器：詞典編碼->輸入碼
     - xform/ù(\w*)/u$1\x34/
     - xform/ǜ(\w*)/v$1\x34/
     - xform/ü/v/
-    - xform/\w*ńg?$/en\x32/
-    - xform/\w*ňg?$/en\x33/
-    - xform/\w*ǹg?$/en\x34/
-    - erase/\w*[^a-z0-9 ]\w*/       # 刪除含有其他非法字符的音節
     - xform/^([a-z]+)$/$1\x35/      # 未標調音節統一轉換為輕聲
    # 1  音節修正合併
     - erase/^xx$/
@@ -481,10 +477,6 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
     - xform/ù(\w*)/u$1\x34/
     - xform/ǜ(\w*)/v$1\x34/
     - xform/ü/v/
-    - xform/\w*ńg?\>/en\x32/
-    - xform/\w*ňg?\>/en\x33/
-    - xform/\w*ǹg?\>/en\x34/
-    - erase/\w*[^a-z0-9 ]\w*/         # 刪除含有其他非法字符的音節
     - xform/\<([a-z]+)\>/$1\x30/      # 未標調音節聲調標記為0，目前全拼寫法和輕聲相同，帶調拼音寫法和輕聲相同，注音符號寫法和輕聲不同，未標調音節不標調，但與後一個音節之間用'隔開，國語羅馬字把非mnlr開頭的未標調音節轉換為1聲，mnlr開頭的未標調音節轉換為2聲
    # __patch:                                # 詞典編碼->提示碼：分兩段1
     # __append: {__include: triple_pinyin:/translator/comment_format_copy1}
@@ -582,10 +574,6 @@ luna_pinyin_lookup:  # 拼音反查
     - xform/ù(\w*)/u$1\x34/
     - xform/ǜ(\w*)/v$1\x34/
     - xform/ü/v/
-    - xform/\w*ńg?\>/en\x32/
-    - xform/\w*ňg?\>/en\x33/
-    - xform/\w*ǹg?\>/en\x34/
-    - erase/\w*[^a-z0-9 ]\w*/         # 刪除含有其他非法字符的音節
     - xform/\<([a-z]+)\>/$1\x35/      # 未標調音節統一轉換為輕聲
    # 1  音節修正合併
     - erase/\<xx\>/
