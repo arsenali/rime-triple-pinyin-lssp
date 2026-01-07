@@ -401,6 +401,33 @@ use_preset_vocabulary: true
 囖	lo2
 囖	lo5
 
+
+
+# 補充萬象拼音中的特殊發音，純找補，使用概率約等於0，沒有太大意義
+嗯	en1	0
+嗯	en2	0                                 #  ń
+嗯	en3	0                                 #  ň
+嗯	en4	0                                 #  ǹ
+嗯	en5	0
+嗯	eng1	0
+嗯	eng2	0                             #  ńg
+嗯	eng3	0                             #  ňg
+嗯	eng4	0                             #  ǹg
+嗯	eng5	0
+呣	mou2	0
+呣	mu1	0
+呣	mu2	0                                 #  ḿ
+呣	mu3	0
+呣	mu4	0                                 #  m̀
+呣	mu5	0
+㕶	en3	0                                 #  ň
+㕶	eng3	0                             #  ňg
+𠮾	en4	0                                 #  ǹ
+呒	mu2	0                                 #  ḿ
+
+
+
+
 # 橫豎撇捺折
 橫豎撇捺折	heng2 shu4 pie3 na4 zhe2	0     #  中日韓筆畫
 橫豎撇點折	heng2 shu4 pie3 dian3 zhe2	0     #  康熙部首
