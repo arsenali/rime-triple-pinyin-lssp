@@ -1,0 +1,890 @@
+# Rime dictionary
+# encoding: utf-8
+#
+#   阿森纳里 <15678407@qq.com>
+
+---
+name: triple_pinyin.additional
+version: "2026.08.06"
+sort: by_weight
+use_preset_vocabulary: false
+...
+# 可在这里加入补充词汇，段首前用“# ”关闭
+# 正常词汇可不加拼音，多音字、非标准普通话需要标注拼音，音节之间以空格隔开
+# 在拼音后用数字1-5表示1-4声和轻声，无调拼音将被转化为轻声，请不要添加无调拼音
+
+挛	lvan2	0
+娈	lvan2	0
+淋	lvn2	0
+论	lvn4	0
+痉挛	jing4 lvan2
+挛弱	lvan2 ruo4
+娈童	lvan2 tong2
+婉娈	wan3 lvan2
+淋雨	lvn2 yu3
+淋湿了	lvn2 shi1 le5
+论斤卖	lvn4 jin1 mai4
+论斤称	lvn4 jin1 cheng1
+论斤约	lvn4 jin1 yao1
+
+# ////////////////////////////////////////////////////////////////
+# 语流音变，“一七八不”发音规则
+不	bu2	1%
+不	bu4	99%
+不	bu1
+不	bu5	0
+
+# 网络流行语
+没谁了	mei2 sei2 le5
+怼	dui3
+怒怼	nu4 dui3
+作	zuo1
+作死	zuo1 si3
+哔哩	bi1 li1
+哔哩	bi1 li3
+哔哩	bi1 li5
+哔哩	bi4 li1
+哔哩	bi4 li3
+哔哩	bi4 li5
+奤	biang2
+奤奤面	biang2 biang2 mian4
+成龙	duang1
+# 口语
+拜拜	bai2 bai2
+
+
+
+
+# ////////////////////////////////////////////////////////////////
+# 个人通信录
+朱重八	zhu1 chong2 ba1
+翟让	zhai2 rang4
+郭富城
+杨幂
+谢苗
+刘慈欣
+王二狗
+李一
+魏嘉
+毕师铎
+许大马棒
+魏和尚
+段鹏
+
+
+
+
+# ////////////////////////////////////////////////////////////////
+# 错误、遗漏发音及扩充词汇
+籖	qian1
+媫	jie4
+且	ju1
+寻	xin2
+祲	jin4
+苴	ju3
+砌	qie4
+箐	jing1
+箐	qian4
+湫	qiu1
+洗	xian3
+癣	xian3
+缉	qi4
+溱	qin2
+溱潼	qin2 tong2
+溱潼	cin2 tong2
+凊	qing4
+栖	xi1
+勷	xiang1
+翛	xiao1
+箾	xiao1
+箾	qiao4
+契	qie4
+契	xie4
+饧	tang2
+砠	ju1
+鵕	jun4
+喱	li3
+喱	li2
+咖喱	ga1 li3
+咖喱	ga1 li2
+哈	ka1	0
+哈	ha5	0
+哈喇	ka1 la5
+哈喇	ha1 la5
+哈剌	ha1 la4
+嘞	lei5
+嘞	le1	0
+们	men5
+们	men2
+敖	ao2
+敖	ao4
+斜	xie2
+斜	ye2	0
+斜	xia2	0
+邪	xie2
+邪	xia2	0
+邪	ya2	0
+邪	ye2	0
+邪	yu2	0
+邪	xu2	0
+玡	ya2
+玡	ya4
+琊	ya2
+琊	ye2
+朝鲜	chao2 sian3
+加缪	jia1 miu4
+缪	miu4	0
+缪	mu4	0
+缪	miao3	0
+辱	ru4
+辱	ru3
+奇耻大辱	qi2 chi3 da4 ru4
+奇耻大辱	qi2 chi3 da4 ru3
+曝	pu4
+曝	bao4
+曝光	pu4 guang1
+曝光	bao4 guang1
+忒	tui1	0
+沓	da2
+凹	wa1	0
+凹	wa4	0
+这	zhei4	0
+这么	ze4 me5
+哪	ne2	0
+哪	nuo2	0
+那	nei3	0
+那	na1	0
+那	nuo2	0
+哪吒	ne2 zha1	0
+那咤	ne2 zha5	0
+那咤	nuo2 zha4	0
+那咤	ne2 zha1	0
+哪咤	ne2 zha5	0
+哪咤	nuo2 zha4	0
+哪咤	ne2 zha1	0
+那吒	ne2 zha5	0
+那吒	nuo2 zha4	0
+那吒	ne2 zha1	0
+日	mi4	0
+蕺菜	zii2 cai4
+水螅	shui3 sii1
+煊烂	svan1 lan4
+砖平碹	zhuan1 ping2 svan4
+
+# 勘误
+套儿	tao4 er5
+河里孩儿岸上娘	he2 li3 hai2 er2 an4 shang4 niang2
+河里孩儿岸上娘	he2 li3 hai2 er5 an4 shang4 niang2
+河里孩子岸上娘	he2 li3 hai2 zi5 an4 shang4 niang2
+堡	bu3	0
+河西堡	he2 xi1 bu3
+河西堡	he2 sii1 pu4
+河西堡	he2 sii1 bu3
+河西堡镇	he2 xi1 bu3 zhen4
+河西堡镇	he2 sii1 pu4 zhen4
+河西堡镇	he2 sii1 bu3 zhen4
+戛	ga1	0
+戛纳	ga1 na4
+靼	da5	0   # 口语
+
+# 历史文化
+斛律
+斛律金
+斛律光
+斛律羡
+文鸯
+文俶
+秃发	tu1 fa4
+秃发氏	tu1 fa4 shi4
+秃发姓	tu1 fa4 xing4
+树机能	shu4 ji1 neng2
+秃发树机能	tu1 fa4 shu4 ji1 neng2
+秃发	tu2 fa2
+秃发氏	tu2 fa2 shi4
+秃发姓	tu2 fa2 xing4
+秃发树机能	tu2 fa2 shu4 ji1 neng2
+万俟	mo4 qi2
+万俟氏	mo4 qi2 shi4
+万俟姓	mo4 qi2 xing4
+樊於期	fan2 wu1 ji1
+陈寅恪	chen2 yin2 que4
+陈寅恪	chen2 yin2 ke4	0
+贾平凹	jia3 ping2 wa1
+贾平凹	jia3 ping2 wa2	0
+任	ren2
+任氏	ren2 shi4
+任氏	ren4 shi4
+任姓	ren2 xing4
+任姓	ren4 xing4
+任弼时	ren2 bi4 shi2
+任弼时	ren4 bi4 shi2
+任我行	ren2 wo3 xing2
+任我行	ren4 wo3 xing2
+任盈盈	ren2 ying2 ying2
+任盈盈	ren4 ying2 ying2
+任盈盈	ren2 ying2 ying5
+任盈盈	ren4 ying2 ying5
+盈盈	ying2 ying2
+盈盈	ying2 ying5
+莹莹	ying2 ying2
+莹莹	ying2 ying5
+令狐	ling2 hu2
+令狐	ling4 hu2
+令狐氏	ling2 hu2 shi4
+令狐氏	ling4 hu2 shi4
+令狐姓	ling2 hu2 xing4
+令狐姓	ling4 hu2 xing4
+令狐冲	ling2 hu2 chong1
+令狐冲	ling4 hu2 chong1
+黄裳	huang2 shang1
+虺文忠	hui3 wen2 zhong1
+虺氏	hui3 shi4
+虺姓	hui3 xing4
+李暠	li3 hao4
+李暠	li3 gao3
+食其	yi4 ji1
+郦食其	li4 yi4 ji1
+审食其	shen3 yi4 ji1
+赵食其	zhao4 yi4 ji1
+樊於期	fan4 wu1 ji1
+桓𬺈	huan2 yi3
+尉迟恭	yu4 chi2 gong1
+嚣魏牟	xiao1 wei4 mou2
+嚣魏牟	siao1 wei4 mou2
+虢国	guo2 guo2
+喀	ka1
+喀尔喀	ka1 er3 ka1
+喀什	ka1 shi2
+喀布尔	ka1 bu4 er3
+巴尔喀什	ba1 er3 ka1 shi2
+喀尔巴阡	ka1 er3 ba1 qian1
+喀喇	ka1 la1
+喀喇	ka1 la3
+喀喇	ka1 la5
+日喀则	ri4 ka1 ze2
+菩萨	pu2 sa5
+哈萨克	ha1 sa4 ke4
+萨哈	sa4 ha1
+萨哈林	sa4 ha1 lin2
+萨尔	sa4 er3
+萨尔茨	sa4 er3 ci2
+萨尔茨	sa4 er5 ci2
+萨尔浒	sa4 er3 hu3
+萨尔浒	sa4 er5 hu3
+萨拉丁	sa4 la1 ding1
+合撒儿	he2 sa1 er3
+合撒儿	he2 sa1 er5
+撒马尔罕	sa1 ma3 er3 han3
+撒马尔罕	sa1 ma3 er5 han3
+雅	ya3
+雅	ya1	0
+雅	ya2	0
+雅克	ya3 ke4
+雅克萨	ya3 ke4 sa4
+雅克萨	ya3 ke5 sa4
+汗	han4
+汗	han2
+大汗	da4 han2
+可汗	ke4 han2
+可汗	ke3 han2	0
+儿	er2
+儿	ren2	0
+儿	ni2	0
+吾	wu2
+吾	yu2	0
+吾	yu4	0
+吾	ya2	0
+维吾尔	wei2 wu2 er3
+维吾尔	wei2 wu5 er3	0
+畏兀	wei4 wu1
+畏兀儿	wei4 wu1 er2
+畏兀儿	wei4 wu5 er2	0
+畏兀尔	wei4 wu1 er3
+畏兀尔	wei4 wu5 er3	0
+伟兀	wei3 wu1
+蒙古	meng3 gu3
+蒙古	meng2 gu3
+蒙兀	meng3 wu1
+蒙兀	meng2 wu1
+蒙兀儿	meng3 wu1 er2
+蒙兀儿	meng2 wu1 er2
+蒙兀尔	meng3 wu1 er3
+蒙兀尔	meng2 wu1 er3
+布欧莱雅特	bu4 ou1 lai2 ya3 te4
+布里亚特	bu4 li3 ya4 te4
+土耳其	tu3 er3 qi2
+土耳其	tu3 er5 qi2	0
+土尔其	tu3 er3 qi2
+土尔其	tu3 er5 qi2	0
+朮	zhu2	80%
+朮	shu2	20%
+朮	shu4	0%
+术	shu4
+术	zhu2	0
+术	shu2	0
+术	chu4	0
+术	sui4	0
+哱	bo1
+哱	po4	0
+哱	ba1	0
+哱拜	ba1 bai4
+巴拜	ba1 bai4
+康雍乾	kang1 yong1 qian2
+朴	pu3
+朴	piao2
+朴	pu2	0
+朴	piao3	0
+朴	po1	0
+朴	po4	0
+朴氏	piao2 shi4
+朴姓	piao2 xing4
+朴槿惠	piao2 jin3 hui4
+朴槿惠	pu2 jin3 hui4	0
+朴槿惠	pu3 jin3 hui4	0
+朴正熙	piao2 zheng4 xi1
+朴正熙	pu2 zheng4 xi1	0
+朴正熙	pu3 zheng4 xi1	0
+朴智星	piao2 zhi4 xing1
+朴智星	pu2 zhi4 xing1	0
+朴智星	pu3 zhi4 sing1	0
+朴智星	piao2 zhi4 sing1
+朴智星	pu2 zhi4 sing1	0
+朴智星	pu3 zhi4 sing1	0
+朴周永	piao2 zhou1 yong3
+朴周永	pu2 zhou1 yong3	0
+朴周永	pu3 zhou1 yong3	0
+朴主永	piao2 zhu3 yong3
+朴主永	pu2 zhu3 yong3	0
+朴主永	pu3 zhu3 yong3	0
+朴刀	po1 dao1
+朴刀	pu2 dao1	0
+朴树	pu3 shu4
+濮存昕	pu3 cun2 xin1
+朴不花	piao2 bu4 hua1
+朴不花	pu2 bu4 hua1	0
+朴不花	pu3 bu4 hua1	0
+高丽	gao1 li2
+高句丽	gao1 gou1 li2
+高丽	gao1 li4	0
+高句丽	gao1 gou1 li4	0
+妖魔	yao1 mo2
+妖麽	yao1 mo2
+妖么	yao1 mo2
+幺魔	yao1 mo2
+幺麽	yao1 mo2
+幺么	yao1 mo2
+呀麽	ya5 mo5
+呀么	ya5 mo5
+杨幺	yang2 yao1
+嬷嬷	mo2 mo5
+容嬷嬷	rong2 mo2 mo5
+嬷嬷	mo4 mo5	0
+容嬷嬷	rong2 mo4 mo5	0
+幺蛾子	yao1 e2 zi5
+辍	chue4   # 辍chuề，新国音变为chuò
+辍	chuo4
+囖	luo1
+囖	luo2
+囖	luo5
+囖	lo1
+囖	lo2
+囖	lo5
+
+# 补充万象词库中未收录的汉字和发音
+𫄥	xi3	1       # 万象字表zi.dict.yaml中有此团音对应繁体字纚，但没有类推简化字，因此补上
+𫄳	xi3	1       # 万象字表zi.dict.yaml中有此团音对应繁体字縰，但没有类推简化字，因此补上
+𫄬	xie4	1       # 万象字表zi.dict.yaml中有此团音对应繁体字緤，但没有类推简化字，因此补上
+𪾔	xu3	1       # 万象字表zi.dict.yaml中有此团音对应繁体字盨，但没有类推简化字，因此补上
+𫊻	xun2	6       # 万象字表zi.dict.yaml中有此团音对应繁体字蟳，但没有类推简化字，因此补上
+稷皋	ji4 gao1
+稷皋	zii4 gao1
+稷禼	ji4 xie4
+稷禼	zii4 sie4
+稷禼翁	ji4 xie4 weng1
+稷禼翁	zii4 sie4 weng1
+稷卨	ji4 xie4
+稷卨	zii4 sie4
+稷契	ji4 xie4
+稷契	zii4 sie4
+夔稷	kui2 ji4
+夔稷	kui2 zii4
+夔契	kui2 qi4
+一夔一契	yi1 kui2 yi1 qi4
+皋夔稷契	gao1 kui2 ji4 qi4
+皋夔稷契	gao1 kui2 zii4 qi4
+殷契	yin1 xie4
+殷契	yin1 sie4
+殷偰	yin1 xie4
+殷偰	yin1 sie4
+偰列箎	xie4 lie4 chi2
+偰列箎	sie4 lie4 chi2
+万俟卨	mo4 qi2 xie4
+万俟卨	mo4 qi2 sie4
+
+# 补充万象词库中的特殊发音
+嗯	en1	0
+嗯	en2	0                                 #  ń
+嗯	en3	0                                 #  ň
+嗯	en4	0                                 #  ǹ
+嗯	en5	0
+嗯	eng1	0
+嗯	eng2	0                             #  ńg
+嗯	eng3	0                             #  ňg
+嗯	eng4	0                             #  ǹg
+嗯	eng5	0
+呣	mou2	0
+呣	mu1	0
+呣	mu2	0                                 #  ḿ
+呣	mu3	0
+呣	mu4	0                                 #  m̀
+呣	mu5	0
+㕶	en3	0                                 #  ň
+㕶	eng3	0                             #  ňg
+𠮾	en4	0                                 #  ǹ
+呒	mu2	0                                 #  ḿ
+
+# 横竖撇捺折
+横竖撇捺折	heng2 shu4 pie3 na4 zhe2	0     #  中日韩笔画
+横竖撇点折	heng2 shu4 pie3 dian3 zhe2	0     #  康熙部首
+一丨丿丶乙	heng2 shu4 pie3 na4 zhe2	0     #  中日韩笔画
+㇐㇑㇒㇏㇠	heng2 shu4 pie3 na4 zhe2	0     #  中日韩笔画
+⼀⼁⼃⼂⼄	heng2 shu4 pie3 dian3 zhe2	0         #  康熙部首
+一丨丿丶フ	heng2 shu4 pie3 na4 zhe2	0     #  中日韩笔画，目前使用
+# 中日韩笔画
+一	heng2	0     #  目前使用
+丨	shu4	0     #  目前使用
+丿	pie3	0     #  目前使用
+丶	na4	0         #  目前使用
+乙	zhe2	0
+# 中日韩笔画（横竖撇捺折）
+㇐	heng2	0
+㇑	shu4	0
+㇒	pie3	0
+㇏	na4	0
+㇠	zhe2	0
+# 康熙部首（横竖撇点折）
+⼀	heng2	0
+⼁	shu4	0
+⼃	pie3	0
+⼂	dian3	0
+⼄	zhe2	0
+# 折的其他写法
+フ	zhe2	0     #  目前使用
+㇇	zhe2	0
+乛	zhe2	0     #  早期直板机按键上用来表示折的符号，但易与横“㇐”混淆，不建议使用
+𠃍	zhe2	0
+ㄥ	zhe2	0     #  即eng的注音字母，易混淆，不建议使用
+㇜	zhe2	0     #  可以使用，但易与注音字母混淆，不建议使用
+𠃋	zhe2	0
+
+
+
+
+# ////////////////////////////////////////////////////////////////
+# 个人词汇
+
+# 轻声
+妒忌	du4 ji5
+忌妒	ji4 du5
+试试	shi4 shi4
+试试	shi4 shi5
+吗	ma1
+吗	ma2
+吗	mo5
+嘛	ma2
+嘛	ma4
+商量	shang1 liang2
+着	zhao5
+事情	shi4 cing5
+事情	shi4 qing5
+事物	shi4 wu5
+事务	shi4 wu5
+政治	zheng4 zhi5
+限制	xian4 zhi5
+技术	ji4 shu5
+试验	shi4 yan5
+甚至	shen4 zhi5
+呗	bai4	50%
+呗	bei5	50%
+呗	bai5	0
+上	shang5	0
+下	xia5	0
+地位	di4 wei5
+重视	zhong4 shi5
+阶级	jie1 ji5
+意义	yi4 yi5
+意识	yi4 shi5
+识别	shi2 bie2
+共识	gong4 shi2
+前面	qian2 mian4
+前面	qian2 mian5
+前面	cian2 mian4
+前面	cian2 mian5
+后面	hou4 mian4
+后面	hou4 mian5
+关系	guan1 xi4
+关系	guan1 xi5
+这样	zhe4 yang5
+那样	na4 yang5
+效率	xiao4 lv5
+规律	gui1 lv5
+考虑	kao3 lv5
+动物	dong4 wu5
+动物园	dong4 wu5 yuan2
+建筑	jian4 zhu5
+狗狗	gou3 gou5
+硕士	shuo4 shi5
+用用	yong4 yong5
+贱人	jian4 ren5
+贱人	zian4 ren5
+太监	tai4 jian5
+项目	xiang4 mu5
+问问	wen4 wen5
+谢谢	xie4 xie5
+谢谢	sie4 sie5
+兴趣	xing4 qu4
+兴趣	xing4 qu5
+性趣	xing4 qu4
+性趣	xing4 qu5
+性趣	sing4 qu4
+性趣	sing4 qu5
+矫情	jiao3 qing2
+矫情	jiao2 qing5
+矫情	jiao3 cing2
+矫情	jiao2 cing5
+质量	zhi4 liang5
+邻居	lin2 ju5
+干部	gan4 bu5
+干粮	gan1 liang5
+熟悉	shu2 xi5
+熟悉	shu2 sii5
+麦克	mai4 ke5
+舒克	shu1 ke5
+旮旯	ga1 la5
+容易	rong2 yi5
+亲家	qing4 jia5
+亲家	cing4 jia5
+亲家	qin4 jia5	0
+亲家	cin4 jia5
+亲戚	qin1 qi1	0
+亲戚	qin1 qi5
+亲戚	cin1 cii1	0
+亲戚	cin1 cii5
+亲戚	qin1 cii1	0
+亲戚	qin1 cii5	0
+亲戚	cin1 qi1	0
+亲戚	cin1 qi5	0
+女婿	nv3 sv4
+女婿	nv3 sv5
+亲	qin1	95%  # 地球拼音原词库
+亲	qing4	5%  # 地球拼音原词库
+父亲	fu4 qin1  # 地球拼音原词库
+父亲	fu4 qin5	0
+父亲	fu4 cin5	0
+母亲	mu3 qin1  # 地球拼音原词库
+母亲	mu3 qin5	0
+母亲	mu3 cin5	0
+乡亲	xiang1 qin5	0
+乡亲	xiang1 cin5	0
+姐姐	jie3 jie5  # 地球拼音原词库
+姐姐	zie3 zie5
+姐姐	jie3 zie5	0
+姐姐	zie3 jie5	0
+嗳	ai3	50%  # 地球拼音原词库
+嗳	ai4	50%  # 地球拼音原词库
+嗳	ai5
+嗳	ai1	0
+
+# eh(诶欸)
+诶	ei1
+诶	ei2
+诶	eh5
+诶	ei3	0
+诶	ei4	0
+诶	eh1	0
+诶	eh2	0
+诶	eh3	0
+诶	eh4	0
+诶	xi1	0
+欸	ei4
+欸	ei5
+欸	ei1	0
+欸	ei2	0
+欸	ei3	0
+欸	eh1	0
+欸	ai1	0
+欸	ai3	0
+
+东西	dong1 xi1
+东西	dong1 xi5
+东西	dong1 sii1
+东西	dong1 sii5
+先生	sian1 sheng1
+先生	sian1 sheng5
+吉他	ji2 ta5
+吉它	ji2 ta5
+贝斯	bei4 si5
+贝司	bei4 si5
+哇	wa1  # 地球拼音原词库
+哇	wa5
+纪律	ji4 lv5
+错误	cuo4 wu5
+息	xi1  # 地球拼音原词库
+息	xi2	0
+息	xi5	0
+息	sii1
+息	sii2	0
+息	sii5	0
+消息	xiao1 xi1
+消息	xiao1 xi2	0
+消息	xiao1 xi5
+消息	siao1 sii1
+消息	siao1 sii2	0
+消息	siao1 sii5
+稍息	shao1 xi2	0
+稍息	shao4 xi1
+稍息	shao1 sii2	0
+稍息	shao4 sii1
+休息	xiu1 xi2	0
+休息	xiu1 xi5
+休息	xiu1 sii2
+休息	xiu1 sii5
+出息	chu1 xi1
+出息	chu1 xi2	0
+出息	chu1 xi5
+出息	chu1 sii1
+出息	chu1 sii2
+出息	chu1 sii5
+奸细	jian1 xi5
+奸细	jian1 sii5
+歇息	xie1 xi5
+歇息	xie1 sii5
+过	guo5	0
+去	qu5	0
+切	qie5	0
+是	shi5	0
+噢	o5
+面	mian5	0
+来	lai5	0
+度	du5	0
+数	shu5	0
+呀	ya1	0
+呀	xia1	0
+地	di5	0
+滴	di5	0
+的	di5	0
+得	di5	0
+积	ji5	0
+积	zii5	0
+爷	ye5	0
+马甲儿	ma3 jia2 er5
+承载	cheng2 zai3	0
+
+# 北京话
+那	nei4	0
+那	nei5	0
+呐	na4	50%
+呐	na5	50%
+呐	nai4	0
+呐	nai5	0
+呐	ne4	0
+呐	nei4	0
+呐	nei5	0
+嘞	lei5
+了	lei5	0
+嘞	lei4	0
+得嘞	de2 lei5
+您呐	nin2 nei5
+嘚	de1
+嘚	dei1	0
+嘚	dei3	0
+嘚	de2	0
+嘚	de4	0
+得	dai3	0
+嘚瑟	de4 se5
+得瑟	de4 se5
+
+# 方言、口语，一些错误的发音，不建议使用
+力	li1	0
+肖	xiao1
+较	jiao3	0
+比较	bi3 jiao3	0
+较为	jiao3 wei2	0
+血	xue3	0
+血色浪漫	xue3 se4 lang4 man4
+嘎	ga1
+嘎	ga2	0
+嘎	ga3	0
+张嘎	zhang1 ga3
+嘎子	ga3 zi5
+会	hui2	0
+一会	yi4 hui2	0
+榻榻米	ta4 ta4 mi3
+榻榻米	ta1 ta1 mi3	0
+式	chi4
+综	zong4	0
+综合	zong4 he2
+综合	zong1 he2	0
+僰人	bo2 ren2
+悬棺	xuan2 guan1
+僰人悬棺	bo2 ren2 xuan2 guan1
+怂	song2	0
+模糊	mo3 hu1
+模糊	mo3 hu2
+模糊	mo3 hu5
+咳	hai1	5%
+咳	ke2	95%
+咳	hai4	0
+咳	hai5	0
+嗨	hai1
+嗨	hai4	0
+嗨	hai5	0
+溜	liu1
+溜	liu4
+溜溜	liu4 liu5
+遛遛	liu4 liu5
+求求	qiu2 qiu5
+哼	heng1
+哼	heng5
+南无	na1 mo4
+南无	na2 mo2
+南无	na1 mo2
+南无佛	na2 mo2 fo2
+南无耶	na2 mo2 ye2
+南	nan2
+南	na1	0
+南	na2	0
+无	wu2
+无	mo2	0
+牟	mou2	95%
+牟	mu4	5%
+南牟	na1 mo2	0
+南牟	na2 mo2	0
+腌臜	a1 za5
+腌臜	ang1 za5
+腌臜	ang1 zang1
+腌臜	a1 za1
+
+曐	xing1
+皨	xing1
+曐	sing1
+皨	sing1
+〇	ling2
+〇	xing1	0
+〇	sing1	0
+
+# 尖音
+逡巡	qun1 xun2
+逡巡	qun1 svn2
+逡巡	cvn1 xun2
+逡巡	cvn1 svn2
+逡廵	qun1 xun2
+逡廵	qun1 svn2
+逡廵	cvn1 xun2
+逡廵	cvn1 svn2
+京津冀	jing1 jin1 ji4
+京津冀	jing1 zin1 ji4
+逻辑	luo2 ji2
+逻辑	luo2 ji5
+逻辑	luo2 zii2
+逻辑	luo2 zii5
+
+程序猿	cheng2 xu4 yuan1
+好好	hao3 hao1
+妮	ni1
+妮	ni2
+呀	ya5
+呀	ya1	0
+呀	xia1	0
+质量	zhi2 liang4	0
+质量	zhi4 liang4
+质量	zhi4 liang4	0
+质量	zhi3 liang4	0
+噱	jue2  # 地球拼音原词库
+噱	xue1	0
+噱	xue2	0
+噱头	xue1 tou2
+噱头	xue2 tou2
+噱头	xue4 tou2
+倔	jue2  # 地球拼音原词库
+倔	jue4
+倔强	jue2 jiang4
+倔强	jue4 jiang4	0
+混	hun2	30%
+混	hun4	70%
+混	hun3	0
+混	gun3	0
+混混	gun3 gun3
+混混	hun4 hun4
+混混	hun4 hun5
+混	kun1	0
+混夷	kun1 yi2
+谊	yi4
+谊	yi2	0
+恩	en1
+恩	en5	0
+亚	ya3	0
+亚	ya4
+亚	ya1	0
+法	fa3
+法	fa1	0
+法	fa2	0
+法	fa4	0
+法国	fa4 guo2	0
+便便	bian1 bian1
+便便	bian4 bian4	0
+便便	bian4 bian5
+氛	fen1
+氛	fen4	0
+撒	sa1	50%
+撒	sa3	50%
+撒	sa4	0
+刽	gui4
+刽	kuai4
+桧	kuai4
+桧	gui4
+桧	hui4
+意见	yi4 jian5
+建议	jian4 yi5
+玫瑰	mei2 gui1
+玫瑰	mei2 gui4	0
+玫瑰	mei2 gui5
+月季	yue4 ji4
+月季	yue4 ji5
+孩纸	hai2 zhi3
+孩纸	hai2 zhi5
+逮	dai3	50%
+逮	dai4	50%
+逮	dei1	0
+落	la4	5%
+落	luo4	95%
+落	lao4	0
+拉	la1
+拉	la2	0
+拉	la4	0
+憋屈	bie1 qu5
+忙乎	mang2 hu5
+悄	qiao3
+悄	qiao1
+坷	ke3
+坷	ke1	0
+坷垃	ke1 la5
+金坷垃	jin1 ke1 la1
+
+# 个人发音
+哎呦喂	ei1 you1 wei1
+麻烦	ma2 fan5
+麻烦	ma2 fan2
+她	ta1  # 地球拼音原词库
+她	te1
+她	tai1	0
+它	ta1  # 地球拼音原词库
+它	te2
+妳	ni3
+妳	ni1	0
+妳	nai3	0
+权力	quan2 li4
+权利	quan2 li5	0
+再	zai2
+在	zai5	0
+实在	shi2 zai5

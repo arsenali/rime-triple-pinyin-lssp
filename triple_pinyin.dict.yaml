@@ -1,0 +1,51 @@
+# Rime dictionary
+# encoding: utf-8
+#
+#   阿森纳里 <15678407@qq.com>
+
+---
+name: triple_pinyin
+version: "2026.08.10"
+sort: by_weight
+vocabulary: essay-zh-hans
+use_preset_vocabulary: false
+import_tables:
+# 注意：请确保词库文件存在，否则会加载失败并报错
+# 注意：方案使用简体词库，请不要加载繁体词库，繁体词库无法进行简繁转换
+
+ # 万象词库
+  - dicts/zi            #字表，包含了所有带拼音的汉字
+  - dicts/jichu         #基础词库，2-4字词汇
+  - dicts/lianxiang     #联想词库，5字以上词汇，多用于输入前半段第二候选可以出来整段
+  - dicts/duoyin        #兼容词库，是基础词库的扩充，收录了多场景多种读音的词组
+  - dicts/shici         #诗词
+  - dicts/diming        #地名
+  - dicts/yixue         #医学
+  - dicts/huaxue        #化学
+  - dicts/yaopin        #药品
+  - dicts/mingren       #名人
+  - dicts/yiren         #艺人
+  - dicts/wuzhong       #物种多样性
+  - dicts/renming       #高频人名
+  
+ # 薄荷词库
+  # - dicts/rime_mint.chars           # 单字词库（万象拼音词库基础版本）
+  # - dicts/rime_mint.base            # 基础词库（万象拼音词库基础版本）
+  # - dicts/rime_mint.correlation     # 关联词库（万象拼音词库基础版本）
+  # - dicts/rime_mint.compatible      # 兼容词库（万象拼音词库基础版本）
+  # - dicts/rime_mint.places          # 地名词库（万象拼音词库基础版本）
+  # - dicts/rime_mint.ext             # 联想词库（万象拼音词库基础版本）
+  
+ # 冰雪词库
+  # - snow_pinyin                     #主核心词典，通用规范汉字表
+  # - snow_pinyin.base                #基础词汇
+  # - snow_pinyin.ext                 #扩展词汇
+  # - snow_pinyin.tencent             #腾讯AI Lab扩展词库
+  # - snow_pinyin.user                #用户自定义词汇
+  
+ # 补充词库
+  - triple_pinyin.additional        # 附加词库
+  - triple_pinyin.zianyin           # 尖音字表
+  - triple_pinyin.ddpy              # 带调拼音音节
+  
+...

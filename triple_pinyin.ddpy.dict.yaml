@@ -1,6 +1,6 @@
 ---
-name: terra_pinyin.ddpy
-version: "2025.02.22"
+name: triple_pinyin.ddpy
+version: "2026.08.06"
 sort: by_weight
 use_preset_vocabulary: false
 ...
