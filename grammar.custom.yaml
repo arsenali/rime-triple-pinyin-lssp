@@ -1,20 +1,30 @@
 patch:
-  triple_pinyin_hant:
-    grammar:  # 注意要把同名的模型文件（zh-hant-t-essay-bgw.gram）放在用戶文件夾下，否則會加載失敗並報錯
-      language: zh-hant-t-essay-bgw     # 八股文語言模型
-      # language: wanxiang-lts-zh-hans    # 萬象語言模型
-    quanpin/contextual_suggestions: true
-    quanpin/max_homophones: 7
-    quanpin/max_homographs: 7
-    ddpy/contextual_suggestions: true
+  triple_pinyin_hans:  # 语言模型
+    grammar:
+      # language: zh-hans-t-essay-bgw           # 八股文
+      # language: zh-hans-t-essay-bgw-compact   # 八股文紧凑型
+      language: wanxiang-lts-zh-hans          # 万象
+      # language: zh-moqi                         # 墨奇
+      
+      collocation_max_length: 8         #命中的最长词组
+      collocation_min_length: 3         #命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
+      collocation_penalty: -14          #默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配。
+      non_collocation_penalty: -6      #默认-12 对非搭配词组施加的惩罚值。较高的负值会降低非搭配词组被选中的概率，避免不合逻辑或不常见的词组组合。
+      weak_collocation_penalty: -100     #默认-24 对弱搭配词组施加的惩罚值。保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合。
+      rear_penalty: -20                 #默认-18 对词组中后续词语的位置施加的惩罚值。较高的负值会降低某些词语在句子后部出现的概率，防止句子结构不自然。
+      
+    quanpin/contextual_suggestions: false    # 模型用来开启词组权重预测，是否启用语言模型进行上下文联想组词（如输入"diqu"自动建议“地区”而非单字“地”），需配合 grammar 引擎使用；开启可提升长句输入准确率，但可能干扰部分定制功能（如旧版“八股文”）。
+    quanpin/max_homophones: 7               # 限制同音簇最大长度（即同一拼音下允许检索的同音字/词数量上限），数值过大降低选词效率，过小可能导致生僻词无法检出。
+    quanpin/max_homographs: 7               # 限制同形簇最大长度（即同一字形下不同读音/义项的检索数量上限），用于处理多音字场景的候选排序。
+    ddpy/contextual_suggestions: false
     ddpy/max_homophones: 7
     ddpy/max_homographs: 7
-    zhuyin/contextual_suggestions: true
+    zhuyin/contextual_suggestions: false
     zhuyin/max_homophones: 7
     zhuyin/max_homographs: 7
-    guoluo/contextual_suggestions: true
+    guoluo/contextual_suggestions: false
     guoluo/max_homophones: 7
     guoluo/max_homographs: 7
-    translator/contextual_suggestions: true
+    translator/contextual_suggestions: false
     translator/max_homophones: 7
     translator/max_homographs: 7
