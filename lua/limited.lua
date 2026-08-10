@@ -28,9 +28,10 @@ local function processor(key_event, env)
     if is_valid and ctx.input:match("[HSPNZ]") then  -- 输入内容包括笔画码[HSPNZ]
         -- debug_print(1, "输入内容包括笔画码")
         local is_shortcut = key_event:ctrl()  -- 按下Ctrl
-                           and (key_event.keycode == 0x71  -- q
-                             or key_event.keycode == 0x6C  -- l
-                             or key_event.keycode == 0x6D) -- m
+                           and (key_event.keycode == 0x75  -- u
+                             or key_event.keycode == 0x6A  -- j
+                             or key_event.keycode == 0x6D  -- m
+                             or key_event.keycode == 0x71) -- q
         if not is_shortcut and target_keys(key_event.keycode) then  -- 输入内容不是快捷键且包括拼音码[qwertyasdfghzxcvbn]
             -- debug_print(1, "输入内容包括拼音码:", string.char(key_event.keycode))
             return kAccepted  -- 实际效果是：笔画码后不允许输入拼音码。但语法逻辑似乎是相反的：当输入内容包括拼音码时，接受当前按键事件，允许输入法引擎处理该按键，否则忽略当前按键事件，不进行任何处理。为什么用相反逻辑的语句才能得到想要的效果？不知道是为什么
