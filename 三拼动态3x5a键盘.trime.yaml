@@ -180,8 +180,12 @@ labels:
   175: &lb_Mode_samll_ls26_ft '單手ㄚ'
   176: &lb_delimiter1 首码
   177: &lb_delimiter1_ft 首碼
-  178: &lb_delimiter3 全码
-  179: &lb_delimiter3_ft 全碼
+  178: &lb_delimiter2 简码
+  179: &lb_delimiter2_ft 簡碼
+  180: &lb_delimiter3 全码
+  181: &lb_delimiter3_ft 全碼
+  182: &lb_delimiter4 无声调全码
+  183: &lb_delimiter4_ft 無聲調全碼
   
 # ────────────────
 style:
@@ -1210,6 +1214,8 @@ preset_keyboards:
       keys/@16/composing: BackSpacelast
       keys/@17/composing: Keyboard_help_lssp1Esc
       keys/@24/composing: questionmark_composing
+      keys/@17/swipe_right:
+      keys/@24/swipe_right:
       keys/@31/composing: Keyboard_last_lock2Esc
       keys/@32/composing: Keyboard_symbolsyouEsc
       keys/@33/composing: spacels1_composing
@@ -1224,13 +1230,11 @@ preset_keyboards:
     __include: preset_keyboards/lssp1dt
     __patch:
       "name": 李氏三拼1動態介調鍵盤退回聲母鍵盤
-      keys/@15/popup:
       keys/@16/composing: BackToPreSyl
   lssp1dtj:
     __include: preset_keyboards/lssp1dt
     __patch:
       "name": 李氏三拼1動態介調鍵盤
-      keys/@15/popup:
       keys/@11/label: 'a,an,ang'
       keys/@12/label: 'ai,ei,ao'
       keys/@13/label: 'o,ou,ong'
@@ -1671,7 +1675,6 @@ preset_keyboards:
     __include: preset_keyboards/lssp1dt
     __patch:
       "name": 李氏三拼1動態韻母鍵盤
-      keys/@15/popup:
       keys/@11/click: 'q{Keyboard_last_lock}'
       keys/@12/click: 'w{Keyboard_last_lock}'
       keys/@13/click: 'e{Keyboard_last_lock}'
@@ -3385,6 +3388,8 @@ preset_keyboards:
       keys/@16/composing: BackSpacelast
       keys/@17/composing: Keyboard_help_lssp2Esc
       keys/@24/composing: questionmark_composing
+      keys/@17/swipe_right:
+      keys/@24/swipe_right:
       keys/@31/composing: Keyboard_last_lock2Esc
       keys/@32/composing: Keyboard_symbolsyouEsc
       keys/@33/composing: spacels2_composing
@@ -3399,13 +3404,11 @@ preset_keyboards:
     __include: preset_keyboards/lssp2dt
     __patch:
       "name": 李氏三拼2動態介調鍵盤退回聲母鍵盤
-      keys/@15/popup:
       keys/@16/composing: BackToPreSyl
   lssp2dtj:
     __include: preset_keyboards/lssp2dt
     __patch:
       "name": 李氏三拼2動態介調鍵盤
-      keys/@15/popup:
       keys/@11/label: 'a,an,ang'
       keys/@12/label: 'e,en,eng'
       keys/@13/label: 'o,ou,ong'
@@ -3846,7 +3849,6 @@ preset_keyboards:
     __include: preset_keyboards/lssp2dt
     __patch:
       "name": 李氏三拼2動態韻母鍵盤
-      keys/@15/popup:
       keys/@11/click: 'q{Keyboard_last_lock}'
       keys/@12/click: 'w{Keyboard_last_lock}'
       keys/@13/click: 'e{Keyboard_last_lock}'
@@ -5560,6 +5562,8 @@ preset_keyboards:
       keys/@16/composing: BackSpacelast
       keys/@17/composing: Keyboard_help_lssp3Esc
       keys/@24/composing: questionmark_composing
+      keys/@17/swipe_right:
+      keys/@24/swipe_right:
       keys/@31/composing: Keyboard_last_lock2Esc
       keys/@32/composing: Keyboard_symbolsyouEsc
       keys/@33/composing: spacels3_composing
@@ -5574,13 +5578,11 @@ preset_keyboards:
     __include: preset_keyboards/lssp3dt
     __patch:
       "name": 李氏三拼3動態介調鍵盤退回聲母鍵盤
-      keys/@15/popup:
       keys/@16/composing: BackToPreSyl
   lssp3dtj:
     __include: preset_keyboards/lssp3dt
     __patch:
       "name": 李氏三拼3動態介調鍵盤
-      keys/@15/popup:
       keys/@11/label: 'ㄚㄞㄢ'
       keys/@12/label: 'ㄛㄟㄣ'
       keys/@13/label: 'ㄜㄠㄤ'
@@ -5996,7 +5998,6 @@ preset_keyboards:
     __include: preset_keyboards/lssp3dt
     __patch:
       "name": 李氏三拼3動態韻母鍵盤
-      keys/@15/popup:
       keys/@11/click: 'q{Keyboard_last_lock}'
       keys/@12/click: 'w{Keyboard_last_lock}'
       keys/@13/click: 'e{Keyboard_last_lock}'

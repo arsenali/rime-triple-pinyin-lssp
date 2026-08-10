@@ -91,6 +91,8 @@ preset_keyboards:
       keys/@16/composing: BackSpacelast
       keys/@17/composing: Keyboard_help_lssp1Esc
       keys/@24/composing: questionmark_composing
+      keys/@17/swipe_right:
+      keys/@24/swipe_right:
       keys/@31/composing: Keyboard_last_lock2Esc
       keys/@32/composing: Keyboard_symbolsyouEsc
       keys/@33/composing: spacels1_composing
@@ -105,13 +107,11 @@ preset_keyboards:
     __include: preset_keyboards/lssp1dt
     __patch:
       "name": 李氏三拼1動態介調鍵盤退回聲母鍵盤
-      keys/@11/popup:
       keys/@16/composing: BackToPreSyl
   lssp1dtj:
     __include: preset_keyboards/lssp1dt
     __patch:
       "name": 李氏三拼1動態介調鍵盤
-      keys/@11/popup:
       keys/@12/label: 'a,an,ang'
       keys/@13/label: 'ai,ei,ao'
       keys/@14/label: 'o,ou,ong'
@@ -552,7 +552,6 @@ preset_keyboards:
     __include: preset_keyboards/lssp1dt
     __patch:
       "name": 李氏三拼1動態韻母鍵盤
-      keys/@11/popup:
       keys/@12/click: 'q{Keyboard_last_lock}'
       keys/@13/click: 'w{Keyboard_last_lock}'
       keys/@14/click: 'e{Keyboard_last_lock}'
@@ -2266,6 +2265,8 @@ preset_keyboards:
       keys/@16/composing: BackSpacelast
       keys/@17/composing: Keyboard_help_lssp2Esc
       keys/@24/composing: questionmark_composing
+      keys/@17/swipe_right:
+      keys/@24/swipe_right:
       keys/@31/composing: Keyboard_last_lock2Esc
       keys/@32/composing: Keyboard_symbolsyouEsc
       keys/@33/composing: spacels2_composing
@@ -2280,13 +2281,11 @@ preset_keyboards:
     __include: preset_keyboards/lssp2dt
     __patch:
       "name": 李氏三拼2動態介調鍵盤退回聲母鍵盤
-      keys/@11/popup:
       keys/@16/composing: BackToPreSyl
   lssp2dtj:
     __include: preset_keyboards/lssp2dt
     __patch:
       "name": 李氏三拼2動態介調鍵盤
-      keys/@11/popup:
       keys/@12/label: 'a,an,ang'
       keys/@13/label: 'e,en,eng'
       keys/@14/label: 'o,ou,ong'
@@ -2727,7 +2726,6 @@ preset_keyboards:
     __include: preset_keyboards/lssp2dt
     __patch:
       "name": 李氏三拼2動態韻母鍵盤
-      keys/@11/popup:
       keys/@12/click: 'q{Keyboard_last_lock}'
       keys/@13/click: 'w{Keyboard_last_lock}'
       keys/@14/click: 'e{Keyboard_last_lock}'
@@ -4441,6 +4439,8 @@ preset_keyboards:
       keys/@16/composing: BackSpacelast
       keys/@17/composing: Keyboard_help_lssp3Esc
       keys/@24/composing: questionmark_composing
+      keys/@17/swipe_right:
+      keys/@24/swipe_right:
       keys/@31/composing: Keyboard_last_lock2Esc
       keys/@32/composing: Keyboard_symbolsyouEsc
       keys/@33/composing: spacels3_composing
@@ -4455,13 +4455,11 @@ preset_keyboards:
     __include: preset_keyboards/lssp3dt
     __patch:
       "name": 李氏三拼3動態介調鍵盤退回聲母鍵盤
-      keys/@11/popup:
       keys/@16/composing: BackToPreSyl
   lssp3dtj:
     __include: preset_keyboards/lssp3dt
     __patch:
       "name": 李氏三拼3動態介調鍵盤
-      keys/@11/popup:
       keys/@12/label: 'ㄚㄞㄢ'
       keys/@13/label: 'ㄛㄟㄣ'
       keys/@14/label: 'ㄜㄠㄤ'
@@ -4877,7 +4875,6 @@ preset_keyboards:
     __include: preset_keyboards/lssp3dt
     __patch:
       "name": 李氏三拼3動態韻母鍵盤
-      keys/@11/popup:
       keys/@12/click: 'q{Keyboard_last_lock}'
       keys/@13/click: 'w{Keyboard_last_lock}'
       keys/@14/click: 'e{Keyboard_last_lock}'
