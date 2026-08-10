@@ -1,0 +1,34 @@
+patch:
+  schema_list:
+    - schema: triple_pinyin_lssp
+    # - schema: triple_pinyin_lsspaeo
+    # - schema: triple_pinyin_bopomofo
+    # - schema: triple_pinyin_lishi26
+    # - schema: triple_pinyin_lishi26s
+  switcher/caption: 「方案选单」
+  # 开关记忆（方案中的 switches），从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
+  # 部分前端（如小企鹅），实现了全局状态，切换后在任何焦点都会记住；
+  # 部分前端（如鼠须管），仅在当前会话中记住，每个App或一个App的不同输入框都会单独管理；
+  # 部分前端（如小狼毫），仅实现了中英全局状态，其他开关仍然是单独管理。
+  switcher/save_options/+:
+    - traditionalization
+    - lssp_quanpin
+    - lssp_ddpy
+    - lssp_zhuyin
+    - lssp_guoluo
+    - lssp_translator
+    - lsspaeo_quanpin
+    - lsspaeo_ddpy
+    - lsspaeo_zhuyin
+    - lsspaeo_guoluo
+    - lsspaeo_translator
+    - bopomofo_quanpin
+    - bopomofo_ddpy
+    - bopomofo_zhuyin
+    - bopomofo_guoluo
+    - bopomofo_translator
+    - lishi26_quanpin
+    - lishi26_ddpy
+    - lishi26_zhuyin
+    - lishi26_guoluo
+    - lishi26_translator
