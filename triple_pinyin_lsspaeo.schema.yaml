@@ -2,15 +2,15 @@
 # encoding: utf-8
 
 schema:
-  schema_id: triple_pinyin_lssp
-  name: 李氏三拼
+  schema_id: triple_pinyin_lsspaeo
+  name: 李氏三拼aeo
   version: "3.6"
   author:
     - 佛振 <chen.sst@gmail.com>
     - 阿森納裡 <15678407@qq.com>
   description: |
     15鍵內實現“聲母+韻母+去重碼&聲調”三碼輸入一個帶調音節；
-    基礎韻母大致按韻頭分為4組：a/an/ang,ai/ei/ao,o/ou/ong,e/en/eng；
+    基礎韻母大致按韻頭分為4組：a/an/ang,e/en/eng,o/ou/ong,ai/ei/ao；
     可用HSPNZ（橫豎撇捺折）連續輸入筆畫輔助碼進行逐字篩選；
     上屏碼和提示碼有全拼（無調拼音）、帶調拼音、注音符號和國語羅馬字四種形式，可任意切換。
   dependencies:
@@ -28,7 +28,7 @@ switches:
   - name: full_shape
     states: [ 半角, 全角 ]
     
-  - options: [ lssp_quanpin, lssp_ddpy, lssp_zhuyin, lssp_guoluo, lssp_translator ]
+  - options: [ lsspaeo_quanpin, lsspaeo_ddpy, lsspaeo_zhuyin, lsspaeo_guoluo, lsspaeo_translator ]
     states: [ 全拼, 拼音, 注音, 国罗, 原码 ]
     
   - name: small_mode
@@ -49,7 +49,7 @@ switches:
   - options: [ _Keyboard_clip ]
     states: [ "📋" ]
     
-  # - options: [ Keyboard_lssp1, Keyboard_lssp1wsd ]
+  # - options: [ Keyboard_lssp2, Keyboard_lssp2wsd ]
     # states: [ 轻声, 无声调 ]
     
   - options: [ Menu ]
@@ -90,7 +90,7 @@ engine:
     - punct_translator
     - reverse_lookup_translator@pinyin_lookup
     - reverse_lookup_translator@stroke_lookup
-    - lua_translator@*triple_pinyin_lssp
+    - lua_translator@*triple_pinyin_lsspaeo
     - script_translator
   filters:
     - simplifier@traditionalize                     # 简繁切换
@@ -150,20 +150,24 @@ speller:             # 拼寫處理器：詞典編碼->輸入碼
     - xform/([bpm])ueng/$1ong/
     - xform/([bpm])veng/$1iong/
     - derive/ueng/ong/
-    - derive/(?<![zcs])veng/iong/
+    - derive/veng/iong/
     # - xform/(\w+)ueng/$1ong/
     # - xform/veng/iong/
     - erase/([bpm])([uv][a-z]+|v)([1-5])$/
     - erase/fao([1-5])$/
-    - erase/(\w*)(iei|uong|vong)([1-5])$/
-    - erase/(\w*)v(ai|ou|ao)([1-5])$/
+    - erase/(\w*)(iei|uao|vao)([1-5])$/
+    - erase/(\w*)v(ai|ou|ong)([1-5])$/
+    - erase/([zcs])io([1-5])$/
    # 4  尖音處理
+    - xform/^ziao([1-5])$/buo$1/
     - xform/^zii([1-5])$/buei$1/
     - xform/^zi(\w+[1-5])$/bu$1/
     - xform/^z(v\w*[1-5])$/b$1/
+    - xform/^ciao([1-5])$/puo$1/
     - xform/^cii([1-5])$/puei$1/
     - xform/^ci(\w+[1-5])$/pu$1/
     - xform/^c(v\w*[1-5])$/p$1/
+    - xform/^siao([1-5])$/muo$1/
     - xform/^sii([1-5])$/muei$1/
     - xform/^si(\w+[1-5])$/mu$1/
     - xform/^s(v\w*[1-5])$/m$1/
@@ -193,23 +197,23 @@ speller:             # 拼寫處理器：詞典編碼->輸入碼
     - xform/^sh?/B/
    # 7  第2碼韻母
     - xform/^([QWERTASDFGZXCVB])(a|an|ang)([1-5])$/$1Q$2$3/
-    - xform/^([QWERTASDFGZXCVB])(ai|ei|ao)([1-5])$/$1W$2$3/
+    - xform/^([QWERTASDFGZXCVB])(e|en|eng)([1-5])$/$1W$2$3/
     - xform/^([QWERTASDFGZXCVB])(o|ou|ong)([1-5])$/$1E$2$3/
-    - xform/^([QWERTASDFGZXCVB])(e|en|eng)([1-5])$/$1R$2$3/
+    - xform/^([QWERTASDFGZXCVB])(ai|ei|ao)([1-5])$/$1R$2$3/
     
     - xform/^([QWERTASDFGZXCVB])(ia|ian|iang)([1-5])$/$1A$2$3/
-    - xform/^([QWERTASDFGZXCVB])(iai|iei|iao|i)([1-5])$/$1S$2$3/
+    - xform/^([QWERTASDFGZXCVB])(ie|ien|ieng)([1-5])$/$1S$2$3/
     - xform/^([QWERTASDFGZXCVB])(io|iou|iong)([1-5])$/$1D$2$3/
-    - xform/^([QWERTASDFGZXCVB])(ie|ien|ieng)([1-5])$/$1F$2$3/
+    - xform/^([QWERTASDFGZXCVB])(iai|iei|iao|i)([1-5])$/$1F$2$3/
     
     - xform/^([QWERTASDFGZXCVB])(ua|uan|uang)([1-5])$/$1Z$2$3/
-    - xform/^([QWERTASDFGZXCVB])(uai|uei|uao)([1-5])$/$1X$2$3/
-    - xform/^([QWERTASDFGZXCVB])(uo|uou|uong|u)([1-5])$/$1C$2$3/
-    - xform/^([QWERTASDFGZXCVB])(ue|uen|ueng)([1-5])$/$1V$2$3/
+    - xform/^([QWERTASDFGZXCVB])(ue|uen|ueng)([1-5])$/$1X$2$3/
+    - xform/^([QWERTASDFGZXCVB])(uo|uou|uong)([1-5])$/$1C$2$3/
+    - xform/^([QWERTASDFGZXCVB])(uai|uei|uao|u)([1-5])$/$1V$2$3/
     
     - xform/^([QWERTASDFGZXCVB])(va|van|vang|er)([1-5])$/$1T$2$3/
-    - xform/^([QWERTASDFGZXCVB])(vo|vei|vong|v)([1-5])$/$1G$2$3/
-    - xform/^([QWERTASDFGZXCVB])(ve|ven|veng)([1-5])$/$1B$2$3/
+    - xform/^([QWERTASDFGZXCVB])(ve|ven|veng)([1-5])$/$1G$2$3/
+    - xform/^([QWERTASDFGZXCVB])(vo|vei|vao|v)([1-5])$/$1B$2$3/
    # 8  第3碼去重碼&聲調
     - xform/^([QWERTASDFGZXCVB]{2})([iuv]?[aeo]|[iuv]?ai|er)1$/$1Q/
     - xform/^([QWERTASDFGZXCVB]{2})([iuv]?[aeo]|[iuv]?ai|er)2$/$1W/
@@ -249,7 +253,7 @@ speller:             # 拼寫處理器：詞典編碼->輸入碼
 
 quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全拼
   dictionary: triple_pinyin
-  prism: triple_pinyin_lssp
+  prism: triple_pinyin_lsspaeo
   spelling_hints: 5 # ～字以內候選標註完整提示碼
   always_show_comments: true           # 始終顯示提示碼
   preedit_format:                      # 輸入碼->上屏碼
@@ -295,17 +299,17 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
     - xform/\<([BPMDTNLGKHYZCSR])iA(?!\w)\>/$1ia-/
     - xform/\<([BPMDTNLGKHYZCSR])uZ(?!\w)\>/$1ua-/
     - xform/\<([BPMDTNLGKHYZCSR])v[TY](?!\w)\>/$1va-/
-    - xform/\<([BPMDTNLGKHYZCSR])W(?!\w)\>/$1j-/
-    - xform/\<([BPMDTNLGKHYZCSR])iS(?!\w)\>/$1ij-/
-    - xform/\<([BPMDTNLGKHYZCSR])uX(?!\w)\>/$1uj-/
-    - xform/\<([BPMDTNLGKHYZCSR])v[GH](?!\w)\>/$1vj-/
+    - xform/\<([BPMDTNLGKHYZCSR])W(?!\w)\>/$1e-/
+    - xform/\<([BPMDTNLGKHYZCSR])iS(?!\w)\>/$1ie-/
+    - xform/\<([BPMDTNLGKHYZCSR])uX(?!\w)\>/$1ue-/
+    - xform/\<([BPMDTNLGKHYZCSR])v[GH](?!\w)\>/$1ve-/
     - xform/\<([BPMDTNLGKHYZCSR])E(?!\w)\>/$1o-/
     - xform/\<([BPMDTNLGKHYZCSR])iD(?!\w)\>/$1io-/
     - xform/\<([BPMDTNLGKHYZCSR])uC(?!\w)\>/$1uo-/
-    - xform/\<([BPMDTNLGKHYZCSR])R(?!\w)\>/$1e-/
-    - xform/\<([BPMDTNLGKHYZCSR])iF(?!\w)\>/$1ie-/
-    - xform/\<([BPMDTNLGKHYZCSR])uV(?!\w)\>/$1ue-/
-    - xform/\<([BPMDTNLGKHYZCSR])v[BN](?!\w)\>/$1ve-/
+    - xform/\<([BPMDTNLGKHYZCSR])v[BN](?!\w)\>/$1vj-/
+    - xform/\<([BPMDTNLGKHYZCSR])R(?!\w)\>/$1j-/
+    - xform/\<([BPMDTNLGKHYZCSR])iF(?!\w)\>/$1ij-/
+    - xform/\<([BPMDTNLGKHYZCSR])uV(?!\w)\>/$1uj-/
    # 1.3  第3碼去重碼&聲調
     - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[QAZTY]q(?!-)\>/$1$2A\x31/
     - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[QAZTY]w(?!-)\>/$1$2A\x32/
@@ -325,67 +329,67 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
     - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[QAZTY]v(?!-)\>/$1$2ANG\x34/
     - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[QAZTY]b(?!-)\>/$1$2ANG\x35/
     - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[QAZTY]n(?!-)\>/$1$2ANG\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]q(?!-)\>/$1$2AI\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]w(?!-)\>/$1$2AI\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]e(?!-)\>/$1$2AI\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]r(?!-)\>/$1$2AI\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]t(?!-)\>/$1$2AI\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]y(?!-)\>/$1$2AI\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]a(?!-)\>/$1$2EI\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]s(?!-)\>/$1$2EI\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]d(?!-)\>/$1$2EI\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]f(?!-)\>/$1$2EI\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]g(?!-)\>/$1$2EI\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]h(?!-)\>/$1$2EI\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]z(?!-)\>/$1$2AO\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]x(?!-)\>/$1$2AO\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]c(?!-)\>/$1$2AO\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]v(?!-)\>/$1$2AO\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]b(?!-)\>/$1$2AO\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]n(?!-)\>/$1$2AO\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]q(?!-)\>/$1$2O\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]w(?!-)\>/$1$2O\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]e(?!-)\>/$1$2O\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]r(?!-)\>/$1$2O\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]t(?!-)\>/$1$2O\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]y(?!-)\>/$1$2O\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]a(?!-)\>/$1$2OU\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]s(?!-)\>/$1$2OU\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]d(?!-)\>/$1$2OU\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]f(?!-)\>/$1$2OU\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]g(?!-)\>/$1$2OU\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]h(?!-)\>/$1$2OU\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]z(?!-)\>/$1$2ONG\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]x(?!-)\>/$1$2ONG\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]c(?!-)\>/$1$2ONG\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]v(?!-)\>/$1$2ONG\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]b(?!-)\>/$1$2ONG\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[EDC]n(?!-)\>/$1$2ONG\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]q(?!-)\>/$1$2E\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]w(?!-)\>/$1$2E\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]e(?!-)\>/$1$2E\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]r(?!-)\>/$1$2E\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]t(?!-)\>/$1$2E\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]y(?!-)\>/$1$2E\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]a(?!-)\>/$1$2EN\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]s(?!-)\>/$1$2EN\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]d(?!-)\>/$1$2EN\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]f(?!-)\>/$1$2EN\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]g(?!-)\>/$1$2EN\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]h(?!-)\>/$1$2EN\x30/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]z(?!-)\>/$1$2ENG\x31/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]x(?!-)\>/$1$2ENG\x32/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]c(?!-)\>/$1$2ENG\x33/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]v(?!-)\>/$1$2ENG\x34/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]b(?!-)\>/$1$2ENG\x35/
-    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[RFVBN]n(?!-)\>/$1$2ENG\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]q(?!-)\>/$1$2E\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]w(?!-)\>/$1$2E\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]e(?!-)\>/$1$2E\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]r(?!-)\>/$1$2E\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]t(?!-)\>/$1$2E\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]y(?!-)\>/$1$2E\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]a(?!-)\>/$1$2EN\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]s(?!-)\>/$1$2EN\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]d(?!-)\>/$1$2EN\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]f(?!-)\>/$1$2EN\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]g(?!-)\>/$1$2EN\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]h(?!-)\>/$1$2EN\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]z(?!-)\>/$1$2ENG\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]x(?!-)\>/$1$2ENG\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]c(?!-)\>/$1$2ENG\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]v(?!-)\>/$1$2ENG\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]b(?!-)\>/$1$2ENG\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[WSXGH]n(?!-)\>/$1$2ENG\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]q(?!-)\>/$1$2O\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]w(?!-)\>/$1$2O\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]e(?!-)\>/$1$2O\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]r(?!-)\>/$1$2O\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]t(?!-)\>/$1$2O\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]y(?!-)\>/$1$2O\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]a(?!-)\>/$1$2OU\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]s(?!-)\>/$1$2OU\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]d(?!-)\>/$1$2OU\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]f(?!-)\>/$1$2OU\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]g(?!-)\>/$1$2OU\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]h(?!-)\>/$1$2OU\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]z(?!-)\>/$1$2ONG\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]x(?!-)\>/$1$2ONG\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]c(?!-)\>/$1$2ONG\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]v(?!-)\>/$1$2ONG\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]b(?!-)\>/$1$2ONG\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iuv])?[EDCBN]n(?!-)\>/$1$2ONG\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]q(?!-)\>/$1$2AI\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]w(?!-)\>/$1$2AI\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]e(?!-)\>/$1$2AI\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]r(?!-)\>/$1$2AI\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]t(?!-)\>/$1$2AI\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]y(?!-)\>/$1$2AI\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]a(?!-)\>/$1$2EI\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]s(?!-)\>/$1$2EI\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]d(?!-)\>/$1$2EI\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]f(?!-)\>/$1$2EI\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]g(?!-)\>/$1$2EI\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]h(?!-)\>/$1$2EI\x30/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]z(?!-)\>/$1$2AO\x31/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]x(?!-)\>/$1$2AO\x32/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]c(?!-)\>/$1$2AO\x33/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]v(?!-)\>/$1$2AO\x34/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]b(?!-)\>/$1$2AO\x35/
+    - xform/\<([BPMDTNLGKHYZCSR])([iu])?[RFV]n(?!-)\>/$1$2AO\x30/
     
    # 1.4  音節合併
     - xform/\<([BPMDTNLGKHY])iEI([0-5])\>/$1I$2/
-    - xform/\<([BPMDTNLGKHYZCSR])uONG([0-5])\>/$1U$2/
+    - xform/\<([BPMDTNLGKHYZCSR])uAO([0-5])\>/$1U$2/
     - xform/\<YvA([0-5])\>/er$1/
-    - xform/\<([BPMDTNLGKHYZCSR])vAI([0-5])\>/$1vO$2/
-    - xform/\<([BPMDTNLGKHYZCSR])vAO([0-5])\>/$1V$2/
+    - xform/\<([BPMDTNLGKHYZCSR])vOU([0-5])\>/$1vEI$2/
+    - xform/\<([BPMDTNLGKHYZCSR])vONG([0-5])\>/$1V$2/
     - xform/\<G([iv][A-Z]+|[IV])([0-5])\>/j$1$2/
     - xform/\<K([iv][A-Z]+|[IV])([0-5])\>/q$1$2/
     - xform/\<H([iv][A-Z]+|[IV])([0-5])\>/x$1$2/
@@ -400,12 +404,15 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
     - xform/\<RV([0-5])\>/fu$1/
     - xlit/QWERTYUIOPASDFGHJKLZXCVBNM/qwertyuiopasdfghjklzxcvbnm/
    # 1.5  尖音處理
+    - xform/\<buo([0-5])\>/ziao$1/
     - xform/\<buei([0-5])\>/zii$1/
     - xform/\<bu(\w+[0-5])\>/zi$1/
     - xform/\<b(v\w*[0-5])\>/z$1/
+    - xform/\<puo([0-5])\>/ciao$1/
     - xform/\<puei([0-5])\>/cii$1/
     - xform/\<pu(\w+[0-5])\>/ci$1/
     - xform/\<p(v\w*[0-5])\>/c$1/
+    - xform/\<muo([0-5])\>/siao$1/
     - xform/\<muei([0-5])\>/sii$1/
     - xform/\<mu(\w+[0-5])\>/si$1/
     - xform/\<m(v\w*[0-5])\>/s$1/
@@ -421,20 +428,20 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
     - xform/([uv])ei([0-5])/$1i$2/
     - xform/\<yu([0-5])/wu$1/
     - xform/\<yu([aoe])(?!-)/w$1/
-    - xform/\<yu([in])(?![aoej]-)/we$1/
+    - xform/\<yu([in])(?![aeoj]-)/we$1/
     - xform/\<yv(?![aej]-)/yu/
     
    # 1.8  簡拼處理
-    - xform/\<g([iv][aoej]-)/j$1/                           # 前兩碼簡拼
-    - xform/\<k([iv][aoej]-)/q$1/
-    - xform/\<h([iv][aoej]-)/x$1/
-    - xform/\<y([aoej]-)/´$1/
-    - xform/\<yu([aoej]-)/w$1/
-    - xform/\<([zcs])(u)?([aoej]-)/$1h$2$3/
-    - xform/\<([zcsy])i([aoej]-)/$1$2/
+    - xform/\<g([iv][aeoj]-)/j$1/                           # 前兩碼簡拼
+    - xform/\<k([iv][aeoj]-)/q$1/
+    - xform/\<h([iv][aeoj]-)/x$1/
+    - xform/\<y([aeoj]-)/´$1/
+    - xform/\<yu([aeoj]-)/w$1/
+    - xform/\<([zcs])(u)?([aeoj]-)/$1h$2$3/
+    - xform/\<([zcsy])i([aeoj]-)/$1$2/
     - xform/\<([zcsy])v([aej]-)/$1u$2/
     - xform/\<yua-/yur-/
-    - xform/\<ri([aoej]-)/f$1/
+    - xform/\<ri([aeoj]-)/f$1/
     - xform/\<rv([aej]-)/fu$1/
     - xform/(v|[yf]u)j-/$1-/
     - xform/j-/ι-/
@@ -490,7 +497,7 @@ quanpin:             # 輸入翻譯器：輸入碼->上屏碼：漢語拼音全�
 
 ddpy:                # 輸入翻譯器：輸入碼->上屏碼：帶調拼音
   dictionary: triple_pinyin
-  prism: triple_pinyin_lssp
+  prism: triple_pinyin_lsspaeo
   spelling_hints: 5 # ～字以內候選標註完整提示碼
   always_show_comments: true           # 始終顯示提示碼
   preedit_format:                      # 輸入碼->上屏碼
@@ -501,7 +508,7 @@ ddpy:                # 輸入翻譯器：輸入碼->上屏碼：帶調拼音
 
 zhuyin:              # 輸入翻譯器：輸入碼->上屏碼：注音符號
   dictionary: triple_pinyin
-  prism: triple_pinyin_lssp
+  prism: triple_pinyin_lsspaeo
   spelling_hints: 5 # ～字以內候選標註完整提示碼
   always_show_comments: true           # 始終顯示提示碼
   preedit_format:                      # 輸入碼->上屏碼
@@ -512,7 +519,7 @@ zhuyin:              # 輸入翻譯器：輸入碼->上屏碼：注音符號
 
 guoluo:              # 輸入翻譯器：輸入碼->上屏碼：國語羅馬字
   dictionary: triple_pinyin
-  prism: triple_pinyin_lssp
+  prism: triple_pinyin_lsspaeo
   spelling_hints: 5 # ～字以內候選標註完整提示碼
   always_show_comments: true           # 始終顯示提示碼
   preedit_format:                      # 輸入碼->上屏碼
@@ -523,7 +530,7 @@ guoluo:              # 輸入翻譯器：輸入碼->上屏碼：國語羅馬字
 
 translator:          # 主翻譯器，不轉換輸入碼
   dictionary: triple_pinyin
-  prism: triple_pinyin_lssp
+  prism: triple_pinyin_lsspaeo
   spelling_hints: 5 # ～字以內候選標註完整提示碼
   always_show_comments: true           # 始終顯示提示碼
   preedit_format:                      # 輸入碼->上屏碼
@@ -600,20 +607,24 @@ pinyin_lookup:       # 拼音反查
     - xform/([bpm])ueng/$1ong/
     - xform/([bpm])veng/$1iong/
     - derive/ueng/ong/
-    - derive/(?<![zcs])veng/iong/
+    - derive/veng/iong/
     # - xform/(\w+)ueng/$1ong/
     # - xform/veng/iong/
     - erase/([bpm])([uv][a-z]+|v)([1-5])\>/
     - erase/fao([1-5])\>/
-    - erase/(\w*)(iei|uong|vong)([1-5])\>/
-    - erase/(\w*)v(ai|ou|ao)([1-5])\>/
+    - erase/(\w*)(iei|uao|vao)([1-5])\>/
+    - erase/(\w*)v(ai|ou|ong)([1-5])\>/
+    - erase/([zcs])io([1-5])\>/
    # 4  尖音處理
+    - xform/\<ziao([1-5])\>/buo$1/
     - xform/\<zii([1-5])\>/buei$1/
     - xform/\<zi(\w+[1-5])\>/bu$1/
     - xform/\<z(v\w*[1-5])\>/b$1/
+    - xform/\<ciao([1-5])\>/puo$1/
     - xform/\<cii([1-5])\>/puei$1/
     - xform/\<ci(\w+[1-5])\>/pu$1/
     - xform/\<c(v\w*[1-5])\>/p$1/
+    - xform/\<siao([1-5])\>/muo$1/
     - xform/\<sii([1-5])\>/muei$1/
     - xform/\<si(\w+[1-5])\>/mu$1/
     - xform/\<s(v\w*[1-5])\>/m$1/
@@ -643,23 +654,23 @@ pinyin_lookup:       # 拼音反查
     - xform/\<sh?/B/
    # 7  第2碼韻母
     - xform/\<([QWERTASDFGZXCVB])(a|an|ang)([1-5])\>/$1Q$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(ai|ei|ao)([1-5])\>/$1W$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(e|en|eng)([1-5])\>/$1W$2$3/
     - xform/\<([QWERTASDFGZXCVB])(o|ou|ong)([1-5])\>/$1E$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(e|en|eng)([1-5])\>/$1R$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(ai|ei|ao)([1-5])\>/$1R$2$3/
     
     - xform/\<([QWERTASDFGZXCVB])(ia|ian|iang)([1-5])\>/$1A$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(iai|iei|iao|i)([1-5])\>/$1S$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(ie|ien|ieng)([1-5])\>/$1S$2$3/
     - xform/\<([QWERTASDFGZXCVB])(io|iou|iong)([1-5])\>/$1D$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(ie|ien|ieng)([1-5])\>/$1F$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(iai|iei|iao|i)([1-5])\>/$1F$2$3/
     
     - xform/\<([QWERTASDFGZXCVB])(ua|uan|uang)([1-5])\>/$1Z$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(uai|uei|uao)([1-5])\>/$1X$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(uo|uou|uong|u)([1-5])\>/$1C$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(ue|uen|ueng)([1-5])\>/$1V$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(ue|uen|ueng)([1-5])\>/$1X$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(uo|uou|uong)([1-5])\>/$1C$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(uai|uei|uao|u)([1-5])\>/$1V$2$3/
     
     - xform/\<([QWERTASDFGZXCVB])(va|van|vang|er)([1-5])\>/$1T$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(vo|vei|vong|v)([1-5])\>/$1G$2$3/
-    - xform/\<([QWERTASDFGZXCVB])(ve|ven|veng)([1-5])\>/$1B$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(ve|ven|veng)([1-5])\>/$1G$2$3/
+    - xform/\<([QWERTASDFGZXCVB])(vo|vei|vao|v)([1-5])\>/$1B$2$3/
    # 8  第3碼去重碼&聲調
     - xform/\<([QWERTASDFGZXCVB]{2})([iuv]?[aeo]|[iuv]?ai|er)1\>/$1Q/
     - xform/\<([QWERTASDFGZXCVB]{2})([iuv]?[aeo]|[iuv]?ai|er)2\>/$1W/

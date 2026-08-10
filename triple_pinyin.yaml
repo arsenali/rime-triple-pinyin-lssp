@@ -14,22 +14,21 @@ translator:
     - xform/' '?/ '/
    __patch:                     # 2.2  全碼處理：漢語拼音全拼（去掉聲調）
     __append:
-    # - xform/([bpmfw])on(g?[0-5])/$1en$2/                    # 異拼
-    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
-    - xform/zii([0-5])/ji$1/                                # 尖音處理
-    - xform/z(i[a-z]+[0-5])/j$1/
-    - xform/zv([a-z]*[0-5])/ju$1/
-    - xform/cii([0-5])/qi$1/
-    - xform/c(i[a-z]+[0-5])/q$1/
-    - xform/cv([a-z]*[0-5])/qu$1/
-    - xform/sii([0-5])/xi$1/
-    - xform/s(i[a-z]+[0-5])/x$1/
-    - xform/sv([a-z]*[0-5])/xu$1/
-    - xform/([dtnlzcs])v([a-z]*[0-5])/$1ü$2/                # [dtnlzcs]v(-)轉換為ü
-    # - xform/([zcs])ü([0-5])/$1u$2/                          # 雲輸入轉寫
-    - xform/([dtnl])ü([0-5])/$1v$2/
-    - xform/([dtnl])ü(e[0-5])/$1u$2/
-    # - xform/([dtnlzcs])ü([a-z]+[0-5])/$1u$2/
+    - xform/([iuvyw])E-/$1e-/                               # 簡拼處理：ie/ue/ve，用e（ㄜ）/eh（ê/ㄝ）
+    - xform/eh-/ê-/                                         # 若([iuvyw])E-使用eh-，則轉換為ê-
+    - xform/\<([jqx])v(\w*)-/$1u$2-/                        # [jqx]v- => u-
+    - xform/v(\w*)-/ü$1-/                                   # v- => ü-
+    - xform/ ([aoe])/ '$1/                                  # 全碼處理：零聲母音節前+隔音符
+    - xform/zii/ji/                                         # 尖音處理
+    - xform/z(i[a-z]+)/j$1/
+    - xform/zv([a-z]*)/ju$1/
+    - xform/cii/qi/
+    - xform/c(i[a-z]+)/q$1/
+    - xform/cv([a-z]*)/qu$1/
+    - xform/sii/xi/
+    - xform/s(i[a-z]+)/x$1/
+    - xform/sv([a-z]*)/xu$1/
+    - xform/v([a-z]+)/u$1/                                  # v[a-z]+ => u
     - xform/[0-5]//                                         # 去掉聲調
     
    __patch:                     # 2.3  空格處理
@@ -43,41 +42,41 @@ translator:
    __patch: *gyf                # 2.1  隔音符處理
    __patch:                     # 2.2  全碼處理：帶調拼音
     __append:
-    # - xform/([bpmfw])on(g?[0-5])/$1en$2/                    # 異拼
-    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
-    - xform/([aoeiuv])(ng?|r)([1-4])/$1$3$2
-    - xform/([aoe])([iuoe])([1-4])/$1$3$2
-    - xform/a1/ā
-    - xform/a2/á
-    - xform/a3/ǎ
-    - xform/a4/à
-    - xform/e1/ē
-    - xform/e2/é
-    - xform/e3/ě
-    - xform/e4/è
-    - xform/o1/ō
-    - xform/o2/ó
-    - xform/o3/ǒ
-    - xform/o4/ò
-    - xform/i1/ī
-    - xform/i2/í
-    - xform/i3/ǐ
-    - xform/i4/ì
-    - xform/u1/ū
-    - xform/u2/ú
-    - xform/u3/ǔ
-    - xform/u4/ù
-    - xform/v1/ǖ
-    - xform/v2/ǘ
-    - xform/v3/ǚ
-    - xform/v4/ǜ
-    - xform/eh1/ê̄
-    - xform/eh2/ế
-    - xform/eh3/ê̌
-    - xform/eh4/ề
-    - xform/eh[05]?/ê
-    - xform/([dtnlzcs])v/$1ü/
-    # - xform/- '/- /                                         # 簡拼後去掉隔音符
+    - xform/([iuvyw])E-/$1e-/                               # 簡拼處理：ie/ue/ve，用e（ㄜ）/eh（ê/ㄝ）
+    - xform/\<([jqx])v(\w*)-/$1u$2-/                        # [jqx]v- => u-
+    - xform/ ([aoe])/ '$1/                                  # 全碼處理：零聲母音節前+隔音符
+    - xform/([aoeiuv])(ng?|r)([1-4])/$1$3$2/                # 聲調轉換
+    - xform/([aoe])([iuoe])([1-4])/$1$3$2/
+    - xform/a1/ā/
+    - xform/a2/á/
+    - xform/a3/ǎ/
+    - xform/a4/à/
+    - xform/e1/ē/
+    - xform/e2/é/
+    - xform/e3/ě/
+    - xform/e4/è/
+    - xform/o1/ō/
+    - xform/o2/ó/
+    - xform/o3/ǒ/
+    - xform/o4/ò/
+    - xform/i1/ī/
+    - xform/i2/í/
+    - xform/i3/ǐ/
+    - xform/i4/ì/
+    - xform/u1/ū/
+    - xform/u2/ú/
+    - xform/u3/ǔ/
+    - xform/u4/ù/
+    - xform/v1/ǖ/
+    - xform/v2/ǘ/
+    - xform/v3/ǚ/
+    - xform/v4/ǜ/
+    - xform/eh1/ê̄/
+    - xform/eh2/ế/
+    - xform/eh3/ê̌/
+    - xform/eh4/ề/
+    - xform/eh[05]?/ê/
+    - xform/v/ü/
     - xform/[05]//                                          # 未處理聲調轉換
     
    __patch:                     # 2.3  空格處理
@@ -91,13 +90,12 @@ translator:
    __patch: *gyf                # 2.1  隔音符處理
    __patch:                     # 2.2  全碼處理：注音符號
     __append:
-    - xform/\<yur-/yua-/                                    # 簡拼處理
-    - xform/(yu|ü)e-/$1eh-/
-    - xform/ü(a|eh)?-/v$1-/
-    - xform/\<([a-z]|[zcs]h)(\x2F)([a-z])(-)?/$1$3$4/
+    - xform/([iuvyw])E-/$1eh-/                              # 簡拼處理：ie/ue/ve，用e（ㄜ）/eh（ê/ㄝ）
+    - xform/\<yur-/yua-/
+    - xform/\<([a-z]|[zcs]h)(\x2F)([a-z])/$1$3/
     - xform/´\x2Fyw-/〇-/
     - xform/´\x2Fx/〇x/
-    - xform/([jqx])u/$1v/                                   # 全碼處理
+    - xform/([jqx])u/$1v/                                   # 全碼處理：拼音完整形式、異拼
     - xform/iu/iou/
     - xform/ui/uei/
     - xform/ong/ung/
@@ -137,22 +135,15 @@ translator:
    __patch: *gyf                # 2.1  隔音符處理
    __patch:                     # 2.2  全碼處理：國語羅馬字
     __append:
-    - xform/\<([^mnlr])(?!h)([a-z]+)\>/$1$2\x31/            # 廿六三拼無聲調簡拼處理
-    - xform/\<([zcs]h[a-z]+|[aoe])\>/$1\x31/
-    - xform/\<([mnlr][a-z]+)\>/$1\x32/
-    - xform/\<zh\>/j/                                       # 廿六三拼首碼簡拼處理
-    - xform/\<z\>/tz/
-    - xform/\<c\>/ts/
-    - xform/\<q(\x2F)/ch$1/
-    - xform/(\x2F)x\>/$1sh/
-    
-    - xform/eh([0-5])\>/E$1/                                # 對單韻母音節eh（ê/ㄝ），《國語羅馬字拼音法式》第4頁規定：ㄜ、ㄝ可同用e母；若在分別表明ㄜ與ㄝ兩音時，ㄝ可作ê
+    - xform/([iuvyw])E-/$1e-/                               # 簡拼處理：ie/ue/ve，用e（ㄜ）/eh（ê/ㄝ）
+    - xform/eh([0-5-])\>/E$1/                               # 對單韻母音節eh（ê/ㄝ），《國語羅馬字拼音法式》第4頁規定：ㄜ、ㄝ可同用e母；若在分別表明ㄜ與ㄝ兩音時，ㄝ可作ê
     - xform/([iuyw])ee([0-5])\>/$1e$2/                      # iee/uee拼寫和ie/ue一致
     
-    - xform/\<([^mnlr]\w*)0\>/$1\x31/                       # 未標調音節處理：非mnlr開頭的音節轉換為1聲
-    - xform/\<([mnlr]\w+)0\>/$1\x32/                        # 未標調音節處理：mnlr開頭的音節轉換為2聲
+    - xform/\<([^mnlr])(?!h)([a-z]+)0?\>/$1$2\x31/          # 未標調音節處理：非mnlr開頭的音節轉換為1聲
+    - xform/\<([zcs]h[a-z]+|[aoe])0?\>/$1\x31/
+    - xform/\<([mnlr][a-z]+)0?\>/$1\x32/                    # 未標調音節處理：mnlr開頭的音節轉換為2聲
     
-    - xform/\<([jqx])u([a-z]*[1-5])\>/$1v$2/
+    - xform/\<([jqx])u([a-z]*[1-5])\>/$1v$2/                # [jqx]u => v
     
     - xform/\<(\w*[^r][1-4]) er5/$1L/                       # 疊詞規則
     - xform/\<(\w+[1-5] \w+[1-5]) \1( |\>)/$1 VX$2/
@@ -174,21 +165,21 @@ translator:
     - xform/ii?([1-4]) er5/ie$1 er5/                        # 韻母i後需要加上el
     - xform/(v|yu)([1-4]) er5/$1e$2 er5/                    # 韻母v後需要加上el
     
-    - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 全碼處理，音節轉換
+    - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 全碼處理：音節轉換规则
     - xform/\<er(\w*[1-5])\>/el$1/
-    - xform/\<zh(\w*[1-5])\>/j$1/
-    - xform/\<z([aoeEiuvY]\w*[1-5])\>/tz$1/
-    - xform/\<c([aoeEiuvY]\w*[1-5])\>/ts$1/
-    - xform/\<q(\w*[1-5])\>/ch$1/
-    - xform/\<x(\w*[1-5])\>/sh$1/
+    - xform/\<zh(\w+[1-5])?\>/j$1/
+    - xform/\<z([aoeEiuvY]\w*[1-5])?\>/tz$1/
+    - xform/\<c([aoeEiuvY]\w*[1-5])?\>/ts$1/
+    - xform/\<q(\w+[1-5])?\>/ch$1/
+    - xform/\<x(\w+[1-5])?\>/sh$1/
     - xform/iu([1-5])\>/iou$1/
     - xform/([uv])i([1-5])\>/$1ei$2/
     - xform/ao([1-5])\>/au$1/
     - xform/([^y])un(g?[1-5])\>/$1uen$2/
     - xform/v(\w*[1-5])\>/iu$1/
     - xform/\<wu([1-5])\>/u$1/
-    - xform/y(\w*[1-5])\>/i$1/
-    - xform/w(\w*[1-5])\>/u$1/
+    - xform/\<y(\w+[1-5]|ι)\>/i$1/
+    - xform/\<w(\w+[1-5]|ι)\>/u$1/
     - xform/ii(\w*[1-5])\>/i$1/
     - xform/\<([mnlr]\w+)2\>/$1/
     - xform/\<([mnlr])(\w+1)\>/$1h$2/
@@ -246,7 +237,7 @@ translator:
     - xform/·ba\>/b/                                        # 簡寫
     - xform/·tzy\>/tz/
     - xform/·men\>/mn/
-    - xform/·([mdj])e\>/$1/  # 若韻母=e，則省去韻母
+    - xform/·([mdj])e\>/$1/                                 # 若韻母=e，則省去韻母
     - xform/·([nlg])e\>/·$1/
     - xform/(^|;)·([nlg])\>/$1$2/
     
@@ -294,7 +285,8 @@ translator:
     - xform/\<([jqx])ung([0-5])\>/$1iong$2/
     - xform/ung/ong/
     - xform/vng/iong/
-    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
+    - xform/eh/ê/                                           # eh特別處理，轉換為eh/e/ê
+    - xform/ ([aoe])/ '$1/                                  # 音節轉換：零聲母音節前+隔音符
     - xform/zii([0-5])/ji$1/                                # 尖音處理
     - xform/z(i[a-z]+[0-5])/j$1/
     - xform/zv([a-z]*[0-5])/ju$1/
@@ -304,10 +296,7 @@ translator:
     - xform/sii([0-5])/xi$1/
     - xform/s(i[a-z]+[0-5])/x$1/
     - xform/sv([a-z]*[0-5])/xu$1/
-    - xform/([dtnlzcs])v([a-z]*[0-5])/$1ü$2/                # [dtnlzcs]v(-)轉換為ü
-    - xform/([dtnl])ü([0-5])/$1v$2/
-    - xform/([dtnl])ü(e[0-5])/$1u$2/
-    - xform/([jqxy])v/$1u/
+    - xform/v([a-z]+[0-5])/u$1/                             # v[a-z]+ => u
     - xform/([a-z|ü]+)[0-5]/$1/                             # 去掉聲調
     
    # 空格處理
@@ -323,40 +312,39 @@ translator:
     - xform/\<([jqx])ung([0-5])\>/$1iong$2/
     - xform/ung/ong/
     - xform/vng/iong/
-    - xform/ ([aoe])/ '$1/                                  # 零聲母音節前+隔音符
-    - xform/([aoeiuv])(ng?|r)([1-4])/$1$3$2
-    - xform/([aoe])([iuoe])([1-4])/$1$3$2
-    - xform/a1/ā
-    - xform/a2/á
-    - xform/a3/ǎ
-    - xform/a4/à
-    - xform/e1/ē
-    - xform/e2/é
-    - xform/e3/ě
-    - xform/e4/è
-    - xform/o1/ō
-    - xform/o2/ó
-    - xform/o3/ǒ
-    - xform/o4/ò
-    - xform/i1/ī
-    - xform/i2/í
-    - xform/i3/ǐ
-    - xform/i4/ì
-    - xform/u1/ū
-    - xform/u2/ú
-    - xform/u3/ǔ
-    - xform/u4/ù
-    - xform/v1/ǖ
-    - xform/v2/ǘ
-    - xform/v3/ǚ
-    - xform/v4/ǜ
-    - xform/eh1/ê̄
-    - xform/eh2/ế
-    - xform/eh3/ê̌
-    - xform/eh4/ề
-    - xform/eh[05]/ê
-    - xform/([dtnlzcs])v/$1ü/
-    - xform/([jqxy])v/$1u/
+    - xform/ ([aoe])/ '$1/                                  # 音節轉換：零聲母音節前+隔音符
+    - xform/([aoeiuv])(ng?|r)([1-4])/$1$3$2/                # 聲調轉換
+    - xform/([aoe])([iuoe])([1-4])/$1$3$2/
+    - xform/a1/ā/
+    - xform/a2/á/
+    - xform/a3/ǎ/
+    - xform/a4/à/
+    - xform/e1/ē/
+    - xform/e2/é/
+    - xform/e3/ě/
+    - xform/e4/è/
+    - xform/o1/ō/
+    - xform/o2/ó/
+    - xform/o3/ǒ/
+    - xform/o4/ò/
+    - xform/i1/ī/
+    - xform/i2/í/
+    - xform/i3/ǐ/
+    - xform/i4/ì/
+    - xform/u1/ū/
+    - xform/u2/ú/
+    - xform/u3/ǔ/
+    - xform/u4/ù/
+    - xform/v1/ǖ/
+    - xform/v2/ǘ/
+    - xform/v3/ǚ/
+    - xform/v4/ǜ/
+    - xform/eh1/ê̄/
+    - xform/eh2/ế/
+    - xform/eh3/ê̌/
+    - xform/eh4/ề/
+    - xform/eh[05]/ê/
+    - xform/v/ü/
     - xform/([a-z|ü]+)[0-5]/$1/                             # 未處理聲調轉換
     
    # 空格處理
@@ -368,7 +356,7 @@ translator:
     - erase/\<xx\>/
     - xform/\<m([0-5])\>/mu$1/                              # 鼻音m（呣）轉化爲mu
     - xform/\<r5\>/er5/                                     # r5（兒）轉化爲er5
-    - xform/([jqx])u/$1v/                                   # 拼音完整形式、異拼
+    - xform/([jqx])u/$1v/                                   # 音節轉換：拼音完整形式、異拼
     - xform/iu/iou/
     - xform/ui/uei/
     - xform/ong/ung/
@@ -402,9 +390,6 @@ translator:
 
   comment_format_pinyin_to_guoluo:      # 詞典編碼->提示碼 第二段：國語羅馬字
    # 音節轉換
-    - xform/\<([^mnlr][a-z]*)0\>/$1\x31/                    # 未標調音節處理：非mnlr開頭的音節轉換為1聲
-    - xform/\<([mnlr][a-z]+)0\>/$1\x32/                     # 未標調音節處理：mnlr開頭的音節轉換為2聲
-    
     - erase/\<xx\>/
     - xform/\<m([1-5])\>/mu$1/                              # 鼻音m（呣）轉化爲mu
     - xform/\<r5\>/er5/                                     # r5（兒）轉化爲er5
@@ -415,7 +400,10 @@ translator:
     - xform/eh([1-5])\>/E$1/                                # 對單韻母音節eh（ê/ㄝ），《國語羅馬字拼音法式》第4頁規定：ㄜ、ㄝ可同用e母；若在分別表明ㄜ與ㄝ兩音時，ㄝ可作ê
     - xform/([iuyw])ee([1-5])\>/$1e$2/                      # iee/uee拼寫和ie/ue一致
     
-    - xform/\<([jqx])u([a-z]*[1-5])\>/$1v$2/
+    - xform/\<([^mnlr][a-z]*)0\>/$1\x31/                    # 未標調音節處理：非mnlr開頭的音節轉換為1聲
+    - xform/\<([mnlr][a-z]+)0\>/$1\x32/                     # 未標調音節處理：mnlr開頭的音節轉換為2聲
+    
+    - xform/\<([jqx])u([a-z]*[1-5])\>/$1v$2/                # [jqx]u => v
     
     # - xform/\<(\w*[^r][1-4]) er5/$1L/                       # 疊詞規則
     # - xform/\<(\w+[1-5] \w+[1-5]) \1( |\>)/$1 VX$2/
@@ -423,21 +411,21 @@ translator:
     # - xform/\<(\w+[1-5]) \1( |\>)/$1 X$2/
     # - xform/L/ er5/
     
-    - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 全碼處理，音節轉換
+    - xform/([zcsrh])i([1-5])\>/$1Y$2/                      # 音節轉換：音節轉換规则
     - xform/\<er(\w*[1-5])\>/el$1/
-    - xform/\<zh(\w*[1-5])\>/j$1/
+    - xform/\<zh(\w+[1-5])\>/j$1/
     - xform/\<z([aoeEiuvY]\w*[1-5])\>/tz$1/
     - xform/\<c([aoeEiuvY]\w*[1-5])\>/ts$1/
-    - xform/\<q(\w*[1-5])\>/ch$1/
-    - xform/\<x(\w*[1-5])\>/sh$1/
+    - xform/\<q(\w+[1-5])\>/ch$1/
+    - xform/\<x(\w+[1-5])\>/sh$1/
     - xform/iu([1-5])\>/iou$1/
     - xform/([uv])i([1-5])\>/$1ei$2/
     - xform/ao([1-5])\>/au$1/
     - xform/([^y])un(g?[1-5])\>/$1uen$2/
     - xform/v(\w*[1-5])\>/iu$1/
     - xform/\<wu([1-5])\>/u$1/
-    - xform/y(\w*[1-5])\>/i$1/
-    - xform/w(\w*[1-5])\>/u$1/
+    - xform/\<y(\w+[1-5])\>/i$1/
+    - xform/\<w(\w+[1-5])\>/u$1/
     - xform/ii(\w*[1-5])\>/i$1/
     - xform/\<([mnlr]\w+)2\>/$1/
     - xform/\<([mnlr])(\w+1)\>/$1h$2/
@@ -692,8 +680,12 @@ labels:
   175: &lb_Mode_samll_ls26_ft '單手ㄚ'
   176: &lb_delimiter1 首码
   177: &lb_delimiter1_ft 首碼
-  178: &lb_delimiter3 全码
-  179: &lb_delimiter3_ft 全碼
+  178: &lb_delimiter2 简码
+  179: &lb_delimiter2_ft 簡碼
+  180: &lb_delimiter3 全码
+  181: &lb_delimiter3_ft 全碼
+  182: &lb_delimiter4 无声调全码
+  183: &lb_delimiter4_ft 無聲調全碼
   
 # ────────────────
 style:
@@ -1324,11 +1316,14 @@ preset_keys:
   RightS: {label: *lb_RightS, send: Control+Right, repeatable: true}
   delimiterls: {label: *lb_delimiter, repeatable: false, functional: false, text: ";"}
   delimiterls_ft: {__include: preset_keys/delimiterls, label: *lb_delimiter_ft}
-  delimiter1ls: {label: *lb_delimiter1, repeatable: false, functional: false, send: Control+m}
-  delimiter3ls: {label: *lb_delimiter3, repeatable: false, functional: false, send: Control+l}
-  transtowsd: {label: '轉換無聲調', repeatable: false, functional: false, send: Control+q}
-  delimiter1ls_ft: {__include: preset_keys/delimiter1ls, label: *lb_delimiter1_ft}
-  delimiter3ls_ft: {__include: preset_keys/delimiter3ls, label: *lb_delimiter3_ft}
+  delimiter1ls: {preview: "首码简拼", label: *lb_delimiter1, repeatable: false, functional: false, send: Control+u}
+  delimiter2ls: {preview: "前两码简拼", label: *lb_delimiter2, repeatable: false, functional: false, send: Control+j}
+  delimiter3ls: {preview: "三码全码", label: *lb_delimiter3, repeatable: false, functional: false, send: Control+m}
+  delimiter4ls: {preview: "转换无声调全码", label: *lb_delimiter4, repeatable: false, functional: false, send: Control+q}
+  delimiter1ls_ft: {__include: preset_keys/delimiter1ls, preview: "首碼簡拼", label: *lb_delimiter1_ft}
+  delimiter2ls_ft: {__include: preset_keys/delimiter2ls, preview: "前兩碼簡拼", label: *lb_delimiter2_ft}
+  delimiter3ls_ft: {__include: preset_keys/delimiter3ls, preview: "三碼全碼", label: *lb_delimiter3_ft}
+  delimiter4ls_ft: {__include: preset_keys/delimiter4ls, preview: "轉換無聲調全碼", label: *lb_delimiter4_ft}
   spacels: {repeatable: false, functional: false, preview: " ", send: space}
   spacelskg: {label: *lb_spacelskg, repeatable: false, functional: false, preview: " ", send: space}
   Escapecx: {label: *lb_Escapecx, send: Escape}
@@ -1841,10 +1836,10 @@ preset_keyboards:
       - {click: 2_lsjpshow, ascii: 'W', long_click: 2cazj_lsjpshow, swipe_down: 'S', key_text_size: 18}
       - {click: 3_lsjpshow, ascii: 'E', long_click: 3cazj_lsjpshow, swipe_down: 'P', key_text_size: 18}
       - {click: x_lsjpshow, ascii: 'R', long_click: xcazj_lsjpshow, swipe_up: xcazj_lsjpshow, key_text_size: 18}
-      - {click: A_lsjpshow, ascii: 'T', long_click: Acazj_lsjpshow, swipe_up: Acazj_lsjpshow, swipe_left: transtowsd, swipe_right: transtowsd, key_text_size: 18}
+      - {click: A_lsjpshow, ascii: 'T', long_click: Acazj_lsjpshow, swipe_up: Acazj_lsjpshow, key_text_size: 18}
       - {__include: preset_keyboards/lsqwerty/keys/@39, width: 15}
      # 第三行
-      - {click: "'", ascii: "'", long_click: '"', swipe_up: '"', swipe_down: Mode_samll, hint: *lb_Mode_samll, composing: delimiter1ls, width: 15}
+      - {click: "'", ascii: "'", long_click: '"', swipe_up: '"', swipe_down: Mode_samll, swipe_right: delimiter1ls, hint: *lb_Mode_samll, composing: delimiter2ls, width: 15}
       - {click: 4_lsjpshow, ascii: 'A', long_click: 4cazj_lsjpshow, swipe_down: 'N', key_text_size: 18}
       - {click: 5_lsjpshow, ascii: 'S', long_click: 5cazj_lsjpshow, swipe_down: 'Z', key_text_size: 18}
       - {click: 6_lsjpshow, ascii: 'D', long_click: 6cazj_lsjpshow, key_text_size: 18}
@@ -1852,7 +1847,7 @@ preset_keyboards:
       - {click: B_lsjpshow, ascii: 'G', long_click: Bcazj_lsjpshow, swipe_up: Bcazj_lsjpshow, swipe_right: CommitComment, key_text_size: 18}
       - {click: Left, long_click: LeftS, swipe_up: LeftS, swipe_down: '；', hint: ' ；', width: 15}
      # 第四行
-      - {click: '?', long_click: '!', swipe_up: '!', swipe_down: Hint_switch, label: ' ？', hint: *lb_Hint_switch_1, composing: delimiter3ls, width: 15}
+      - {click: '?', long_click: '!', swipe_up: '!', swipe_down: Hint_switch, swipe_right: delimiter4ls, label: ' ？', hint: *lb_Hint_switch_1, composing: delimiter3ls, width: 15}
       - {click: 7_lsjpshow, ascii: 'Z', long_click: 7cazj_lsjpshow, key_text_size: 18}
       - {click: 8_lsjpshow, ascii: 'X', long_click: 8cazj_lsjpshow, key_text_size: 18}
       - {click: 9_lsjpshow, ascii: 'C', long_click: 9cazj_lsjpshow, key_text_size: 18}
@@ -2203,8 +2198,10 @@ preset_keyboards:
       keys/@29/long_click: Ccazj_lssp3show
       keys/@29/swipe_up: Ccazj_lssp3show
       keys/@10/composing: delimiterls_ft
-      keys/@17/composing: delimiter1ls_ft
+      keys/@17/composing: delimiter2ls_ft
       keys/@24/composing: delimiter3ls_ft
+      keys/@17/swipe_right: delimiter1ls_ft
+      keys/@24/swipe_right: delimiter4ls_ft
       keys/@32/composing: lsjp_2x_ft
       keys/@24/hint: *lb_Hint_switch_1_ft
       # keys/@22/popup: [lssp3_Comment, lssp3_display]
