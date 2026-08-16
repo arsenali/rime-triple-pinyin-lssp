@@ -6,11 +6,11 @@ schema:
   name: 李氏三拼aeo
   version: "3.6"
   author:
-    - 佛振 <chen.sst@gmail.com>
     - 阿森納裡 <15678407@qq.com>
+    - 佛振 <chen.sst@gmail.com>
   description: |
     15鍵內實現“聲母+韻母+去重碼&聲調”三碼輸入一個帶調音節；
-    基礎韻母大致按韻頭分為4組：a/an/ang,e/en/eng,o/ou/ong,ai/ei/ao；
+    基礎韻母大致按韻頭分為4組：a/an/ang, e/en/eng, o/ou/ong, ai/ei/ao；
     可用HSPNZ（橫豎撇捺折）連續輸入筆畫輔助碼進行逐字篩選；
     上屏碼和提示碼有全拼（無調拼音）、帶調拼音、注音符號和國語羅馬字四種形式，可任意切換。
   dependencies:
