@@ -11,15 +11,25 @@
 
 李氏三拼是纯音码方案，但也可用笔画筛选。
 
-## 安装
+QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
 
-本方案依赖于 ℞ [地球拼音](https://github.com/rime/rime-terra-pinyin)、[朙月拼音](https://github.com/rime/rime-luna-pinyin)、[五筆畫](https://github.com/rime/rime-stroke) 方案，安装本方案前请先安装上述方案。
+## 下载与安装
 
-上述方案均已包含在补丁包中，可下载补丁包[[下载地址](https://github.com/arsenali/rime-triple-pinyin-lssp#说明和下载)]直接导入，详见：
+方案所需全部文件已打包，可在[网盘](http://www.lssp.ysepan.com/)下载补丁包直接导入。
+
+安装方法详见：
 
 [安卓版和windows版](https://github.com/arsenali/rime-triple-pinyin-lssp/wiki/安卓版和windows版)
 
 [苹果版](https://github.com/arsenali/rime-triple-pinyin-lssp/wiki/苹果版)
+
+本仓库未列出依赖方案和文件，包括：
+
+- 词库文件和语言模型，详见：【[说明](https://github.com/arsenali/rime-triple-pinyin-lssp#说明)】
+- 反查依赖方案：[袖珍简化字拼音](https://github.com/rime/rime-pinyin-simp)，[五笔画](https://github.com/rime/rime-stroke)
+- [简化字八股文](https://github.com/rime/rime-essay-simp)
+- [尖音字库](https://github.com/arsenali/zianyinzi)
+- 其他：grammar.yaml: [小狼毫](https://github.com/rime/weasel)输入法内置；trime.yaml: [同文](https://github.com/osfans/trime)/[中文](https://github.com/nirenr/trime2)输入法内置
 
 <br>
 
@@ -208,18 +218,41 @@ _截图使用的是“光明·黑暗 乱”主题，“艳彩”配色_
 
 ---
 
-## 说明和下载
+## 说明
 
 主题文件中自带简单教程，可点击“帮助”查看。
 
 点击“反查”可使用拼音或笔画进行编码反查。
 
-默认只载入地球拼音词库，加载“八股文”语言模型，如需使用万象等词库需自行下载并在词库列表文件terra_pinyin.extended.dict.yaml中启用，使用其他语言模型请修改grammar.custom.yaml文件。
+### 词库
 
-下载地址：http://www.lssp.ysepan.com/
+本方案使用带调拼音词库，默认加载[万象词库](https://github.com/amzxyz/rime-wanxiang)，其他带调拼音词库还有：
+  - [薄荷拼音词库](https://github.com/Mintimate/oh-my-rime)，基于[万象拼音词库](https://github.com/amzxyz/rime-wanxiang)，略有调整
+  - [冰雪拼音词库](https://github.com/rimeinn/rime-snow-pinyin)，基于[雾凇拼音词库](https://github.com/iDvel/rime-ice)，添加声调
+  - [地球拼音词库](https://github.com/rime/rime-terra-pinyin)，繁体词库，台湾发音标准
 
-QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
+可自行选用，在triple_pinyin.dict.yaml中调整词库。
 
+### 语言模型
+
+默认加载[万象语言模型](https://github.com/amzxyz/RIME-LMDG)，其他可用的语言模型还有：
+- [墨奇语言模型](https://github.com/gaboolic/rime-build-grammar)，[白霜拼音词库](https://github.com/gaboolic/rime-frost)配套语言模型
+- [八股文语言模型](https://github.com/lotem/rime-octagram-data)，Rime预设词汇表（[八股文](https://github.com/rime/rime-essay)、[朙月拼音](https://github.com/rime/rime-luna-pinyin)、[地球拼音](https://github.com/rime/rime-terra-pinyin)等）配套语言模型，繁体模型
+
+可自行选用，在grammar.custom.yaml中选用模型。
+
+另外可参考[Rime Octagram 語言模型](https://github.com/rimeinn/octagram-data)。
+
+### 语流音变（连读变调现象）
+
+带调方案涉及到汉语语流音变现象，包括：
+1. “一”、“不”二字，各词库设定为：
+   - 万象/薄荷/地球拼音词库：“一”变调，如：一个`yí gè`，一起`yì qǐ`；“不”变调，如：不要`bú yào`，不行`bù xíng`
+   - 冰雪词库：“一”统一用一声，如：一个`yī gè`，一起`yī qǐ`；“不”统一用四声，如：不要`bù yào`，不行`bù xíng`
+ 
+   为简单起见，本方案建议“一”、“不”二字统一都用一声，如：一个`yī gè`，一起`yī qǐ`；不要`bū yào`，不行`bū xíng`。
+2. 普通话中两个三声字连读时，前一个字变为二声，例如：你好`ní hǎo`，水果`shuí guǒ`，但在输入时仍打三声，即：你好`nǐ hǎo`，水果`shuǐ guǒ`。
+3. 部分方言的音变现象，例如：地上一`yí`个猴，树上七`qí`个猴，一共八`bá`个猴，输入时仍按原声调输入，即：地上一`yī`个猴，树上七`qī`个猴，一共八`bā`个猴；再如：别说话`biè shuō huà`，输入时应打`bié shuō huà`。
 
 <br>
 
@@ -232,14 +265,3 @@ QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
 李氏三拼因其键位少、码长短、输入准的特点，恰当的满足了移动互联网时代的打字需求，非常适合于作为移动设备的输入方案。
 
 本方案配置文件和所用到的lua插件均已做模块化处理，逻辑清晰，语法规范，方便理解和修改调试，欢迎魔改。
-
-
-<br>
-
-## 收藏和克隆
-
-### &#8627; Stargazers
-[![Stargazers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/stars/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin-lssp/stargazers)
-
-### &#8627; Forkers
-[![Forkers repo roster for @arsenali/rime-triple-pinyin-lssp](https://reporoster.com/forks/arsenali/rime-triple-pinyin-lssp)](https://github.com/arsenali/rime-triple-pinyin-lssp/network/members)
