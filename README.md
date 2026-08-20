@@ -17,11 +17,7 @@ QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
 
 方案所需全部文件已打包，可在[网盘](http://www.lssp.ysepan.com/)下载补丁包直接导入。
 
-安装方法详见：
-
-[安卓版和windows版](https://github.com/arsenali/rime-triple-pinyin-lssp/wiki/安卓版和windows版)
-
-[苹果版](https://github.com/arsenali/rime-triple-pinyin-lssp/wiki/苹果版)
+安装方法详见【[安装方法](https://github.com/arsenali/rime-triple-pinyin-lssp/wiki/安装方法)】。
 
 本仓库未列出依赖方案和文件，包括：
 
