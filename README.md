@@ -23,7 +23,7 @@ QQ群：[150478288](https://jq.qq.com/?_wv=1027&k=5wf1uTQ)
 
 本仓库未列出依赖方案和文件，包括：
 
-- 词库文件和语言模型，详见：【[说明](https://github.com/arsenali/rime-triple-pinyin-lssp#说明)】
+- 词库文件和语言模型，详见【[说明](https://github.com/arsenali/rime-triple-pinyin-lssp#说明)】
 - 反查依赖方案：[袖珍简化字拼音](https://github.com/rime/rime-pinyin-simp)，[五笔画](https://github.com/rime/rime-stroke)
 - [简化字八股文](https://github.com/rime/rime-essay-simp)
 - [尖音字库](https://github.com/arsenali/zianyinzi)
