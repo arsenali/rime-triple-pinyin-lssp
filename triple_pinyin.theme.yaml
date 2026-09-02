@@ -180,8 +180,8 @@ labels:
   175: &lb_Mode_samll_ls26_ft '單手ㄚ'
   176: &lb_delimiter1 首码
   177: &lb_delimiter1_ft 首碼
-  178: &lb_delimiter2 简码
-  179: &lb_delimiter2_ft 簡碼
+  178: &lb_delimiter2 简拼
+  179: &lb_delimiter2_ft 簡拼
   180: &lb_delimiter3 全码
   181: &lb_delimiter3_ft 全碼
   182: &lb_delimiter4 无声调全码
