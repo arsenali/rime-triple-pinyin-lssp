@@ -27,6 +27,7 @@ import_tables:
   - dicts/yiren         #艺人
   - dicts/wuzhong       #物种多样性
   - dicts/renming       #高频人名
+  - dicts/fangyan       #收集全国方言
   
  # 薄荷词库
   # - dicts/rime_mint.chars           # 单字词库（万象拼音词库基础版本）
