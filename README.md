@@ -225,7 +225,7 @@ _截图使用的是“光明·黑暗 乱”主题，“艳彩”配色_
 
 ### 词库
 
-本方案使用带调拼音词库，默认加载[万象词库](https://github.com/amzxyz/rime-wanxiang)，其他带调拼音词库还有：
+本方案使用带调拼音词库，默认加载[万象词库](https://github.com/amzxyz/rime-wanxiang)（本仓库未内置，需自行下载），其他带调拼音词库还有：
   - [薄荷拼音词库](https://github.com/Mintimate/oh-my-rime)，基于[万象拼音词库](https://github.com/amzxyz/rime-wanxiang)，略有调整
   - [冰雪拼音词库](https://github.com/rimeinn/rime-snow-pinyin)，基于[雾凇拼音词库](https://github.com/iDvel/rime-ice)，添加声调
   - [地球拼音词库](https://github.com/rime/rime-terra-pinyin)，繁体词库，台湾发音标准
@@ -234,7 +234,7 @@ _截图使用的是“光明·黑暗 乱”主题，“艳彩”配色_
 
 ### 语言模型
 
-默认加载[万象语言模型](https://github.com/amzxyz/RIME-LMDG)，其他可用的语言模型还有：
+默认加载[万象语言模型](https://github.com/amzxyz/RIME-LMDG)（本仓库未内置，需自行下载），其他可用的语言模型还有：
 - [墨奇语言模型](https://github.com/gaboolic/rime-build-grammar)，[白霜拼音词库](https://github.com/gaboolic/rime-frost)配套语言模型
 - [八股文语言模型](https://github.com/lotem/rime-octagram-data)，Rime预设词汇表（[八股文](https://github.com/rime/rime-essay)、[朙月拼音](https://github.com/rime/rime-luna-pinyin)、[地球拼音](https://github.com/rime/rime-terra-pinyin)等）配套语言模型，繁体模型
 
