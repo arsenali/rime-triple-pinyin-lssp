@@ -1,6 +1,10 @@
 # Theme settings for Triple_pinyin
 # encoding: utf-8
 
+config_version: "2026.09.17"
+name: 三拼4x4a键盘
+author: 阿森纳里 <15678407@qq.com>
+
 style:
   __include: 三拼3x5a键盘.trime:/style
 
